@@ -1,1 +1,944 @@
-<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>My Recipe Book</title><style>@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap');*{box-sizing:border-box;margin:0;padding:0}body{font-family:'DM Sans',sans-serif;background:#faf8f4;color:#1a1a1a;min-height:100vh}.app{max-width:720px;margin:0 auto;padding:2rem 1rem}header{text-align:center;margin-bottom:2.5rem;padding-bottom:1.5rem;border-bottom:2px solid #1a1a1a}header h1{font-family:'Playfair Display',serif;font-size:2.8rem;letter-spacing:-1px;line-height:1}header p{font-size:.85rem;color:#888;margin-top:.4rem;font-weight:300;letter-spacing:.05em;text-transform:uppercase}.add-form{background:#fff;border:1.5px solid #1a1a1a;border-radius:2px;padding:1.5rem;margin-bottom:2rem}.add-form h2{font-family:'Playfair Display',serif;font-size:1.2rem;margin-bottom:1rem}.form-group{margin-bottom:1rem}label{display:block;font-size:.75rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:#555;margin-bottom:.4rem}input[type="text"],textarea{width:100%;padding:.6rem .8rem;border:1px solid #ddd;border-radius:2px;font-family:'DM Sans',sans-serif;font-size:.9rem;background:#faf8f4;outline:none;transition:border-color .2s}input[type="text"]:focus,textarea:focus{border-color:#1a1a1a}textarea{min-height:90px;resize:vertical;line-height:1.6}.hint{font-size:.72rem;color:#aaa;margin-top:.3rem}.btn-add{background:#1a1a1a;color:#fff;border:none;padding:.7rem 1.8rem;font-family:'DM Sans',sans-serif;font-size:.85rem;font-weight:500;letter-spacing:.05em;cursor:pointer;border-radius:2px;transition:background .2s}.btn-add:hover{background:#333}.recipes-header{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:1rem}.recipes-header h2{font-family:'Playfair Display',serif;font-size:1.4rem}.count{font-size:.8rem;color:#aaa;font-weight:300}.empty{text-align:center;padding:3rem 1rem;color:#bbb;font-size:.9rem;border:1.5px dashed #ddd;border-radius:2px;font-style:italic}.recipe-card{background:#fff;border:1.5px solid #e8e3db;border-radius:2px;margin-bottom:1rem;overflow:hidden;transition:border-color .2s}.recipe-card:hover{border-color:#1a1a1a}.card-header{display:flex;align-items:center;justify-content:space-between;padding:1rem 1.2rem;user-select:none}.card-title{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700}.card-meta{font-size:.75rem;color:#aaa;margin-top:.15rem;font-weight:300}.card-actions{display:flex;align-items:center;gap:.5rem;flex-shrink:0}.btn-toggle{background:none;border:1px solid #ddd;border-radius:2px;padding:.3rem .7rem;font-size:.75rem;cursor:pointer;color:#555;font-family:'DM Sans',sans-serif;transition:all .2s}.btn-toggle:hover{border-color:#1a1a1a;color:#1a1a1a}.btn-delete{background:none;border:1px solid #f0d0d0;border-radius:2px;padding:.3rem .7rem;font-size:.75rem;cursor:pointer;color:#c0392b;font-family:'DM Sans',sans-serif;transition:all .2s}.btn-delete:hover{background:#c0392b;color:#fff;border-color:#c0392b}.card-body{display:none;padding:0 1.2rem 1.2rem;border-top:1px solid #f0ebe3}.card-body.open{display:block}.section-label{font-size:.7rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:#888;margin:1rem 0 .5rem}.ingredients-list{list-style:none;padding:0}.ingredients-list li{font-size:.88rem;padding:.3rem 0;border-bottom:1px solid #f5f0ea;display:flex;align-items:flex-start;gap:.5rem;line-height:1.4}.ingredients-list li::before{content:'—';color:#ccc;flex-shrink:0;margin-top:1px}.method-list{list-style:none;padding:0;counter-reset:steps}.method-list li{font-size:.88rem;padding:.4rem 0 .4rem 2rem;border-bottom:1px solid #f5f0ea;position:relative;line-height:1.5;counter-increment:steps}.method-list li::before{content:counter(steps);position:absolute;left:0;top:.4rem;font-family:'Playfair Display',serif;font-size:.75rem;color:#bbb;font-weight:700}.toast{position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%) translateY(60px);background:#1a1a1a;color:#fff;padding:.6rem 1.4rem;border-radius:2px;font-size:.82rem;opacity:0;transition:all .3s ease;pointer-events:none;z-index:999}.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}</style></head><body><div class="app"><header><h1>My Recipe Book</h1><p>All your recipes in one place</p></header><div class="add-form"><h2>+ Add New Recipe</h2><div class="form-group"><label>Recipe Name</label><input type="text" id="recipeName" placeholder="e.g. Chocolate Chip Bread"/></div><div class="form-group"><label>Ingredients</label><textarea id="recipeIngredients" placeholder="One ingredient per line"></textarea><div class="hint">One ingredient per line</div></div><div class="form-group"><label>Method</label><textarea id="recipeMethod" placeholder="One step per line"></textarea><div class="hint">One step per line</div></div><button class="btn-add" onclick="addRecipe()">Save Recipe</button></div><div class="recipes-header"><h2>Saved Recipes</h2><span class="count" id="recipeCount">0 recipes</span></div><div id="recipeList"></div></div><div class="toast" id="toast"></div><script>let recipes=[];const SEED_RECIPES=[{id:2,name:'Banana Chocolate Chip Bread',ingredients:['2¾ cups (325g) very ripe mashed banana (~3 medium or 4 small)','½ cup (183g) honey','⅓ cup (75g) sugar or 4 tbsp (8g) stevia','1½ tsp vanilla extract','2 eggs','3 tbsp (45ml) olive oil','2 cups (250g) all-purpose flour','1½ tsp baking soda','½ tsp cinnamon','¼ tsp salt','¼ tsp nutmeg (optional)','214g Hershey\'s milk chocolate chips','——','Per slice with sugar: 261 kcal · 4.2g P · 11.8g F · 37.8g C · 23.4g sugar','Per slice with stevia: 241 kcal · 4.2g P · 11.8g F · 33.8g C · 21.4g sugar'],method:['Preheat oven to 175°C. Line a large loaf tin with parchment.','Mash 325g (~3 medium or 4 small) very ripe bananas very well — the blacker the better.','Add 183g honey, ⅓ cup (75g) sugar or 4 tbsp stevia, 1½ tsp vanilla and 2 eggs. Whisk until combined.','Stir in 3 tbsp (45ml) olive oil until smooth.','Fold in 250g flour, 1½ tsp baking soda, ½ tsp cinnamon, ¼ tsp salt and ¼ tsp nutmeg (if using) until just combined — do not overmix.','Fold in half the chocolate chips (107g).','Pour into lined loaf tin, smooth the top and scatter remaining 107g chocolate chips on top.','Bake at 175°C for 55–65 minutes until toothpick comes out with moist crumbs. Check every 10 minutes if not ready.','Cool in tin 15 minutes, transfer to wire rack. Best sliced once fully cool.'],date:'10 Jun 2026'},{id:1,name:'Croissants',servings:'Makes 6',ingredients:['1¾ cups (330g) all-purpose flour','1 tsp (3g) instant yeast','2 tbsp (30g) sugar','1 tsp (6g) salt','1½ tbsp (20g) butter, softened','¾ cup (170ml) lukewarm water','5 tbsp (75g) cold butter, for laminating','1 egg + 1 tbsp milk, for egg wash','——','Per croissant: 334 kcal · 5.8g protein · 13.4g fat · 46.8g carbs'],method:['Mix 170ml lukewarm water, 1 tsp (3g) yeast and 2 tbsp (30g) sugar together. Add 330g flour, 1 tsp (6g) salt and 20g softened butter. Mix until dough comes together and knead until smooth — stretch test, if it doesn\'t tear it\'s ready. Cover and rest 15 minutes at room temp.','Place 75g cold butter in a zip bag and roll into a flat square — pliable but still cold.','On a floured surface roll out the dough, place butter in the centre and seal it in. Do 1 double fold + 1 single fold. If kitchen is warm chill briefly between folds. Cover and refrigerate 30 minutes.','Roll dough out again and cut into 3 strips, then cut each strip into 2 triangles — 6 pieces total. Roll each triangle into a croissant shape, not too tight. Place on a parchment-lined tray.','Cover and proof until puffy and jiggly — about 1 hour.','Brush generously with egg wash (1 egg beaten with 1 tbsp milk).','Bake at 200°C for 3 minutes, then reduce to 180°C for 20 minutes until deep golden. Do not open the oven while baking.'],date:'6 Jun 2026'}];function loadRecipes(){try{const saved=localStorage.getItem('joelle_recipes');if(saved){recipes=JSON.parse(saved)}const seeded=JSON.parse(localStorage.getItem('joelle_seeded')||'[]');SEED_RECIPES.forEach(s=>{if(!seeded.includes(s.id)&&!recipes.find(r=>r.id===s.id)){recipes.push(s);seeded.push(s.id)}});localStorage.setItem('joelle_seeded',JSON.stringify(seeded));renderRecipes()}catch(e){recipes=[]}}function saveRecipes(){try{localStorage.setItem('joelle_recipes',JSON.stringify(recipes))}catch(e){showToast('Could not save')}}function addRecipe(){const name=document.getElementById('recipeName').value.trim();const ingredients=document.getElementById('recipeIngredients').value.trim();const method=document.getElementById('recipeMethod').value.trim();if(!name||!ingredients||!method){showToast('Please fill in all fields');return}const recipe={id:Date.now(),name,ingredients:ingredients.split('\n').filter(l=>l.trim()),method:method.split('\n').filter(l=>l.trim()),date:new Date().toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'})};recipes.unshift(recipe);saveRecipes();renderRecipes();document.getElementById('recipeName').value='';document.getElementById('recipeIngredients').value='';document.getElementById('recipeMethod').value='';showToast('Recipe saved!')}function deleteRecipe(id){if(!confirm('Delete this recipe?'))return;recipes=recipes.filter(r=>r.id!==id);saveRecipes();renderRecipes();showToast('Recipe deleted')}function toggleRecipe(id){const body=document.getElementById('body_'+id);const btn=document.getElementById('toggle_'+id);if(body.classList.contains('open')){body.classList.remove('open');btn.textContent='View'}else{body.classList.add('open');btn.textContent='Hide'}}function renderRecipes(){const list=document.getElementById('recipeList');const count=document.getElementById('recipeCount');count.textContent=recipes.length+' recipe'+(recipes.length!==1?'s':'');if(recipes.length===0){list.innerHTML='<div class="empty">No recipes yet — add your first one above!</div>';return}list.innerHTML=recipes.map(r=>`<div class="recipe-card"><div class="card-header"><div><div class="card-title">${r.name}</div><div class="card-meta">Added ${r.date} &middot; ${r.ingredients.length} ingredients &middot; ${r.method.length} steps</div></div><div class="card-actions"><button class="btn-toggle" id="toggle_${r.id}" onclick="toggleRecipe(${r.id})">View</button><button class="btn-delete" onclick="deleteRecipe(${r.id})">Delete</button></div></div><div class="card-body" id="body_${r.id}"><div class="section-label">Ingredients</div><ul class="ingredients-list">${r.ingredients.map(i=>`<li>${i}</li>`).join('')}</ul><div class="section-label">Method</div><ol class="method-list">${r.method.map(s=>`<li>${s}</li>`).join('')}</ol></div></div>`).join('')}function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2500)}loadRecipes();</script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Joelle's home baking recipes — with serving scaler and healthier versions." />
+  <meta name="theme-color" content="#faf8f4" />
+  <title>Joelle's Recipes</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;1,9..144,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #faf7f1;
+      --bg-card: #ffffff;
+      --ink: #1a1613;
+      --ink-soft: #6b5f54;
+      --ink-mute: #a89a8d;
+      --line: #e8dfd1;
+      --line-soft: #f0e8da;
+      --accent: #b8502a;
+      --accent-soft: #fbece2;
+      --healthier: #3f7a52;
+      --healthier-soft: #e8f1ea;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.55;
+      min-height: 100vh;
+      font-size: 16px;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+    .app {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 2rem 1.25rem 4rem;
+    }
+    /* ---------- Top bar ---------- */
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+    }
+    .brand {
+      font-family: 'Fraunces', Georgia, serif;
+      font-weight: 700;
+      font-size: 1.35rem;
+      letter-spacing: -0.01em;
+      line-height: 1;
+      color: var(--ink);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .brand-dot { color: var(--accent); }
+    .back-link {
+      font-size: 0.82rem;
+      color: var(--ink-soft);
+      text-decoration: none;
+      padding: 0.5rem 0.25rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      transition: color 0.15s;
+    }
+    .back-link:hover { color: var(--ink); }
+    /* ---------- Home ---------- */
+    .home-hero {
+      text-align: center;
+      margin-bottom: 2.5rem;
+      padding: 0 0.5rem;
+    }
+    .home-hero h1 {
+      font-family: 'Fraunces', Georgia, serif;
+      font-weight: 700;
+      font-size: clamp(2rem, 6vw, 2.75rem);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.75rem;
+    }
+    .home-hero p {
+      color: var(--ink-soft);
+      font-size: 1rem;
+      max-width: 36ch;
+      margin: 0 auto;
+    }
+    .section-title {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink-mute);
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--line);
+    }
+    .recipe-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .recipe-card {
+      background: var(--bg-card);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 1.1rem 1.2rem;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      transition: border-color 0.15s, transform 0.15s;
+    }
+    .recipe-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-1px);
+    }
+    .recipe-card:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+    .recipe-card-emoji {
+      font-size: 1.9rem;
+      line-height: 1;
+      flex-shrink: 0;
+    }
+    .recipe-card-body { flex: 1; min-width: 0; }
+    .recipe-card-name {
+      font-family: 'Fraunces', Georgia, serif;
+      font-weight: 700;
+      font-size: 1.15rem;
+      line-height: 1.2;
+      margin-bottom: 0.2rem;
+    }
+    .recipe-card-summary {
+      color: var(--ink-soft);
+      font-size: 0.85rem;
+      line-height: 1.4;
+    }
+    .recipe-card-arrow {
+      color: var(--ink-mute);
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+    /* ---------- Recipe page ---------- */
+    .recipe-head {
+      text-align: center;
+      margin-bottom: 1.75rem;
+      padding: 0 0.25rem;
+    }
+    .recipe-emoji {
+      font-size: 2.6rem;
+      line-height: 1;
+      margin-bottom: 0.75rem;
+    }
+    .recipe-name {
+      font-family: 'Fraunces', Georgia, serif;
+      font-weight: 700;
+      font-size: clamp(1.9rem, 5.5vw, 2.4rem);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.6rem;
+    }
+    .recipe-summary {
+      color: var(--ink-soft);
+      font-size: 0.95rem;
+      font-style: italic;
+      max-width: 40ch;
+      margin: 0 auto;
+    }
+    /* Scaler */
+    .scaler {
+      background: var(--bg-card);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 0.9rem 1rem;
+      margin: 1.5rem 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    .scaler-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-mute);
+    }
+    .scaler-value {
+      font-family: 'Fraunces', Georgia, serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+      margin-top: 0.15rem;
+    }
+    .scaler-controls {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .scaler-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 1px solid var(--line);
+      background: var(--bg);
+      color: var(--ink);
+      font-size: 1.2rem;
+      font-weight: 500;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.15s;
+    }
+    .scaler-btn:hover:not(:disabled) {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+    .scaler-btn:disabled {
+      opacity: 0.35;
+      cursor: not-allowed;
+    }
+    .scaler-btn:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+    .scaler-count {
+      min-width: 1.75rem;
+      text-align: center;
+      font-family: 'Fraunces', Georgia, serif;
+      font-weight: 700;
+      font-size: 1.25rem;
+    }
+    /* Alternate version link */
+    .alternate-link {
+      display: block;
+      text-align: center;
+      padding: 0.85rem 1rem;
+      margin: 1rem 0 2rem;
+      border-radius: 10px;
+      background: var(--healthier-soft);
+      border: 1px solid var(--healthier);
+      color: var(--healthier);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.92rem;
+      transition: background 0.15s;
+    }
+    .alternate-link:hover { background: #dce9de; }
+    .alternate-link.is-original {
+      background: var(--accent-soft);
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+    .alternate-link.is-original:hover { background: #f7dfd0; }
+    /* Section dividers */
+    .section-divider {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin: 2rem 0 1rem;
+      padding-bottom: 0.55rem;
+      border-bottom: 2px solid var(--ink);
+    }
+    .section-divider-emoji {
+      font-size: 1.35rem;
+      line-height: 1;
+    }
+    .section-divider-text {
+      font-family: 'Fraunces', Georgia, serif;
+      font-weight: 700;
+      font-size: 1.35rem;
+      letter-spacing: -0.01em;
+    }
+    /* Ingredients list */
+    .ingredients {
+      list-style: none;
+      background: var(--bg-card);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 0.5rem 1rem;
+    }
+    .ingredients li {
+      padding: 0.7rem 0;
+      border-bottom: 1px solid var(--line-soft);
+      font-size: 0.96rem;
+      line-height: 1.4;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+    }
+    .ingredients li:last-child { border-bottom: none; }
+    .ingredients li::before {
+      content: '';
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--accent);
+      flex-shrink: 0;
+      margin-top: 0.55rem;
+    }
+    .ingredient-amount {
+      font-weight: 600;
+      color: var(--ink);
+    }
+    .ingredient-metric {
+      color: var(--ink-mute);
+      font-size: 0.88em;
+    }
+    .ingredient-name {
+      color: var(--ink);
+    }
+    /* Method list */
+    .method {
+      list-style: none;
+      counter-reset: step;
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+    }
+    .method li {
+      background: var(--bg-card);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 1rem 1.1rem 1rem 3.1rem;
+      position: relative;
+      font-size: 0.96rem;
+      line-height: 1.55;
+      counter-increment: step;
+    }
+    .method li::before {
+      content: counter(step);
+      position: absolute;
+      left: 1rem;
+      top: 0.95rem;
+      width: 1.6rem;
+      height: 1.6rem;
+      border-radius: 50%;
+      background: var(--ink);
+      color: var(--bg);
+      font-family: 'Fraunces', Georgia, serif;
+      font-weight: 700;
+      font-size: 0.85rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .method strong {
+      font-weight: 600;
+      color: var(--ink);
+      background: var(--accent-soft);
+      padding: 0.05em 0.35em;
+      border-radius: 4px;
+      white-space: normal;
+    }
+    /* Footer alternate */
+    .footer-alternate {
+      margin-top: 2.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--line);
+      text-align: center;
+    }
+    /* Hidden helper */
+    .hidden { display: none !important; }
+    /* Focus-visible for keyboard users */
+    a:focus-visible, button:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+    /* Small screens */
+    @media (max-width: 480px) {
+      .app { padding: 1.25rem 1rem 3rem; }
+      .topbar { margin-bottom: 1.5rem; }
+      .method li { padding: 0.95rem 1rem 0.95rem 2.9rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <nav class="topbar">
+      <a href="#/" class="brand" id="brandLink">
+        <span>Joelle's Recipes</span><span class="brand-dot">.</span>
+      </a>
+      <a href="#/" class="back-link hidden" id="backLink">← All recipes</a>
+    </nav>
+
+    <main id="view"></main>
+  </div>
+
+  <script>
+    // ============================================================
+    // Recipe data
+    // ============================================================
+    const RECIPES = {
+      'simple-white-bread': {
+        name: 'Simple White Bread',
+        emoji: '🍞',
+        summary: 'A soft, everyday loaf — the first bread to learn.',
+        defaultServings: 1,
+        servingLabel: 'loaf',
+        servingLabelPlural: 'loaves',
+        minServings: 1,
+        maxServings: 4,
+        alternate: { slug: 'whole-wheat-bread', label: '🌾 Healthier version (whole wheat)', kind: 'healthier' },
+        ingredients: [
+          { id: 'flour',  amount: 4,   unit: 'cups', metric: 500, metricUnit: 'g',  name: 'bread flour' },
+          { id: 'water',  amount: 1.5, unit: 'cups', metric: 355, metricUnit: 'ml', name: 'warm water' },
+          { id: 'yeast',  amount: 2,   unit: 'tsp',  metric: 6,   metricUnit: 'g',  name: 'instant yeast' },
+          { id: 'salt',   amount: 2,   unit: 'tsp',  metric: 10,  metricUnit: 'g',  name: 'fine salt' },
+          { id: 'sugar',  amount: 2,   unit: 'tbsp', metric: 25,  metricUnit: 'g',  name: 'granulated sugar' },
+          { id: 'oil',    amount: 2,   unit: 'tbsp', metric: 30,  metricUnit: 'ml', name: 'olive oil' },
+        ],
+        method: [
+          'In a large bowl, combine {yeast}, {sugar}, and {water}. Let stand 5 minutes, until foamy.',
+          'Add {flour}, {salt}, and {oil}. Stir until a shaggy dough forms.',
+          'Knead on a floured surface for 8–10 minutes, until smooth and elastic.',
+          'Place in a greased bowl, cover, and let rise 1 hour, until doubled in size.',
+          'Punch down, shape into a loaf, and place in a greased 9×5" loaf pan.',
+          'Cover and let rise 30–45 minutes, until the dough crowns about 1" above the pan.',
+          'Bake at 375°F (190°C) for 30–35 minutes, until golden and hollow-sounding. Cool on a rack before slicing.',
+        ],
+      },
+
+      'whole-wheat-bread': {
+        name: 'Whole Wheat Bread',
+        emoji: '🌾',
+        summary: 'The healthier swap for white bread — nuttier, fibre-rich, still soft.',
+        defaultServings: 1,
+        servingLabel: 'loaf',
+        servingLabelPlural: 'loaves',
+        minServings: 1,
+        maxServings: 4,
+        alternate: { slug: 'simple-white-bread', label: '🍞 Original version (white)', kind: 'original' },
+        ingredients: [
+          { id: 'wwflour', amount: 3,   unit: 'cups', metric: 360, metricUnit: 'g',  name: 'whole wheat flour' },
+          { id: 'bflour',  amount: 1,   unit: 'cup',  metric: 130, metricUnit: 'g',  name: 'bread flour' },
+          { id: 'water',   amount: 1.5, unit: 'cups', metric: 355, metricUnit: 'ml', name: 'warm water' },
+          { id: 'yeast',   amount: 2,   unit: 'tsp',  metric: 6,   metricUnit: 'g',  name: 'instant yeast' },
+          { id: 'salt',    amount: 2,   unit: 'tsp',  metric: 10,  metricUnit: 'g',  name: 'fine salt' },
+          { id: 'honey',   amount: 2,   unit: 'tbsp', metric: 42,  metricUnit: 'g',  name: 'honey' },
+          { id: 'oil',     amount: 2,   unit: 'tbsp', metric: 30,  metricUnit: 'ml', name: 'olive oil' },
+        ],
+        method: [
+          'Combine {yeast}, {honey}, and {water}. Let stand 5 minutes, until foamy.',
+          'Add {wwflour}, {bflour}, {salt}, and {oil}. Stir into a shaggy dough.',
+          'Knead for 10–12 minutes — whole wheat needs more work. The dough should be tacky but elastic.',
+          'Place in a greased bowl, cover, and let rise 1–1.5 hours, until doubled.',
+          'Punch down, shape into a loaf, and place in a greased 9×5" loaf pan.',
+          'Cover and let rise 30–45 minutes, until crowning just above the pan.',
+          'Bake at 375°F (190°C) for 32–38 minutes. Cool fully before slicing for best texture.',
+        ],
+      },
+
+      'chocolate-chip-bread': {
+        name: 'Chocolate Chip Bread',
+        emoji: '🍫',
+        summary: 'Sweet quick bread — between a cake and a loaf. No yeast, no waiting.',
+        defaultServings: 1,
+        servingLabel: 'loaf',
+        servingLabelPlural: 'loaves',
+        minServings: 1,
+        maxServings: 4,
+        alternate: { slug: 'healthier-chocolate-chip-bread', label: '🍌 Healthier version (banana, whole wheat)', kind: 'healthier' },
+        ingredients: [
+          { id: 'flour',   amount: 2,     unit: 'cups', metric: 250, metricUnit: 'g',  name: 'all-purpose flour' },
+          { id: 'sugar',   amount: 0.75,  unit: 'cup',  metric: 150, metricUnit: 'g',  name: 'granulated sugar' },
+          { id: 'bp',      amount: 2,     unit: 'tsp',  metric: 8,   metricUnit: 'g',  name: 'baking powder' },
+          { id: 'salt',    amount: 0.5,   unit: 'tsp',  metric: 3,   metricUnit: 'g',  name: 'fine salt' },
+          { id: 'milk',    amount: 1,     unit: 'cup',  metric: 240, metricUnit: 'ml', name: 'whole milk' },
+          { id: 'oil',     amount: 0.333, unit: 'cup',  metric: 75,  metricUnit: 'ml', name: 'vegetable oil' },
+          { id: 'vanilla', amount: 1,     unit: 'tsp',  metric: 5,   metricUnit: 'ml', name: 'vanilla extract' },
+          { id: 'chips',   amount: 1,     unit: 'cup',  metric: 175, metricUnit: 'g',  name: 'chocolate chips' },
+          { id: 'egg',     amount: 1,     unit: 'large',metric: 50,  metricUnit: 'g',  name: 'egg', plural: 'eggs' },
+        ],
+        method: [
+          'Preheat oven to 350°F (175°C). Grease a 9×5" loaf pan.',
+          'Whisk {flour}, {sugar}, {bp}, and {salt} together in a large bowl.',
+          'In another bowl, whisk {egg}, {milk}, {oil}, and {vanilla} until smooth.',
+          'Pour wet into dry and stir just until combined — a few lumps are fine. Do not overmix.',
+          'Fold in {chips}, reserving a small handful to scatter on top.',
+          'Pour the batter into the pan and scatter reserved chips over the surface.',
+          'Bake 50–60 minutes, until a toothpick inserted in the centre comes out clean. Cool 15 minutes in the pan, then turn out onto a rack.',
+        ],
+      },
+
+      'healthier-chocolate-chip-bread': {
+        name: 'Healthier Chocolate Chip Bread',
+        emoji: '🍌',
+        summary: 'Banana and whole wheat carry the sweetness — less sugar, more fibre, still chocolate.',
+        defaultServings: 1,
+        servingLabel: 'loaf',
+        servingLabelPlural: 'loaves',
+        minServings: 1,
+        maxServings: 4,
+        alternate: { slug: 'chocolate-chip-bread', label: '🍫 Original version', kind: 'original' },
+        ingredients: [
+          { id: 'flour',   amount: 2,     unit: 'cups', metric: 240, metricUnit: 'g',  name: 'whole wheat flour' },
+          { id: 'sugar',   amount: 0.333, unit: 'cup',  metric: 65,  metricUnit: 'g',  name: 'coconut sugar' },
+          { id: 'bp',      amount: 2,     unit: 'tsp',  metric: 8,   metricUnit: 'g',  name: 'baking powder' },
+          { id: 'salt',    amount: 0.5,   unit: 'tsp',  metric: 3,   metricUnit: 'g',  name: 'fine salt' },
+          { id: 'banana',  amount: 1,     unit: 'cup',  metric: 240, metricUnit: 'g',  name: 'mashed ripe banana' },
+          { id: 'milk',    amount: 0.5,   unit: 'cup',  metric: 120, metricUnit: 'ml', name: 'milk (any kind)' },
+          { id: 'oil',     amount: 0.25,  unit: 'cup',  metric: 60,  metricUnit: 'ml', name: 'olive oil' },
+          { id: 'vanilla', amount: 1,     unit: 'tsp',  metric: 5,   metricUnit: 'ml', name: 'vanilla extract' },
+          { id: 'chips',   amount: 0.667, unit: 'cup',  metric: 115, metricUnit: 'g',  name: 'dark chocolate chips (70%)' },
+          { id: 'egg',     amount: 1,     unit: 'large',metric: 50,  metricUnit: 'g',  name: 'egg', plural: 'eggs' },
+        ],
+        method: [
+          'Preheat oven to 350°F (175°C). Grease a 9×5" loaf pan.',
+          'Whisk {flour}, {sugar}, {bp}, and {salt} together in a large bowl.',
+          'In another bowl, whisk {banana}, {egg}, {milk}, {oil}, and {vanilla} until smooth.',
+          'Pour wet into dry and stir just until combined. Do not overmix.',
+          'Fold in {chips}, reserving a small handful for the top.',
+          'Pour into the pan and scatter reserved chips over the surface.',
+          'Bake 55–65 minutes (whole wheat needs a touch longer), until a toothpick comes out clean. Cool 15 minutes in the pan, then turn out.',
+        ],
+      },
+
+      'flatbread': {
+        name: 'Flatbread',
+        emoji: '🫓',
+        summary: 'Soft, pliable rounds — cooked on the stovetop in a dry skillet.',
+        defaultServings: 8,
+        servingLabel: 'flatbread',
+        servingLabelPlural: 'flatbreads',
+        minServings: 1,
+        maxServings: 16,
+        alternate: { slug: 'whole-wheat-flatbread', label: '🌾 Healthier version (whole wheat)', kind: 'healthier' },
+        ingredients: [
+          { id: 'flour',  amount: 3,     unit: 'cups', metric: 375, metricUnit: 'g',  name: 'all-purpose flour' },
+          { id: 'yogurt', amount: 1,     unit: 'cup',  metric: 245, metricUnit: 'g',  name: 'plain yogurt' },
+          { id: 'water',  amount: 0.333, unit: 'cup',  metric: 80,  metricUnit: 'ml', name: 'warm water' },
+          { id: 'oil',    amount: 2,     unit: 'tbsp', metric: 30,  metricUnit: 'ml', name: 'olive oil' },
+          { id: 'bp',     amount: 1,     unit: 'tsp',  metric: 4,   metricUnit: 'g',  name: 'baking powder' },
+          { id: 'salt',   amount: 1,     unit: 'tsp',  metric: 5,   metricUnit: 'g',  name: 'fine salt' },
+          { id: 'sugar',  amount: 1,     unit: 'tsp',  metric: 4,   metricUnit: 'g',  name: 'granulated sugar' },
+        ],
+        method: [
+          'In a large bowl, whisk {flour}, {bp}, {salt}, and {sugar}.',
+          'Add {yogurt}, {water}, and {oil}. Mix until a soft dough forms.',
+          'Knead on a floured surface for 5 minutes, until smooth. Cover and rest 20 minutes.',
+          'Divide dough into equal balls — one per flatbread.',
+          'Roll each ball into a ~6" round, about ⅛" thick.',
+          'Heat a dry cast-iron or heavy skillet over medium-high.',
+          'Cook each flatbread 1–2 minutes per side, until bubbled and charred in spots.',
+          'Stack under a clean towel to keep them warm and pliable.',
+        ],
+      },
+
+      'whole-wheat-flatbread': {
+        name: 'Whole Wheat Flatbread',
+        emoji: '🌾',
+        summary: 'The healthier swap — whole wheat flour, Greek yogurt for protein.',
+        defaultServings: 8,
+        servingLabel: 'flatbread',
+        servingLabelPlural: 'flatbreads',
+        minServings: 1,
+        maxServings: 16,
+        alternate: { slug: 'flatbread', label: '🫓 Original version', kind: 'original' },
+        ingredients: [
+          { id: 'wwflour', amount: 2,   unit: 'cups', metric: 240, metricUnit: 'g',  name: 'whole wheat flour' },
+          { id: 'apflour', amount: 1,   unit: 'cup',  metric: 125, metricUnit: 'g',  name: 'all-purpose flour' },
+          { id: 'yogurt',  amount: 1,   unit: 'cup',  metric: 245, metricUnit: 'g',  name: 'plain Greek yogurt' },
+          { id: 'water',   amount: 0.5, unit: 'cup',  metric: 120, metricUnit: 'ml', name: 'warm water' },
+          { id: 'oil',     amount: 1,   unit: 'tbsp', metric: 15,  metricUnit: 'ml', name: 'olive oil' },
+          { id: 'bp',      amount: 1,   unit: 'tsp',  metric: 4,   metricUnit: 'g',  name: 'baking powder' },
+          { id: 'salt',    amount: 1,   unit: 'tsp',  metric: 5,   metricUnit: 'g',  name: 'fine salt' },
+        ],
+        method: [
+          'In a large bowl, whisk {wwflour}, {apflour}, {bp}, and {salt}.',
+          'Add {yogurt}, {water}, and {oil}. Mix to a soft dough — whole wheat drinks more water, add a splash if needed.',
+          'Knead on a floured surface for 5–7 minutes, until smooth. Cover and rest 30 minutes.',
+          'Divide dough into equal balls — one per flatbread.',
+          'Roll each ball into a ~6" round, about ⅛" thick.',
+          'Heat a dry cast-iron or heavy skillet over medium-high.',
+          'Cook each flatbread 1–2 minutes per side, until bubbled and charred in spots.',
+          'Stack under a clean towel to keep them warm and pliable.',
+        ],
+      },
+
+      'third-flatbread': {
+        name: '1/3 Flatbread',
+        emoji: '🫓',
+        summary: 'The exact third-batch — for when you only need a few.',
+        defaultServings: 3,
+        servingLabel: 'flatbread',
+        servingLabelPlural: 'flatbreads',
+        minServings: 1,
+        maxServings: 9,
+        alternate: { slug: 'whole-wheat-third-flatbread', label: '🌾 Healthier version (whole wheat)', kind: 'healthier' },
+        ingredients: [
+          { id: 'flour',  amount: 1,     unit: 'cup',  metric: 125, metricUnit: 'g',  name: 'all-purpose flour' },
+          { id: 'yogurt', amount: 0.333, unit: 'cup',  metric: 82,  metricUnit: 'g',  name: 'plain yogurt' },
+          { id: 'water',  amount: 2,     unit: 'tbsp', metric: 27,  metricUnit: 'ml', name: 'warm water' },
+          { id: 'oil',    amount: 2,     unit: 'tsp',  metric: 10,  metricUnit: 'ml', name: 'olive oil' },
+          { id: 'bp',     amount: 0.333, unit: 'tsp',  metric: 1.5, metricUnit: 'g',  name: 'baking powder' },
+          { id: 'salt',   amount: 0.333, unit: 'tsp',  metric: 2,   metricUnit: 'g',  name: 'fine salt' },
+          { id: 'sugar',  amount: 0.333, unit: 'tsp',  metric: 1.5, metricUnit: 'g',  name: 'granulated sugar' },
+        ],
+        method: [
+          'In a bowl, whisk {flour}, {bp}, {salt}, and {sugar}.',
+          'Add {yogurt}, {water}, and {oil}. Mix until a soft dough forms.',
+          'Knead for 3–4 minutes, until smooth. Cover and rest 20 minutes.',
+          'Divide into equal balls — one per flatbread.',
+          'Roll each into a ~6" round, about ⅛" thick.',
+          'Heat a dry skillet over medium-high.',
+          'Cook 1–2 minutes per side, until bubbled and charred in spots.',
+          'Stack under a clean towel.',
+        ],
+      },
+
+      'whole-wheat-third-flatbread': {
+        name: '1/3 Whole Wheat Flatbread',
+        emoji: '🌾',
+        summary: 'Third-batch, whole grain. Small and wholesome.',
+        defaultServings: 3,
+        servingLabel: 'flatbread',
+        servingLabelPlural: 'flatbreads',
+        minServings: 1,
+        maxServings: 9,
+        alternate: { slug: 'third-flatbread', label: '🫓 Original version', kind: 'original' },
+        ingredients: [
+          { id: 'wwflour', amount: 0.667, unit: 'cup',  metric: 80, metricUnit: 'g',  name: 'whole wheat flour' },
+          { id: 'apflour', amount: 0.333, unit: 'cup',  metric: 42, metricUnit: 'g',  name: 'all-purpose flour' },
+          { id: 'yogurt',  amount: 0.333, unit: 'cup',  metric: 82, metricUnit: 'g',  name: 'plain Greek yogurt' },
+          { id: 'water',   amount: 2.5,   unit: 'tbsp', metric: 40, metricUnit: 'ml', name: 'warm water' },
+          { id: 'oil',     amount: 1,     unit: 'tsp',  metric: 5,  metricUnit: 'ml', name: 'olive oil' },
+          { id: 'bp',      amount: 0.333, unit: 'tsp',  metric: 1.5,metricUnit: 'g',  name: 'baking powder' },
+          { id: 'salt',    amount: 0.333, unit: 'tsp',  metric: 2,  metricUnit: 'g',  name: 'fine salt' },
+        ],
+        method: [
+          'In a bowl, whisk {wwflour}, {apflour}, {bp}, and {salt}.',
+          'Add {yogurt}, {water}, and {oil}. Mix to a soft dough.',
+          'Knead for 4–5 minutes, until smooth. Cover and rest 30 minutes.',
+          'Divide into equal balls — one per flatbread.',
+          'Roll each into a ~6" round, about ⅛" thick.',
+          'Heat a dry skillet over medium-high.',
+          'Cook 1–2 minutes per side, until bubbled and charred in spots.',
+          'Stack under a clean towel.',
+        ],
+      },
+
+      'croissants': {
+        name: 'Croissants',
+        emoji: '🥐',
+        summary: 'Laminated yeasted dough — flaky, buttery, and worth every fold.',
+        defaultServings: 6,
+        servingLabel: 'croissant',
+        servingLabelPlural: 'croissants',
+        minServings: 1,
+        maxServings: 24,
+        ingredients: [
+          { id: 'flour',   amount: 1.75, unit: 'cups', metric: 330, metricUnit: 'g',  name: 'all-purpose flour' },
+          { id: 'yeast',   amount: 1,    unit: 'tsp',  metric: 3,   metricUnit: 'g',  name: 'instant yeast' },
+          { id: 'sugar',   amount: 2,    unit: 'tbsp', metric: 30,  metricUnit: 'g',  name: 'sugar' },
+          { id: 'salt',    amount: 1,    unit: 'tsp',  metric: 6,   metricUnit: 'g',  name: 'salt' },
+          { id: 'butter1', amount: 1.5,  unit: 'tbsp', metric: 20,  metricUnit: 'g',  name: 'butter, softened' },
+          { id: 'water',   amount: 0.75, unit: 'cup',  metric: 170, metricUnit: 'ml', name: 'lukewarm water' },
+          { id: 'butter2', amount: 5,    unit: 'tbsp', metric: 75,  metricUnit: 'g',  name: 'cold butter, for laminating' },
+          { id: 'egg',     amount: 1,    unit: '',     metric: null, metricUnit: '',   name: 'egg + 1 tbsp milk, for egg wash' },
+        ],
+        method: [
+          'Mix {water}, {yeast} and {sugar} together. Add {flour}, {salt} and {butter1}. Mix until the dough comes together and knead until smooth — stretch test: if it doesn\'t tear, it\'s ready. Cover and rest 15 minutes at room temp.',
+          'Place {butter2} in a zip bag and roll into a flat square — pliable but still cold.',
+          'On a floured surface roll out the dough, place butter in the centre and seal it in. Do 1 double fold + 1 single fold. If the kitchen is warm, chill briefly between folds. Cover and refrigerate 30 minutes.',
+          'Roll dough out again and cut into 3 strips, then cut each strip into 2 triangles — 6 pieces total. Roll each triangle into a croissant shape, not too tight. Place on a parchment-lined tray.',
+          'Cover and proof until puffy and jiggly — about 1 hour.',
+          'Brush generously with egg wash ({egg}).',
+          'Bake at 200°C for 3 minutes, then reduce to 180°C for 20 minutes until deep golden. Do not open the oven while baking.',
+        ],
+        nutrition: { calories: 334, protein: 5.8, fat: 13.4, carbs: 46.8 },
+      },
+
+      'banana-choc-chip-bread': {
+        name: 'Banana Chocolate Chip Bread',
+        emoji: '🍌',
+        summary: 'Honey-sweetened banana bread loaded with milk chocolate chips.',
+        defaultServings: 15,
+        servingLabel: 'slice',
+        servingLabelPlural: 'slices',
+        minServings: 1,
+        maxServings: 30,
+        ingredients: [
+          { id: 'banana',  amount: 2.75, unit: 'cups', metric: 325, metricUnit: 'g',  name: 'very ripe mashed banana (~3 medium or 4 small)' },
+          { id: 'honey',   amount: 0.5,  unit: 'cup',  metric: 183, metricUnit: 'g',  name: 'honey' },
+          { id: 'sugar',   amount: 0.333,unit: 'cup',  metric: 75,  metricUnit: 'g',  name: 'sugar (or 4 tbsp stevia)' },
+          { id: 'vanilla', amount: 1.5,  unit: 'tsp',  metric: 7,   metricUnit: 'ml', name: 'vanilla extract' },
+          { id: 'eggs',    amount: 2,    unit: '',     metric: null, metricUnit: '',   name: 'eggs' },
+          { id: 'oil',     amount: 3,    unit: 'tbsp', metric: 45,  metricUnit: 'ml', name: 'olive oil' },
+          { id: 'flour',   amount: 2,    unit: 'cups', metric: 250, metricUnit: 'g',  name: 'all-purpose flour' },
+          { id: 'bsoda',   amount: 1.5,  unit: 'tsp',  metric: 7,   metricUnit: 'g',  name: 'baking soda' },
+          { id: 'cinn',    amount: 0.5,  unit: 'tsp',  metric: 1.5, metricUnit: 'g',  name: 'cinnamon' },
+          { id: 'salt',    amount: 0.25, unit: 'tsp',  metric: 1.5, metricUnit: 'g',  name: 'salt' },
+          { id: 'nutmeg',  amount: 0.25, unit: 'tsp',  metric: 0.5, metricUnit: 'g',  name: 'nutmeg (optional)' },
+          { id: 'choc',    amount: 7.5,  unit: 'oz',   metric: 214, metricUnit: 'g',  name: 'Hershey\'s milk chocolate chips' },
+        ],
+        method: [
+          'Preheat oven to 175°C. Line a large loaf tin with parchment.',
+          'Mash {banana} very well — the blacker the better.',
+          'Add {honey}, {sugar}, {vanilla} and {eggs}. Whisk until combined.',
+          'Stir in {oil} until smooth.',
+          'Fold in {flour}, {bsoda}, {cinn}, {salt} and {nutmeg} until just combined — do not overmix.',
+          'Fold in half the {choc}.',
+          'Pour into lined loaf tin, smooth the top and scatter the remaining chocolate chips on top.',
+          'Bake at 175°C for 55–65 minutes until a toothpick comes out with moist crumbs. Check every 10 minutes if not ready.',
+          'Cool in tin 15 minutes, then transfer to a wire rack. Best sliced once fully cool.',
+        ],
+        nutrition: { calories: 261, protein: 4.2, fat: 11.8, carbs: 37.8 },
+      },
+    };
+
+    // Order that appears on the home page — only the 4 canonical recipes.
+    const HOME_RECIPE_SLUGS = ['simple-white-bread', 'chocolate-chip-bread', 'flatbread', 'third-flatbread', 'croissants', 'banana-choc-chip-bread'];
+
+    // ============================================================
+    // Formatting
+    // ============================================================
+    const VULGAR_FRACTIONS = [
+      [1/8, '⅛'], [1/4, '¼'], [1/3, '⅓'], [3/8, '⅜'],
+      [1/2, '½'], [5/8, '⅝'], [2/3, '⅔'], [3/4, '¾'], [7/8, '⅞'],
+    ];
+
+    // Format a volume/count amount using vulgar fractions when close.
+    function formatAmount(v) {
+      if (v == null || isNaN(v)) return '';
+      if (v === 0) return '0';
+
+      const whole = Math.floor(v);
+      const frac = v - whole;
+      const tolerance = 0.04;
+
+      // Nearly integer
+      if (frac < tolerance) return String(whole);
+      if (frac > 1 - tolerance) return String(whole + 1);
+
+      // Match vulgar fraction
+      let best = null, bestDiff = tolerance;
+      for (const [val, sym] of VULGAR_FRACTIONS) {
+        const diff = Math.abs(frac - val);
+        if (diff < bestDiff) { bestDiff = diff; best = sym; }
+      }
+      if (best) return whole ? `${whole}${best}` : best;
+
+      // Fallback: decimal (max 2 places, trim trailing zeros)
+      const rounded = Math.round(v * 100) / 100;
+      return String(rounded).replace(/\.?0+$/, '');
+    }
+
+    // Format a metric amount (grams / ml) with size-aware rounding.
+    function formatMetric(v) {
+      if (v == null || isNaN(v)) return '';
+      if (v < 1) return (Math.round(v * 10) / 10).toString();
+      if (v < 20) return String(Math.round(v * 2) / 2); // nearest 0.5
+      if (v < 100) return String(Math.round(v));
+      return String(Math.round(v / 5) * 5); // nearest 5
+    }
+
+    function pluralize(ing, scaledAmount) {
+      if (scaledAmount > 1 && ing.plural) return ing.plural;
+      return ing.name;
+    }
+
+    // Render an ingredient as a rich HTML string:
+    //   "<span class='ingredient-amount'>2 tsp</span>
+    //    <span class='ingredient-metric'>(6g)</span>
+    //    <span class='ingredient-name'>yeast</span>"
+    function renderIngredient(ing, multiplier) {
+      const amount = ing.amount * multiplier;
+      const metric = ing.metric * multiplier;
+      const name = pluralize(ing, amount);
+      return (
+        `<span class="ingredient-amount">${formatAmount(amount)} ${ing.unit}</span> ` +
+        `<span class="ingredient-metric">(${formatMetric(metric)}${ing.metricUnit})</span> ` +
+        `<span class="ingredient-name">${escapeHtml(name)}</span>`
+      );
+    }
+
+    // Render an ingredient as a compact inline string for method steps.
+    function renderIngredientInline(ing, multiplier) {
+      const amount = ing.amount * multiplier;
+      const metric = ing.metric * multiplier;
+      const name = pluralize(ing, amount);
+      return `${formatAmount(amount)} ${ing.unit} (${formatMetric(metric)}${ing.metricUnit}) ${escapeHtml(name)}`;
+    }
+
+    function renderMethodStep(step, ingredients, multiplier) {
+      const byId = Object.fromEntries(ingredients.map(i => [i.id, i]));
+      return step.replace(/\{(\w+)\}/g, (_, id) => {
+        const ing = byId[id];
+        if (!ing) return `{${id}}`;
+        return `<strong>${renderIngredientInline(ing, multiplier)}</strong>`;
+      });
+    }
+
+    function escapeHtml(s) {
+      return String(s)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    }
+
+    // ============================================================
+    // Views
+    // ============================================================
+    const viewEl = document.getElementById('view');
+    const backLink = document.getElementById('backLink');
+
+    function renderHome() {
+      backLink.classList.add('hidden');
+      const cards = HOME_RECIPE_SLUGS.map(slug => {
+        const r = RECIPES[slug];
+        return `
+          <a class="recipe-card" href="#/recipe/${slug}">
+            <span class="recipe-card-emoji" aria-hidden="true">${r.emoji}</span>
+            <div class="recipe-card-body">
+              <div class="recipe-card-name">${escapeHtml(r.name)}</div>
+              <div class="recipe-card-summary">${escapeHtml(r.summary)}</div>
+            </div>
+            <span class="recipe-card-arrow" aria-hidden="true">→</span>
+          </a>`;
+      }).join('');
+
+      viewEl.innerHTML = `
+        <section class="home-hero">
+          <h1>A small shelf of<br/>baking recipes.</h1>
+          <p>Scale any recipe by servings. Every original has a healthier variant — one tap away.</p>
+        </section>
+        <div class="section-title">The Collection</div>
+        <div class="recipe-grid">${cards}</div>
+      `;
+      document.title = "Joelle's Recipes";
+      window.scrollTo(0, 0);
+    }
+
+    function renderRecipe(slug) {
+      const r = RECIPES[slug];
+      if (!r) { window.location.hash = '#/'; return; }
+
+      backLink.classList.remove('hidden');
+      const state = { servings: r.defaultServings };
+
+      function paint() {
+        const multiplier = state.servings / r.defaultServings;
+        const servingWord = state.servings === 1 ? r.servingLabel : r.servingLabelPlural;
+
+        const ingredientsHtml = r.ingredients.map(ing =>
+          `<li>${renderIngredient(ing, multiplier)}</li>`
+        ).join('');
+
+        const methodHtml = r.method.map(step =>
+          `<li>${renderMethodStep(step, r.ingredients, multiplier)}</li>`
+        ).join('');
+
+        const alt = r.alternate;
+        const altClass = alt.kind === 'original' ? 'alternate-link is-original' : 'alternate-link';
+        const alternateLink = `
+          <a class="${altClass}" href="#/recipe/${alt.slug}">
+            ${escapeHtml(alt.label)} →
+          </a>`;
+
+        viewEl.innerHTML = `
+          <article>
+            <header class="recipe-head">
+              <div class="recipe-emoji" aria-hidden="true">${r.emoji}</div>
+              <h1 class="recipe-name">${escapeHtml(r.name)}</h1>
+              <p class="recipe-summary">${escapeHtml(r.summary)}</p>
+            </header>
+
+            <div class="scaler" role="group" aria-label="Serving size scaler">
+              <div>
+                <div class="scaler-label">Makes</div>
+                <div class="scaler-value" id="servingsText">${state.servings} ${servingWord}</div>
+              </div>
+              <div class="scaler-controls">
+                <button class="scaler-btn" id="decBtn" aria-label="Fewer servings">−</button>
+                <span class="scaler-count" aria-live="polite">${state.servings}</span>
+                <button class="scaler-btn" id="incBtn" aria-label="More servings">+</button>
+              </div>
+            </div>
+
+            ${alternateLink}
+
+            <div class="section-divider">
+              <span class="section-divider-emoji" aria-hidden="true">🧂</span>
+              <span class="section-divider-text">Ingredients</span>
+            </div>
+            <ul class="ingredients">${ingredientsHtml}</ul>
+
+            <div class="section-divider">
+              <span class="section-divider-emoji" aria-hidden="true">👩‍🍳</span>
+              <span class="section-divider-text">Method</span>
+            </div>
+            <ol class="method">${methodHtml}</ol>
+
+            <div class="footer-alternate">${alternateLink}</div>
+          </article>
+        `;
+
+        const incBtn = document.getElementById('incBtn');
+        const decBtn = document.getElementById('decBtn');
+        incBtn.disabled = state.servings >= r.maxServings;
+        decBtn.disabled = state.servings <= r.minServings;
+        incBtn.onclick = () => {
+          if (state.servings < r.maxServings) { state.servings += 1; paint(); }
+        };
+        decBtn.onclick = () => {
+          if (state.servings > r.minServings) { state.servings -= 1; paint(); }
+        };
+      }
+
+      paint();
+      document.title = `${r.name} · Joelle's Recipes`;
+      window.scrollTo(0, 0);
+    }
+
+    // ============================================================
+    // Router
+    // ============================================================
+    function route() {
+      const hash = window.location.hash || '#/';
+      const match = hash.match(/^#\/recipe\/([a-z0-9-]+)$/);
+      if (match) {
+        renderRecipe(match[1]);
+      } else {
+        renderHome();
+      }
+    }
+
+    window.addEventListener('hashchange', route);
+    route();
+  </script>
+</body>
+</html>
