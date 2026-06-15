@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Joelle's home baking recipes — with serving scaler and healthier versions." />
-  <meta name="theme-color" content="#faf8f4" />
+  <meta name="theme-color" content="#faf7f1" />
   <title>Joelle's Recipes</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -49,18 +49,18 @@
       margin-bottom: 2.5rem;
     }
     .brand {
-      font-family: 'Fraunces', Georgia, serif;
-      font-weight: 700;
-      font-size: 1.35rem;
-      letter-spacing: -0.01em;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      font-weight: 600;
+      font-size: 0.9rem;
+      letter-spacing: 0.22em;
       line-height: 1;
       color: var(--ink);
       text-decoration: none;
+      text-transform: uppercase;
       display: inline-flex;
       align-items: center;
-      gap: 0.5rem;
     }
-    .brand-dot { color: var(--accent); }
+    .brand:hover { color: var(--accent); }
     .back-link {
       font-size: 0.82rem;
       color: var(--ink-soft);
@@ -93,10 +93,10 @@
       margin: 0 auto;
     }
     .section-title {
-      font-family: 'Fraunces', Georgia, serif;
-      font-size: 0.78rem;
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 0.72rem;
       font-weight: 600;
-      letter-spacing: 0.14em;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
       color: var(--ink-mute);
       margin-bottom: 1rem;
@@ -151,6 +151,354 @@
       font-size: 1.2rem;
       flex-shrink: 0;
     }
+    /* Add-a-recipe card on home */
+    .add-card {
+      border-style: dashed;
+      background: var(--bg);
+    }
+    .add-card:hover { border-style: solid; }
+    .add-card-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--bg-card);
+      border: 1px solid var(--line);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      font-weight: 300;
+      color: var(--ink);
+      line-height: 1;
+      flex-shrink: 0;
+      transition: background 0.15s, color 0.15s, border-color 0.15s;
+    }
+    .add-card:hover .add-card-icon {
+      background: var(--ink);
+      color: var(--bg-card);
+      border-color: var(--ink);
+    }
+    /* Add-recipe page */
+    .add-page {
+      max-width: 540px;
+      margin: 0 auto;
+    }
+    .add-page h2 {
+      font-family: 'Fraunces', Georgia, serif;
+      font-weight: 700;
+      font-size: 1.8rem;
+      line-height: 1.15;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.01em;
+    }
+    .add-page .add-sub {
+      color: var(--ink-soft);
+      font-size: 0.92rem;
+      margin-bottom: 1.5rem;
+      line-height: 1.5;
+    }
+    .add-form {
+      background: var(--bg-card);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 1.2rem;
+      margin-bottom: 1rem;
+    }
+    .add-form label {
+      display: block;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--ink-soft);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+    .add-form textarea {
+      width: 100%;
+      min-height: 110px;
+      padding: 0.75rem 0.9rem;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 0.95rem;
+      background: var(--bg);
+      color: var(--ink);
+      resize: vertical;
+      outline: none;
+      transition: border-color 0.15s;
+      line-height: 1.55;
+    }
+    .add-form textarea:focus { border-color: var(--accent); }
+    .add-form input[type="password"],
+    .add-form input[type="text"] {
+      width: 100%;
+      padding: 0.75rem 0.9rem;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 1rem;
+      background: var(--bg);
+      color: var(--ink);
+      outline: none;
+      transition: border-color 0.15s;
+    }
+    .add-form input[type="password"]:focus,
+    .add-form input[type="text"]:focus { border-color: var(--accent); }
+    .add-form-error {
+      color: #8a1a1a;
+      background: #fdf0f0;
+      border: 1px solid #f0c8c8;
+      border-radius: 10px;
+      padding: 0.55rem 0.85rem;
+      font-size: 0.85rem;
+      margin-top: 0.6rem;
+    }
+    .add-form-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.75rem;
+      margin-top: 0.85rem;
+      flex-wrap: wrap;
+    }
+    .add-generate {
+      background: var(--ink);
+      color: var(--bg-card);
+      border: none;
+      padding: 0.65rem 1.3rem;
+      border-radius: 999px;
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 0.9rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.15s, opacity 0.15s;
+    }
+    .add-generate:hover:not(:disabled) { background: #3a2e28; }
+    .add-generate:disabled { opacity: 0.5; cursor: not-allowed; }
+    /* Chat UI */
+    .chat-page {
+      max-width: 600px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      min-height: calc(100vh - 8rem);
+    }
+    .chat-head { margin-bottom: 1rem; }
+    .chat-head h2 {
+      font-family: 'Fraunces', Georgia, serif;
+      font-weight: 700;
+      font-size: 1.7rem;
+      line-height: 1.15;
+      margin-bottom: 0.4rem;
+      letter-spacing: -0.01em;
+    }
+    .chat-head .add-sub {
+      color: var(--ink-soft);
+      font-size: 0.88rem;
+      line-height: 1.5;
+    }
+    .chat-messages {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      padding: 1rem 0;
+      min-height: 18rem;
+    }
+    .chat-empty {
+      color: var(--ink-mute);
+      font-size: 0.9rem;
+      text-align: center;
+      padding: 2.5rem 1rem;
+      background: var(--bg-card);
+      border: 1px dashed var(--line);
+      border-radius: 12px;
+    }
+    .chat-msg { display: flex; flex-direction: column; gap: 0.4rem; max-width: 100%; }
+    .chat-msg-user { align-items: flex-end; }
+    .chat-msg-assistant { align-items: flex-start; }
+    .chat-bubble {
+      max-width: 85%;
+      padding: 0.7rem 0.95rem;
+      border-radius: 16px;
+      font-size: 0.92rem;
+      line-height: 1.5;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+    }
+    .chat-bubble-user {
+      background: var(--ink);
+      color: var(--bg-card);
+      border-bottom-right-radius: 4px;
+    }
+    .chat-bubble-assistant {
+      background: var(--line-soft);
+      color: var(--ink);
+      border-bottom-left-radius: 4px;
+    }
+    .chat-bubble-assistant.is-error {
+      background: #fdf0f0;
+      color: #8a1a1a;
+    }
+    .chat-bubble:empty { display: none; }
+    .chat-img-tag {
+      font-size: 0.78rem;
+      color: var(--ink-mute);
+    }
+    .chat-typing {
+      align-self: flex-start;
+      padding: 0.55rem 0.95rem;
+      border-radius: 16px;
+      background: var(--line-soft);
+      color: var(--ink-mute);
+      font-size: 0.85rem;
+      font-style: italic;
+      animation: chat-pulse 1.4s ease-in-out infinite;
+    }
+    @keyframes chat-pulse {
+      0%, 100% { opacity: 0.6; }
+      50% { opacity: 1; }
+    }
+    .chat-recipe-card {
+      align-self: flex-start;
+      max-width: 92%;
+      background: var(--bg-card);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 0.95rem 1.1rem;
+      margin-top: 0.1rem;
+    }
+    .chat-recipe-card.is-published {
+      border-color: var(--healthier);
+      background: var(--healthier-soft);
+    }
+    .chat-recipe-head {
+      display: flex;
+      align-items: baseline;
+      gap: 0.5rem;
+      margin-bottom: 0.35rem;
+    }
+    .chat-recipe-emoji { font-size: 1.4rem; line-height: 1; }
+    .chat-recipe-name {
+      font-family: 'Fraunces', Georgia, serif;
+      font-weight: 700;
+      font-size: 1.15rem;
+      letter-spacing: -0.005em;
+    }
+    .chat-recipe-summary {
+      color: var(--ink-soft);
+      font-size: 0.85rem;
+      font-style: italic;
+      margin-bottom: 0.35rem;
+      line-height: 1.45;
+    }
+    .chat-recipe-meta {
+      font-size: 0.72rem;
+      color: var(--ink-mute);
+      margin-bottom: 0.7rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    .chat-recipe-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 0.55rem;
+      align-items: center;
+    }
+    .chat-recipe-status {
+      color: var(--healthier);
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+    .chat-recipe-btn {
+      padding: 0.5rem 0.95rem;
+      border-radius: 999px;
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 0.82rem;
+      font-weight: 500;
+      cursor: pointer;
+      border: 1px solid var(--line);
+      background: transparent;
+      color: var(--ink-soft);
+      transition: all 0.15s;
+    }
+    .chat-recipe-btn:hover { color: var(--ink); border-color: var(--ink); }
+    .chat-recipe-btn.is-primary {
+      background: var(--ink);
+      color: var(--bg-card);
+      border-color: var(--ink);
+    }
+    .chat-recipe-btn.is-primary:hover { background: #3a2e28; }
+    .chat-recipe-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+    .chat-input-bar {
+      position: sticky;
+      bottom: 0;
+      background: var(--bg);
+      padding-top: 0.85rem;
+      padding-bottom: 0.5rem;
+      border-top: 1px solid var(--line);
+      margin-top: 0.5rem;
+    }
+    .chat-attachment-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.3rem 0.7rem;
+      background: var(--accent-soft);
+      border-radius: 999px;
+      font-size: 0.78rem;
+      color: var(--ink);
+      margin-bottom: 0.45rem;
+    }
+    .chat-attachment-pill button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--ink-soft);
+      font-size: 1.1rem;
+      padding: 0;
+      line-height: 1;
+      margin-left: 0.15rem;
+    }
+    .chat-input-bar textarea {
+      width: 100%;
+      min-height: 50px;
+      max-height: 150px;
+      padding: 0.7rem 0.9rem;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 0.92rem;
+      background: var(--bg-card);
+      color: var(--ink);
+      resize: none;
+      outline: none;
+      line-height: 1.5;
+      transition: border-color 0.15s;
+    }
+    .chat-input-bar textarea:focus { border-color: var(--accent); }
+    .chat-input-bar textarea:disabled { opacity: 0.6; }
+    .chat-input-actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 0.55rem;
+    }
+    .chat-photo-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.5rem 0.85rem;
+      border-radius: 999px;
+      background: var(--bg);
+      border: 1px solid var(--line);
+      color: var(--ink-soft);
+      font-size: 0.82rem;
+      cursor: pointer;
+      transition: color 0.15s, border-color 0.15s;
+    }
+    .chat-photo-btn:hover { color: var(--ink); border-color: var(--ink); }
     /* ---------- Recipe page ---------- */
     .recipe-head {
       text-align: center;
@@ -179,90 +527,128 @@
     }
     /* Scaler */
     .scaler {
-      background: var(--bg-card);
-      border: 1px solid var(--line);
-      border-radius: 10px;
-      padding: 0.9rem 1rem;
-      margin: 1.5rem 0;
+      margin: 1.5rem 0 1.25rem;
       display: flex;
+      flex-direction: column;
       align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
+      gap: 0.6rem;
     }
-    .scaler-label {
-      font-size: 0.7rem;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--ink-mute);
-    }
-    .scaler-value {
-      font-family: 'Fraunces', Georgia, serif;
-      font-weight: 700;
-      font-size: 1.1rem;
-      margin-top: 0.15rem;
-    }
-    .scaler-controls {
-      display: flex;
+    .servings-pill {
+      display: inline-flex;
       align-items: center;
-      gap: 0.5rem;
+      background: var(--line-soft);
+      border-radius: 999px;
+      padding: 4px;
+      gap: 2px;
+      max-width: 100%;
     }
-    .scaler-btn {
+    .pill-btn {
       width: 40px;
       height: 40px;
-      border-radius: 50%;
-      border: 1px solid var(--line);
-      background: var(--bg);
+      border-radius: 999px;
+      background: transparent;
+      border: none;
       color: var(--ink);
-      font-size: 1.2rem;
-      font-weight: 500;
+      font-size: 1.3rem;
+      font-weight: 400;
+      line-height: 1;
       cursor: pointer;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      transition: all 0.15s;
+      transition: background 0.15s, opacity 0.15s;
+      flex-shrink: 0;
+      padding: 0;
     }
-    .scaler-btn:hover:not(:disabled) {
-      border-color: var(--accent);
-      color: var(--accent);
-    }
-    .scaler-btn:disabled {
-      opacity: 0.35;
-      cursor: not-allowed;
-    }
-    .scaler-btn:focus-visible {
-      outline: 2px solid var(--accent);
-      outline-offset: 2px;
-    }
-    .scaler-count {
-      min-width: 1.75rem;
-      text-align: center;
-      font-family: 'Fraunces', Georgia, serif;
-      font-weight: 700;
-      font-size: 1.25rem;
-    }
-    /* Alternate version link */
-    .alternate-link {
-      display: block;
-      text-align: center;
-      padding: 0.85rem 1rem;
-      margin: 1rem 0 2rem;
-      border-radius: 10px;
-      background: var(--healthier-soft);
-      border: 1px solid var(--healthier);
-      color: var(--healthier);
-      text-decoration: none;
+    .pill-btn:hover:not(:disabled) { background: rgba(0, 0, 0, 0.06); }
+    .pill-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+    .pill-count {
+      padding: 0 1.15rem;
+      font-family: 'Inter', system-ui, sans-serif;
       font-weight: 500;
-      font-size: 0.92rem;
-      transition: background 0.15s;
+      font-size: 0.95rem;
+      color: var(--ink);
+      white-space: nowrap;
+      min-width: 7rem;
+      text-align: center;
     }
-    .alternate-link:hover { background: #dce9de; }
-    .alternate-link.is-original {
+    .scaler-sub {
+      font-size: 0.8rem;
+      color: var(--ink-soft);
+      text-align: center;
+      line-height: 1.35;
+    }
+    /* Recipe-head actions row */
+    .recipe-head-actions {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.65rem;
+      flex-wrap: wrap;
+      margin-top: 1rem;
+    }
+    .alternate-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.55rem 1rem;
+      border-radius: 999px;
+      background: var(--bg-card);
+      border: 1px solid var(--line);
+      color: var(--ink);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      transition: background 0.15s, border-color 0.15s;
+    }
+    .alternate-button:hover {
       background: var(--accent-soft);
       border-color: var(--accent);
-      color: var(--accent);
     }
-    .alternate-link.is-original:hover { background: #f7dfd0; }
+    .alternate-subtle {
+      display: inline-block;
+      color: var(--ink-soft);
+      text-decoration: none;
+      font-size: 0.82rem;
+      border-bottom: 1px solid var(--line);
+      padding: 0 0 1px;
+      transition: color 0.15s, border-color 0.15s;
+    }
+    .alternate-subtle:hover {
+      color: var(--ink);
+      border-bottom-color: var(--ink);
+    }
+    button.alternate-subtle {
+      background: none;
+      border: none;
+      border-bottom: 1px solid var(--line);
+      cursor: pointer;
+      font-family: 'Inter', system-ui, sans-serif;
+      padding: 0 0 1px;
+    }
+    button.alternate-subtle:disabled {
+      opacity: 0.5;
+      cursor: wait;
+    }
+    /* Untested chip */
+    .untested-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      padding: 0.18rem 0.55rem;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--ink-soft);
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 0.62rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      vertical-align: middle;
+      margin-left: 0.55rem;
+      white-space: nowrap;
+      line-height: 1.2;
+    }
     /* Section dividers */
     .section-divider {
       display: flex;
@@ -288,38 +674,67 @@
       background: var(--bg-card);
       border: 1px solid var(--line);
       border-radius: 10px;
-      padding: 0.5rem 1rem;
+      padding: 0.25rem 1rem;
     }
     .ingredients li {
-      padding: 0.7rem 0;
       border-bottom: 1px solid var(--line-soft);
-      font-size: 0.96rem;
-      line-height: 1.4;
-      display: flex;
-      align-items: flex-start;
-      gap: 0.6rem;
     }
     .ingredients li:last-child { border-bottom: none; }
-    .ingredients li::before {
-      content: '';
-      width: 5px;
-      height: 5px;
-      border-radius: 50%;
-      background: var(--accent);
+    .ingredient-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      padding: 0.7rem 0;
+      cursor: pointer;
+      user-select: none;
+    }
+    .ingredient-check {
+      appearance: none;
+      -webkit-appearance: none;
+      width: 18px;
+      height: 18px;
+      border: 1.5px solid var(--ink-mute);
+      border-radius: 4px;
+      margin: 0;
+      margin-top: 2px;
       flex-shrink: 0;
-      margin-top: 0.55rem;
+      cursor: pointer;
+      position: relative;
+      background: var(--bg-card);
+      transition: background 0.15s, border-color 0.15s;
     }
-    .ingredient-amount {
-      font-weight: 600;
-      color: var(--ink);
+    .ingredient-check:hover { border-color: var(--accent); }
+    .ingredient-check:checked {
+      background: var(--accent);
+      border-color: var(--accent);
     }
-    .ingredient-metric {
+    .ingredient-check:checked::after {
+      content: '';
+      position: absolute;
+      left: 4px;
+      top: 0px;
+      width: 6px;
+      height: 11px;
+      border-right: 2px solid #fff;
+      border-bottom: 2px solid #fff;
+      transform: rotate(45deg);
+    }
+    .ingredient-text {
+      font-size: 0.94rem;
+      line-height: 1.4;
+      flex: 1;
+      transition: color 0.15s;
+    }
+    .ingredients li.is-checked .ingredient-text {
       color: var(--ink-mute);
-      font-size: 0.88em;
+      text-decoration: line-through;
+      text-decoration-thickness: 1px;
     }
-    .ingredient-name {
-      color: var(--ink);
-    }
+    .ingredient-amount { font-weight: 600; color: var(--ink); }
+    .ingredient-metric { color: var(--ink-mute); font-size: 0.88em; }
+    .ingredient-name { color: var(--ink); }
+    .ingredients li.is-checked .ingredient-amount,
+    .ingredients li.is-checked .ingredient-name { color: var(--ink-mute); }
     /* Method list */
     .method {
       list-style: none;
@@ -346,11 +761,11 @@
       width: 1.6rem;
       height: 1.6rem;
       border-radius: 50%;
-      background: var(--ink);
-      color: var(--bg);
-      font-family: 'Fraunces', Georgia, serif;
+      background: var(--accent);
+      color: #fff;
+      font-family: 'Inter', system-ui, sans-serif;
       font-weight: 700;
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -363,16 +778,105 @@
       border-radius: 4px;
       white-space: normal;
     }
-    /* Footer alternate */
-    .footer-alternate {
-      margin-top: 2.5rem;
-      padding-top: 1.5rem;
-      border-top: 1px solid var(--line);
-      text-align: center;
+    /* Tabs */
+    .tabs {
+      display: flex;
+      padding: 4px;
+      background: var(--line-soft);
+      border-radius: 14px;
+      margin: 1.75rem 0 1.25rem;
+      gap: 4px;
+    }
+    .tab {
+      flex: 1;
+      padding: 0.7rem 0.5rem;
+      background: transparent;
+      border: none;
+      border-radius: 10px;
+      color: var(--ink-mute);
+      font-family: 'Inter', system-ui, sans-serif;
+      font-weight: 500;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+      white-space: nowrap;
+    }
+    .tab:hover:not(.is-active) { color: var(--ink); }
+    .tab.is-active {
+      background: var(--bg-card);
+      color: var(--ink);
+      font-weight: 600;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.04);
+    }
+    .tab-panel { display: none; }
+    .tab-panel.is-active { display: block; }
+    /* Unit toggle */
+    .unit-toggle {
+      display: inline-flex;
+      background: var(--bg-card);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 3px;
+      margin-bottom: 1rem;
+      gap: 2px;
+    }
+    .unit-btn {
+      padding: 0.45rem 0.9rem;
+      border: none;
+      border-radius: 999px;
+      background: transparent;
+      color: var(--ink-soft);
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 0.78rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.15s;
+      white-space: nowrap;
+    }
+    .unit-btn:hover { color: var(--ink); }
+    .unit-btn.is-active { background: var(--accent); color: #fff; }
+    /* Nutrition */
+    .nutrition-card {
+      background: var(--bg-card);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 0.25rem 1.25rem;
+    }
+    .nutrition-row {
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--line-soft);
+    }
+    .nutrition-row:last-child { border-bottom: none; }
+    .nutrition-row-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 0.5rem;
+    }
+    .nutrition-label { color: var(--ink-soft); font-size: 0.88rem; }
+    .nutrition-value {
+      font-family: 'Inter', system-ui, sans-serif;
+      font-weight: 600;
+      font-size: 1.05rem;
+      color: var(--ink);
+    }
+    .nutrition-macros {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem 0.85rem;
+      font-size: 0.8rem;
+      color: var(--ink-soft);
+    }
+    .nutrition-macro strong {
+      color: var(--ink);
+      font-weight: 600;
+      margin-right: 0.2rem;
     }
     /* Hidden helper */
     .hidden { display: none !important; }
-    /* Focus-visible for keyboard users */
     a:focus-visible, button:focus-visible {
       outline: 2px solid var(--accent);
       outline-offset: 2px;
@@ -388,9 +892,7 @@
 <body>
   <div class="app">
     <nav class="topbar">
-      <a href="#/" class="brand" id="brandLink">
-        <span>Joelle's Recipes</span><span class="brand-dot">.</span>
-      </a>
+      <a href="#/" class="brand" id="brandLink">JOELLE'S RECIPES</a>
       <a href="#/" class="back-link hidden" id="backLink">← All recipes</a>
     </nav>
 
@@ -398,6 +900,14 @@
   </div>
 
   <script>
+    // ============================================================
+    // Scales
+    // ============================================================
+    const SCALES = {
+      normal: [1, 2, 3, 4, 6, 8, 10, 12, 16, 20],
+      bite:   [10, 15, 20, 30, 40, 50, 100],
+    };
+
     // ============================================================
     // Recipe data
     // ============================================================
@@ -409,16 +919,15 @@
         defaultServings: 1,
         servingLabel: 'loaf',
         servingLabelPlural: 'loaves',
-        minServings: 1,
-        maxServings: 4,
+        scale: 'normal',
         alternate: { slug: 'whole-wheat-bread', label: '🌾 Healthier version (whole wheat)', kind: 'healthier' },
         ingredients: [
-          { id: 'flour',  amount: 4,   unit: 'cups', metric: 500, metricUnit: 'g',  name: 'bread flour' },
-          { id: 'water',  amount: 1.5, unit: 'cups', metric: 355, metricUnit: 'ml', name: 'warm water' },
-          { id: 'yeast',  amount: 2,   unit: 'tsp',  metric: 6,   metricUnit: 'g',  name: 'instant yeast' },
-          { id: 'salt',   amount: 2,   unit: 'tsp',  metric: 10,  metricUnit: 'g',  name: 'fine salt' },
-          { id: 'sugar',  amount: 2,   unit: 'tbsp', metric: 25,  metricUnit: 'g',  name: 'granulated sugar' },
-          { id: 'oil',    amount: 2,   unit: 'tbsp', metric: 30,  metricUnit: 'ml', name: 'olive oil' },
+          { id: 'flour',  amount: 4,   unit: 'cups', metric: 500, metricUnit: 'g',  name: 'bread flour',        calories: 1820, carbs: 365, protein: 65, fat: 7 },
+          { id: 'water',  amount: 1.5, unit: 'cups', metric: 355, metricUnit: 'ml', name: 'warm water',         calories: 0,    carbs: 0,   protein: 0,  fat: 0 },
+          { id: 'yeast',  amount: 2,   unit: 'tsp',  metric: 6,   metricUnit: 'g',  name: 'instant yeast',      calories: 20,   carbs: 2,   protein: 2,  fat: 0 },
+          { id: 'salt',   amount: 2,   unit: 'tsp',  metric: 10,  metricUnit: 'g',  name: 'fine salt',          calories: 0,    carbs: 0,   protein: 0,  fat: 0 },
+          { id: 'sugar',  amount: 2,   unit: 'tbsp', metric: 25,  metricUnit: 'g',  name: 'granulated sugar',   calories: 97,   carbs: 25,  protein: 0,  fat: 0 },
+          { id: 'oil',    amount: 2,   unit: 'tbsp', metric: 28,  metricUnit: 'ml', name: 'olive oil',          calories: 248,  carbs: 0,   protein: 0,  fat: 28 },
         ],
         method: [
           'In a large bowl, combine {yeast}, {sugar}, and {water}. Let stand 5 minutes, until foamy.',
@@ -438,17 +947,16 @@
         defaultServings: 1,
         servingLabel: 'loaf',
         servingLabelPlural: 'loaves',
-        minServings: 1,
-        maxServings: 4,
+        scale: 'normal',
         alternate: { slug: 'simple-white-bread', label: '🍞 Original version (white)', kind: 'original' },
         ingredients: [
-          { id: 'wwflour', amount: 3,   unit: 'cups', metric: 360, metricUnit: 'g',  name: 'whole wheat flour' },
-          { id: 'bflour',  amount: 1,   unit: 'cup',  metric: 130, metricUnit: 'g',  name: 'bread flour' },
-          { id: 'water',   amount: 1.5, unit: 'cups', metric: 355, metricUnit: 'ml', name: 'warm water' },
-          { id: 'yeast',   amount: 2,   unit: 'tsp',  metric: 6,   metricUnit: 'g',  name: 'instant yeast' },
-          { id: 'salt',    amount: 2,   unit: 'tsp',  metric: 10,  metricUnit: 'g',  name: 'fine salt' },
-          { id: 'honey',   amount: 2,   unit: 'tbsp', metric: 42,  metricUnit: 'g',  name: 'honey' },
-          { id: 'oil',     amount: 2,   unit: 'tbsp', metric: 30,  metricUnit: 'ml', name: 'olive oil' },
+          { id: 'wwflour', amount: 3,   unit: 'cups', metric: 360, metricUnit: 'g',  name: 'whole wheat flour', calories: 1224, carbs: 256, protein: 50, fat: 9 },
+          { id: 'bflour',  amount: 1,   unit: 'cup',  metric: 130, metricUnit: 'g',  name: 'bread flour',       calories: 473,  carbs: 95,  protein: 17, fat: 2 },
+          { id: 'water',   amount: 1.5, unit: 'cups', metric: 355, metricUnit: 'ml', name: 'warm water',        calories: 0,    carbs: 0,   protein: 0,  fat: 0 },
+          { id: 'yeast',   amount: 2,   unit: 'tsp',  metric: 6,   metricUnit: 'g',  name: 'instant yeast',     calories: 20,   carbs: 2,   protein: 2,  fat: 0 },
+          { id: 'salt',    amount: 2,   unit: 'tsp',  metric: 10,  metricUnit: 'g',  name: 'fine salt',         calories: 0,    carbs: 0,   protein: 0,  fat: 0 },
+          { id: 'honey',   amount: 2,   unit: 'tbsp', metric: 42,  metricUnit: 'g',  name: 'honey',             calories: 128,  carbs: 34,  protein: 0,  fat: 0 },
+          { id: 'oil',     amount: 2,   unit: 'tbsp', metric: 28,  metricUnit: 'ml', name: 'olive oil',         calories: 248,  carbs: 0,   protein: 0,  fat: 28 },
         ],
         method: [
           'Combine {yeast}, {honey}, and {water}. Let stand 5 minutes, until foamy.',
@@ -468,19 +976,18 @@
         defaultServings: 1,
         servingLabel: 'loaf',
         servingLabelPlural: 'loaves',
-        minServings: 1,
-        maxServings: 4,
+        scale: 'normal',
         alternate: { slug: 'healthier-chocolate-chip-bread', label: '🍌 Healthier version (banana, whole wheat)', kind: 'healthier' },
         ingredients: [
-          { id: 'flour',   amount: 2,     unit: 'cups', metric: 250, metricUnit: 'g',  name: 'all-purpose flour' },
-          { id: 'sugar',   amount: 0.75,  unit: 'cup',  metric: 150, metricUnit: 'g',  name: 'granulated sugar' },
-          { id: 'bp',      amount: 2,     unit: 'tsp',  metric: 8,   metricUnit: 'g',  name: 'baking powder' },
-          { id: 'salt',    amount: 0.5,   unit: 'tsp',  metric: 3,   metricUnit: 'g',  name: 'fine salt' },
-          { id: 'milk',    amount: 1,     unit: 'cup',  metric: 240, metricUnit: 'ml', name: 'whole milk' },
-          { id: 'oil',     amount: 0.333, unit: 'cup',  metric: 75,  metricUnit: 'ml', name: 'vegetable oil' },
-          { id: 'vanilla', amount: 1,     unit: 'tsp',  metric: 5,   metricUnit: 'ml', name: 'vanilla extract' },
-          { id: 'chips',   amount: 1,     unit: 'cup',  metric: 175, metricUnit: 'g',  name: 'chocolate chips' },
-          { id: 'egg',     amount: 1,     unit: 'large',metric: 50,  metricUnit: 'g',  name: 'egg', plural: 'eggs' },
+          { id: 'flour',   amount: 2,     unit: 'cups', metric: 250, metricUnit: 'g',  name: 'all-purpose flour', calories: 910, carbs: 190, protein: 25, fat: 2 },
+          { id: 'sugar',   amount: 0.75,  unit: 'cup',  metric: 150, metricUnit: 'g',  name: 'granulated sugar',  calories: 581, carbs: 150, protein: 0,  fat: 0 },
+          { id: 'bp',      amount: 2,     unit: 'tsp',  metric: 8,   metricUnit: 'g',  name: 'baking powder',     calories: 0,   carbs: 0,   protein: 0,  fat: 0 },
+          { id: 'salt',    amount: 0.5,   unit: 'tsp',  metric: 3,   metricUnit: 'g',  name: 'fine salt',         calories: 0,   carbs: 0,   protein: 0,  fat: 0 },
+          { id: 'milk',    amount: 1,     unit: 'cup',  metric: 240, metricUnit: 'ml', name: 'whole milk',        calories: 154, carbs: 12,  protein: 8,  fat: 8 },
+          { id: 'oil',     amount: 0.333, unit: 'cup',  metric: 68,  metricUnit: 'ml', name: 'vegetable oil',     calories: 601, carbs: 0,   protein: 0,  fat: 68 },
+          { id: 'vanilla', amount: 1,     unit: 'tsp',  metric: 5,   metricUnit: 'ml', name: 'vanilla extract',   calories: 14,  carbs: 1,   protein: 0,  fat: 0 },
+          { id: 'chips',   amount: 1,     unit: 'cup',  metric: 175, metricUnit: 'g',  name: 'chocolate chips',   calories: 901, carbs: 107, protein: 9,  fat: 54 },
+          { id: 'egg',     amount: 1,     unit: 'large',metric: 50,  metricUnit: 'g',  name: 'egg', plural: 'eggs', calories: 72, carbs: 0,  protein: 6,  fat: 5 },
         ],
         method: [
           'Preheat oven to 350°F (175°C). Grease a 9×5" loaf pan.',
@@ -500,20 +1007,19 @@
         defaultServings: 1,
         servingLabel: 'loaf',
         servingLabelPlural: 'loaves',
-        minServings: 1,
-        maxServings: 4,
+        scale: 'normal',
         alternate: { slug: 'chocolate-chip-bread', label: '🍫 Original version', kind: 'original' },
         ingredients: [
-          { id: 'flour',   amount: 2,     unit: 'cups', metric: 240, metricUnit: 'g',  name: 'whole wheat flour' },
-          { id: 'sugar',   amount: 0.333, unit: 'cup',  metric: 65,  metricUnit: 'g',  name: 'coconut sugar' },
-          { id: 'bp',      amount: 2,     unit: 'tsp',  metric: 8,   metricUnit: 'g',  name: 'baking powder' },
-          { id: 'salt',    amount: 0.5,   unit: 'tsp',  metric: 3,   metricUnit: 'g',  name: 'fine salt' },
-          { id: 'banana',  amount: 1,     unit: 'cup',  metric: 240, metricUnit: 'g',  name: 'mashed ripe banana' },
-          { id: 'milk',    amount: 0.5,   unit: 'cup',  metric: 120, metricUnit: 'ml', name: 'milk (any kind)' },
-          { id: 'oil',     amount: 0.25,  unit: 'cup',  metric: 60,  metricUnit: 'ml', name: 'olive oil' },
-          { id: 'vanilla', amount: 1,     unit: 'tsp',  metric: 5,   metricUnit: 'ml', name: 'vanilla extract' },
-          { id: 'chips',   amount: 0.667, unit: 'cup',  metric: 115, metricUnit: 'g',  name: 'dark chocolate chips (70%)' },
-          { id: 'egg',     amount: 1,     unit: 'large',metric: 50,  metricUnit: 'g',  name: 'egg', plural: 'eggs' },
+          { id: 'flour',   amount: 2,     unit: 'cups', metric: 240, metricUnit: 'g',  name: 'whole wheat flour',            calories: 816, carbs: 170, protein: 34, fat: 6 },
+          { id: 'sugar',   amount: 0.333, unit: 'cup',  metric: 65,  metricUnit: 'g',  name: 'coconut sugar',                calories: 252, carbs: 62,  protein: 0,  fat: 0 },
+          { id: 'bp',      amount: 2,     unit: 'tsp',  metric: 8,   metricUnit: 'g',  name: 'baking powder',                calories: 0,   carbs: 0,   protein: 0,  fat: 0 },
+          { id: 'salt',    amount: 0.5,   unit: 'tsp',  metric: 3,   metricUnit: 'g',  name: 'fine salt',                    calories: 0,   carbs: 0,   protein: 0,  fat: 0 },
+          { id: 'banana',  amount: 1,     unit: 'cup',  metric: 240, metricUnit: 'g',  name: 'mashed ripe banana',           calories: 214, carbs: 55,  protein: 3,  fat: 1 },
+          { id: 'milk',    amount: 0.5,   unit: 'cup',  metric: 120, metricUnit: 'ml', name: 'milk (any kind)',              calories: 77,  carbs: 6,   protein: 4,  fat: 4 },
+          { id: 'oil',     amount: 0.25,  unit: 'cup',  metric: 54,  metricUnit: 'ml', name: 'olive oil',                    calories: 477, carbs: 0,   protein: 0,  fat: 54 },
+          { id: 'vanilla', amount: 1,     unit: 'tsp',  metric: 5,   metricUnit: 'ml', name: 'vanilla extract',              calories: 14,  carbs: 1,   protein: 0,  fat: 0 },
+          { id: 'chips',   amount: 0.667, unit: 'cup',  metric: 115, metricUnit: 'g',  name: 'dark chocolate chips (70%)',   calories: 667, carbs: 38,  protein: 9,  fat: 49 },
+          { id: 'egg',     amount: 1,     unit: 'large',metric: 50,  metricUnit: 'g',  name: 'egg', plural: 'eggs',          calories: 72,  carbs: 0,   protein: 6,  fat: 5 },
         ],
         method: [
           'Preheat oven to 350°F (175°C). Grease a 9×5" loaf pan.',
@@ -533,17 +1039,16 @@
         defaultServings: 8,
         servingLabel: 'flatbread',
         servingLabelPlural: 'flatbreads',
-        minServings: 1,
-        maxServings: 16,
+        scale: 'normal',
         alternate: { slug: 'whole-wheat-flatbread', label: '🌾 Healthier version (whole wheat)', kind: 'healthier' },
         ingredients: [
-          { id: 'flour',  amount: 3,     unit: 'cups', metric: 375, metricUnit: 'g',  name: 'all-purpose flour' },
-          { id: 'yogurt', amount: 1,     unit: 'cup',  metric: 245, metricUnit: 'g',  name: 'plain yogurt' },
-          { id: 'water',  amount: 0.333, unit: 'cup',  metric: 80,  metricUnit: 'ml', name: 'warm water' },
-          { id: 'oil',    amount: 2,     unit: 'tbsp', metric: 30,  metricUnit: 'ml', name: 'olive oil' },
-          { id: 'bp',     amount: 1,     unit: 'tsp',  metric: 4,   metricUnit: 'g',  name: 'baking powder' },
-          { id: 'salt',   amount: 1,     unit: 'tsp',  metric: 5,   metricUnit: 'g',  name: 'fine salt' },
-          { id: 'sugar',  amount: 1,     unit: 'tsp',  metric: 4,   metricUnit: 'g',  name: 'granulated sugar' },
+          { id: 'flour',  amount: 3,     unit: 'cups', metric: 375, metricUnit: 'g',  name: 'all-purpose flour', calories: 1365, carbs: 285, protein: 38, fat: 4 },
+          { id: 'yogurt', amount: 1,     unit: 'cup',  metric: 245, metricUnit: 'g',  name: 'plain yogurt',      calories: 149,  carbs: 12,  protein: 9,  fat: 8 },
+          { id: 'water',  amount: 0.333, unit: 'cup',  metric: 80,  metricUnit: 'ml', name: 'warm water',        calories: 0,    carbs: 0,   protein: 0,  fat: 0 },
+          { id: 'oil',    amount: 2,     unit: 'tbsp', metric: 28,  metricUnit: 'ml', name: 'olive oil',         calories: 248,  carbs: 0,   protein: 0,  fat: 28 },
+          { id: 'bp',     amount: 1,     unit: 'tsp',  metric: 4,   metricUnit: 'g',  name: 'baking powder',     calories: 0,    carbs: 0,   protein: 0,  fat: 0 },
+          { id: 'salt',   amount: 1,     unit: 'tsp',  metric: 5,   metricUnit: 'g',  name: 'fine salt',         calories: 0,    carbs: 0,   protein: 0,  fat: 0 },
+          { id: 'sugar',  amount: 1,     unit: 'tsp',  metric: 4,   metricUnit: 'g',  name: 'granulated sugar',  calories: 15,   carbs: 4,   protein: 0,  fat: 0 },
         ],
         method: [
           'In a large bowl, whisk {flour}, {bp}, {salt}, and {sugar}.',
@@ -564,17 +1069,16 @@
         defaultServings: 8,
         servingLabel: 'flatbread',
         servingLabelPlural: 'flatbreads',
-        minServings: 1,
-        maxServings: 16,
+        scale: 'normal',
         alternate: { slug: 'flatbread', label: '🫓 Original version', kind: 'original' },
         ingredients: [
-          { id: 'wwflour', amount: 2,   unit: 'cups', metric: 240, metricUnit: 'g',  name: 'whole wheat flour' },
-          { id: 'apflour', amount: 1,   unit: 'cup',  metric: 125, metricUnit: 'g',  name: 'all-purpose flour' },
-          { id: 'yogurt',  amount: 1,   unit: 'cup',  metric: 245, metricUnit: 'g',  name: 'plain Greek yogurt' },
-          { id: 'water',   amount: 0.5, unit: 'cup',  metric: 120, metricUnit: 'ml', name: 'warm water' },
-          { id: 'oil',     amount: 1,   unit: 'tbsp', metric: 15,  metricUnit: 'ml', name: 'olive oil' },
-          { id: 'bp',      amount: 1,   unit: 'tsp',  metric: 4,   metricUnit: 'g',  name: 'baking powder' },
-          { id: 'salt',    amount: 1,   unit: 'tsp',  metric: 5,   metricUnit: 'g',  name: 'fine salt' },
+          { id: 'wwflour', amount: 2,   unit: 'cups', metric: 240, metricUnit: 'g',  name: 'whole wheat flour',   calories: 816, carbs: 170, protein: 34, fat: 6 },
+          { id: 'apflour', amount: 1,   unit: 'cup',  metric: 125, metricUnit: 'g',  name: 'all-purpose flour',   calories: 455, carbs: 95,  protein: 13, fat: 1 },
+          { id: 'yogurt',  amount: 1,   unit: 'cup',  metric: 245, metricUnit: 'g',  name: 'plain Greek yogurt',  calories: 145, carbs: 9,   protein: 25, fat: 1 },
+          { id: 'water',   amount: 0.5, unit: 'cup',  metric: 120, metricUnit: 'ml', name: 'warm water',          calories: 0,   carbs: 0,   protein: 0,  fat: 0 },
+          { id: 'oil',     amount: 1,   unit: 'tbsp', metric: 14,  metricUnit: 'ml', name: 'olive oil',           calories: 124, carbs: 0,   protein: 0,  fat: 14 },
+          { id: 'bp',      amount: 1,   unit: 'tsp',  metric: 4,   metricUnit: 'g',  name: 'baking powder',       calories: 0,   carbs: 0,   protein: 0,  fat: 0 },
+          { id: 'salt',    amount: 1,   unit: 'tsp',  metric: 5,   metricUnit: 'g',  name: 'fine salt',           calories: 0,   carbs: 0,   protein: 0,  fat: 0 },
         ],
         method: [
           'In a large bowl, whisk {wwflour}, {apflour}, {bp}, and {salt}.',
@@ -589,23 +1093,22 @@
       },
 
       'third-flatbread': {
-        name: '1/3 Flatbread',
+        name: '⅓ Flatbread',
         emoji: '🫓',
         summary: 'The exact third-batch — for when you only need a few.',
         defaultServings: 3,
         servingLabel: 'flatbread',
         servingLabelPlural: 'flatbreads',
-        minServings: 1,
-        maxServings: 9,
+        scale: 'normal',
         alternate: { slug: 'whole-wheat-third-flatbread', label: '🌾 Healthier version (whole wheat)', kind: 'healthier' },
         ingredients: [
-          { id: 'flour',  amount: 1,     unit: 'cup',  metric: 125, metricUnit: 'g',  name: 'all-purpose flour' },
-          { id: 'yogurt', amount: 0.333, unit: 'cup',  metric: 82,  metricUnit: 'g',  name: 'plain yogurt' },
-          { id: 'water',  amount: 2,     unit: 'tbsp', metric: 27,  metricUnit: 'ml', name: 'warm water' },
-          { id: 'oil',    amount: 2,     unit: 'tsp',  metric: 10,  metricUnit: 'ml', name: 'olive oil' },
-          { id: 'bp',     amount: 0.333, unit: 'tsp',  metric: 1.5, metricUnit: 'g',  name: 'baking powder' },
-          { id: 'salt',   amount: 0.333, unit: 'tsp',  metric: 2,   metricUnit: 'g',  name: 'fine salt' },
-          { id: 'sugar',  amount: 0.333, unit: 'tsp',  metric: 1.5, metricUnit: 'g',  name: 'granulated sugar' },
+          { id: 'flour',  amount: 1,     unit: 'cup',  metric: 125, metricUnit: 'g',  name: 'all-purpose flour', calories: 455, carbs: 95, protein: 13, fat: 1 },
+          { id: 'yogurt', amount: 0.333, unit: 'cup',  metric: 82,  metricUnit: 'g',  name: 'plain yogurt',      calories: 50,  carbs: 4,  protein: 3,  fat: 3 },
+          { id: 'water',  amount: 2,     unit: 'tbsp', metric: 27,  metricUnit: 'ml', name: 'warm water',        calories: 0,   carbs: 0,  protein: 0,  fat: 0 },
+          { id: 'oil',    amount: 2,     unit: 'tsp',  metric: 9,   metricUnit: 'ml', name: 'olive oil',         calories: 80,  carbs: 0,  protein: 0,  fat: 9 },
+          { id: 'bp',     amount: 0.333, unit: 'tsp',  metric: 1.5, metricUnit: 'g',  name: 'baking powder',     calories: 0,   carbs: 0,  protein: 0,  fat: 0 },
+          { id: 'salt',   amount: 0.333, unit: 'tsp',  metric: 2,   metricUnit: 'g',  name: 'fine salt',         calories: 0,   carbs: 0,  protein: 0,  fat: 0 },
+          { id: 'sugar',  amount: 0.333, unit: 'tsp',  metric: 1.5, metricUnit: 'g',  name: 'granulated sugar',  calories: 6,   carbs: 1,  protein: 0,  fat: 0 },
         ],
         method: [
           'In a bowl, whisk {flour}, {bp}, {salt}, and {sugar}.',
@@ -620,23 +1123,22 @@
       },
 
       'whole-wheat-third-flatbread': {
-        name: '1/3 Whole Wheat Flatbread',
+        name: '⅓ Whole Wheat Flatbread',
         emoji: '🌾',
         summary: 'Third-batch, whole grain. Small and wholesome.',
         defaultServings: 3,
         servingLabel: 'flatbread',
         servingLabelPlural: 'flatbreads',
-        minServings: 1,
-        maxServings: 9,
+        scale: 'normal',
         alternate: { slug: 'third-flatbread', label: '🫓 Original version', kind: 'original' },
         ingredients: [
-          { id: 'wwflour', amount: 0.667, unit: 'cup',  metric: 80, metricUnit: 'g',  name: 'whole wheat flour' },
-          { id: 'apflour', amount: 0.333, unit: 'cup',  metric: 42, metricUnit: 'g',  name: 'all-purpose flour' },
-          { id: 'yogurt',  amount: 0.333, unit: 'cup',  metric: 82, metricUnit: 'g',  name: 'plain Greek yogurt' },
-          { id: 'water',   amount: 2.5,   unit: 'tbsp', metric: 40, metricUnit: 'ml', name: 'warm water' },
-          { id: 'oil',     amount: 1,     unit: 'tsp',  metric: 5,  metricUnit: 'ml', name: 'olive oil' },
-          { id: 'bp',      amount: 0.333, unit: 'tsp',  metric: 1.5,metricUnit: 'g',  name: 'baking powder' },
-          { id: 'salt',    amount: 0.333, unit: 'tsp',  metric: 2,  metricUnit: 'g',  name: 'fine salt' },
+          { id: 'wwflour', amount: 0.667, unit: 'cup',  metric: 80,  metricUnit: 'g',  name: 'whole wheat flour',  calories: 272, carbs: 57, protein: 11, fat: 2 },
+          { id: 'apflour', amount: 0.333, unit: 'cup',  metric: 42,  metricUnit: 'g',  name: 'all-purpose flour',  calories: 153, carbs: 32, protein: 4,  fat: 0 },
+          { id: 'yogurt',  amount: 0.333, unit: 'cup',  metric: 82,  metricUnit: 'g',  name: 'plain Greek yogurt', calories: 48,  carbs: 3,  protein: 8,  fat: 0 },
+          { id: 'water',   amount: 2.5,   unit: 'tbsp', metric: 40,  metricUnit: 'ml', name: 'warm water',         calories: 0,   carbs: 0,  protein: 0,  fat: 0 },
+          { id: 'oil',     amount: 1,     unit: 'tsp',  metric: 5,   metricUnit: 'ml', name: 'olive oil',          calories: 44,  carbs: 0,  protein: 0,  fat: 5 },
+          { id: 'bp',      amount: 0.333, unit: 'tsp',  metric: 1.5, metricUnit: 'g',  name: 'baking powder',      calories: 0,   carbs: 0,  protein: 0,  fat: 0 },
+          { id: 'salt',    amount: 0.333, unit: 'tsp',  metric: 2,   metricUnit: 'g',  name: 'fine salt',          calories: 0,   carbs: 0,  protein: 0,  fat: 0 },
         ],
         method: [
           'In a bowl, whisk {wwflour}, {apflour}, {bp}, and {salt}.',
@@ -657,17 +1159,16 @@
         defaultServings: 6,
         servingLabel: 'croissant',
         servingLabelPlural: 'croissants',
-        minServings: 1,
-        maxServings: 24,
+        scale: 'normal',
         ingredients: [
-          { id: 'flour',   amount: 1.75, unit: 'cups', metric: 330, metricUnit: 'g',  name: 'all-purpose flour' },
-          { id: 'yeast',   amount: 1,    unit: 'tsp',  metric: 3,   metricUnit: 'g',  name: 'instant yeast' },
-          { id: 'sugar',   amount: 2,    unit: 'tbsp', metric: 30,  metricUnit: 'g',  name: 'sugar' },
-          { id: 'salt',    amount: 1,    unit: 'tsp',  metric: 6,   metricUnit: 'g',  name: 'salt' },
-          { id: 'butter1', amount: 1.5,  unit: 'tbsp', metric: 20,  metricUnit: 'g',  name: 'butter, softened' },
-          { id: 'water',   amount: 0.75, unit: 'cup',  metric: 170, metricUnit: 'ml', name: 'lukewarm water' },
-          { id: 'butter2', amount: 5,    unit: 'tbsp', metric: 75,  metricUnit: 'g',  name: 'cold butter, for laminating' },
-          { id: 'egg',     amount: 1,    unit: '',     metric: null, metricUnit: '',   name: 'egg + 1 tbsp milk, for egg wash' },
+          { id: 'flour',   amount: 1.75, unit: 'cups', metric: 330, metricUnit: 'g',  name: 'all-purpose flour',          calories: 0, carbs: 0, protein: 0, fat: 0 },
+          { id: 'yeast',   amount: 1,    unit: 'tsp',  metric: 3,   metricUnit: 'g',  name: 'instant yeast',              calories: 0, carbs: 0, protein: 0, fat: 0 },
+          { id: 'sugar',   amount: 2,    unit: 'tbsp', metric: 30,  metricUnit: 'g',  name: 'sugar',                      calories: 0, carbs: 0, protein: 0, fat: 0 },
+          { id: 'salt',    amount: 1,    unit: 'tsp',  metric: 6,   metricUnit: 'g',  name: 'salt',                       calories: 0, carbs: 0, protein: 0, fat: 0 },
+          { id: 'butter1', amount: 1.5,  unit: 'tbsp', metric: 20,  metricUnit: 'g',  name: 'butter, softened',           calories: 0, carbs: 0, protein: 0, fat: 0 },
+          { id: 'water',   amount: 0.75, unit: 'cup',  metric: 170, metricUnit: 'ml', name: 'lukewarm water',             calories: 0, carbs: 0, protein: 0, fat: 0 },
+          { id: 'butter2', amount: 5,    unit: 'tbsp', metric: 75,  metricUnit: 'g',  name: 'cold butter, for laminating',calories: 0, carbs: 0, protein: 0, fat: 0 },
+          { id: 'egg',     amount: 1,    unit: '',     metric: null, metricUnit: '',   name: 'egg + 1 tbsp milk, for egg wash', calories: 0, carbs: 0, protein: 0, fat: 0 },
         ],
         method: [
           'Mix {water}, {yeast} and {sugar} together. Add {flour}, {salt} and {butter1}. Mix until the dough comes together and knead until smooth — stretch test: if it doesn\'t tear, it\'s ready. Cover and rest 15 minutes at room temp.',
@@ -678,7 +1179,7 @@
           'Brush generously with egg wash ({egg}).',
           'Bake at 200°C for 3 minutes, then reduce to 180°C for 20 minutes until deep golden. Do not open the oven while baking.',
         ],
-        nutrition: { calories: 334, protein: 5.8, fat: 13.4, carbs: 46.8 },
+        nutrition: { caloriesPerServing: 334, macros: { carbs: 46.8, protein: 5.8, fat: 13.4 } },
       },
 
       'banana-choc-chip-bread': {
@@ -688,21 +1189,20 @@
         defaultServings: 15,
         servingLabel: 'slice',
         servingLabelPlural: 'slices',
-        minServings: 1,
-        maxServings: 30,
+        scale: 'bite',
         ingredients: [
-          { id: 'banana',  amount: 2.75, unit: 'cups', metric: 325, metricUnit: 'g',  name: 'very ripe mashed banana (~3 medium or 4 small)' },
-          { id: 'honey',   amount: 0.5,  unit: 'cup',  metric: 183, metricUnit: 'g',  name: 'honey' },
-          { id: 'sugar',   amount: 0.333,unit: 'cup',  metric: 75,  metricUnit: 'g',  name: 'sugar (or 4 tbsp stevia)' },
-          { id: 'vanilla', amount: 1.5,  unit: 'tsp',  metric: 7,   metricUnit: 'ml', name: 'vanilla extract' },
-          { id: 'eggs',    amount: 2,    unit: '',     metric: null, metricUnit: '',   name: 'eggs' },
-          { id: 'oil',     amount: 3,    unit: 'tbsp', metric: 45,  metricUnit: 'ml', name: 'olive oil' },
-          { id: 'flour',   amount: 2,    unit: 'cups', metric: 250, metricUnit: 'g',  name: 'all-purpose flour' },
-          { id: 'bsoda',   amount: 1.5,  unit: 'tsp',  metric: 7,   metricUnit: 'g',  name: 'baking soda' },
-          { id: 'cinn',    amount: 0.5,  unit: 'tsp',  metric: 1.5, metricUnit: 'g',  name: 'cinnamon' },
-          { id: 'salt',    amount: 0.25, unit: 'tsp',  metric: 1.5, metricUnit: 'g',  name: 'salt' },
-          { id: 'nutmeg',  amount: 0.25, unit: 'tsp',  metric: 0.5, metricUnit: 'g',  name: 'nutmeg (optional)' },
-          { id: 'choc',    amount: 7.5,  unit: 'oz',   metric: 214, metricUnit: 'g',  name: 'Hershey\'s milk chocolate chips' },
+          { id: 'banana',  amount: 2.75, unit: 'cups', metric: 325, metricUnit: 'g',  name: 'very ripe mashed banana (~3 medium or 4 small)', calories: 0, carbs: 0, protein: 0, fat: 0 },
+          { id: 'honey',   amount: 0.5,  unit: 'cup',  metric: 183, metricUnit: 'g',  name: 'honey',                          calories: 0, carbs: 0, protein: 0, fat: 0 },
+          { id: 'sugar',   amount: 0.333,unit: 'cup',  metric: 75,  metricUnit: 'g',  name: 'sugar (or 4 tbsp stevia)',        calories: 0, carbs: 0, protein: 0, fat: 0 },
+          { id: 'vanilla', amount: 1.5,  unit: 'tsp',  metric: 7,   metricUnit: 'ml', name: 'vanilla extract',                calories: 0, carbs: 0, protein: 0, fat: 0 },
+          { id: 'eggs',    amount: 2,    unit: '',     metric: null, metricUnit: '',   name: 'eggs',                           calories: 0, carbs: 0, protein: 0, fat: 0 },
+          { id: 'oil',     amount: 3,    unit: 'tbsp', metric: 45,  metricUnit: 'ml', name: 'olive oil',                      calories: 0, carbs: 0, protein: 0, fat: 0 },
+          { id: 'flour',   amount: 2,    unit: 'cups', metric: 250, metricUnit: 'g',  name: 'all-purpose flour',              calories: 0, carbs: 0, protein: 0, fat: 0 },
+          { id: 'bsoda',   amount: 1.5,  unit: 'tsp',  metric: 7,   metricUnit: 'g',  name: 'baking soda',                    calories: 0, carbs: 0, protein: 0, fat: 0 },
+          { id: 'cinn',    amount: 0.5,  unit: 'tsp',  metric: 1.5, metricUnit: 'g',  name: 'cinnamon',                       calories: 0, carbs: 0, protein: 0, fat: 0 },
+          { id: 'salt',    amount: 0.25, unit: 'tsp',  metric: 1.5, metricUnit: 'g',  name: 'salt',                           calories: 0, carbs: 0, protein: 0, fat: 0 },
+          { id: 'nutmeg',  amount: 0.25, unit: 'tsp',  metric: 0.5, metricUnit: 'g',  name: 'nutmeg (optional)',              calories: 0, carbs: 0, protein: 0, fat: 0 },
+          { id: 'choc',    amount: 7.5,  unit: 'oz',   metric: 214, metricUnit: 'g',  name: 'Hershey\'s milk chocolate chips',calories: 0, carbs: 0, protein: 0, fat: 0 },
         ],
         method: [
           'Preheat oven to 175°C. Line a large loaf tin with parchment.',
@@ -715,12 +1215,20 @@
           'Bake at 175°C for 55–65 minutes until a toothpick comes out with moist crumbs. Check every 10 minutes if not ready.',
           'Cool in tin 15 minutes, then transfer to a wire rack. Best sliced once fully cool.',
         ],
-        nutrition: { calories: 261, protein: 4.2, fat: 11.8, carbs: 37.8 },
+        nutrition: { caloriesPerServing: 261, macros: { carbs: 37.8, protein: 4.2, fat: 11.8 } },
       },
     };
 
-    // Order that appears on the home page — only the 4 canonical recipes.
-    const HOME_RECIPE_SLUGS = ['simple-white-bread', 'chocolate-chip-bread', 'flatbread', 'third-flatbread', 'croissants', 'banana-choc-chip-bread'];
+    // Canonical recipes shown on the home page.
+    // Healthier alternates are reachable via the button on each recipe page.
+    const HOME_RECIPE_SLUGS = [
+      'simple-white-bread',
+      'chocolate-chip-bread',
+      'flatbread',
+      'third-flatbread',
+      'croissants',
+      'banana-choc-chip-bread',
+    ];
 
     // ============================================================
     // Formatting
@@ -730,39 +1238,30 @@
       [1/2, '½'], [5/8, '⅝'], [2/3, '⅔'], [3/4, '¾'], [7/8, '⅞'],
     ];
 
-    // Format a volume/count amount using vulgar fractions when close.
     function formatAmount(v) {
       if (v == null || isNaN(v)) return '';
       if (v === 0) return '0';
-
       const whole = Math.floor(v);
       const frac = v - whole;
       const tolerance = 0.04;
-
-      // Nearly integer
       if (frac < tolerance) return String(whole);
       if (frac > 1 - tolerance) return String(whole + 1);
-
-      // Match vulgar fraction
       let best = null, bestDiff = tolerance;
       for (const [val, sym] of VULGAR_FRACTIONS) {
         const diff = Math.abs(frac - val);
         if (diff < bestDiff) { bestDiff = diff; best = sym; }
       }
       if (best) return whole ? `${whole}${best}` : best;
-
-      // Fallback: decimal (max 2 places, trim trailing zeros)
       const rounded = Math.round(v * 100) / 100;
       return String(rounded).replace(/\.?0+$/, '');
     }
 
-    // Format a metric amount (grams / ml) with size-aware rounding.
     function formatMetric(v) {
       if (v == null || isNaN(v)) return '';
       if (v < 1) return (Math.round(v * 10) / 10).toString();
-      if (v < 20) return String(Math.round(v * 2) / 2); // nearest 0.5
+      if (v < 20) return String(Math.round(v * 2) / 2);
       if (v < 100) return String(Math.round(v));
-      return String(Math.round(v / 5) * 5); // nearest 5
+      return String(Math.round(v / 5) * 5);
     }
 
     function pluralize(ing, scaledAmount) {
@@ -770,36 +1269,83 @@
       return ing.name;
     }
 
-    // Render an ingredient as a rich HTML string:
-    //   "<span class='ingredient-amount'>2 tsp</span>
-    //    <span class='ingredient-metric'>(6g)</span>
-    //    <span class='ingredient-name'>yeast</span>"
-    function renderIngredient(ing, multiplier) {
+    function renderIngredient(ing, multiplier, mode) {
       const amount = ing.amount * multiplier;
-      const metric = ing.metric * multiplier;
+      const metric = ing.metric != null ? ing.metric * multiplier : null;
       const name = pluralize(ing, amount);
+      if (mode === 'metric') {
+        if (metric == null) return `<span class="ingredient-name">${escapeHtml(name)}</span>`;
+        return (
+          `<span class="ingredient-amount">${formatMetric(metric)}${ing.metricUnit}</span> ` +
+          `<span class="ingredient-name">${escapeHtml(name)}</span>`
+        );
+      }
+      if (!ing.unit) return `<span class="ingredient-name">${escapeHtml(name)}</span>`;
       return (
         `<span class="ingredient-amount">${formatAmount(amount)} ${ing.unit}</span> ` +
-        `<span class="ingredient-metric">(${formatMetric(metric)}${ing.metricUnit})</span> ` +
         `<span class="ingredient-name">${escapeHtml(name)}</span>`
       );
     }
 
-    // Render an ingredient as a compact inline string for method steps.
-    function renderIngredientInline(ing, multiplier) {
+    function renderIngredientInline(ing, multiplier, mode) {
       const amount = ing.amount * multiplier;
-      const metric = ing.metric * multiplier;
+      const metric = ing.metric != null ? ing.metric * multiplier : null;
       const name = pluralize(ing, amount);
-      return `${formatAmount(amount)} ${ing.unit} (${formatMetric(metric)}${ing.metricUnit}) ${escapeHtml(name)}`;
+      if (mode === 'metric') {
+        if (metric == null) return escapeHtml(name);
+        return `${formatMetric(metric)}${ing.metricUnit} ${escapeHtml(name)}`;
+      }
+      if (!ing.unit) return escapeHtml(name);
+      return `${formatAmount(amount)} ${ing.unit} ${escapeHtml(name)}`;
     }
 
-    function renderMethodStep(step, ingredients, multiplier) {
+    function renderMethodStep(step, ingredients, multiplier, mode) {
       const byId = Object.fromEntries(ingredients.map(i => [i.id, i]));
       return step.replace(/\{(\w+)\}/g, (_, id) => {
         const ing = byId[id];
         if (!ing) return `{${id}}`;
-        return `<strong>${renderIngredientInline(ing, multiplier)}</strong>`;
+        return `<strong>${renderIngredientInline(ing, multiplier, mode)}</strong>`;
       });
+    }
+
+    function computeCaloriesPerServing(recipe) {
+      if (recipe.nutrition && recipe.nutrition.caloriesPerServing != null) {
+        return recipe.nutrition.caloriesPerServing;
+      }
+      const total = recipe.ingredients.reduce((s, i) => s + (i.calories || 0), 0);
+      return Math.round(total / recipe.defaultServings);
+    }
+
+    function computeMacrosPerServing(recipe) {
+      if (recipe.nutrition && recipe.nutrition.macros) {
+        return recipe.nutrition.macros;
+      }
+      const totals = recipe.ingredients.reduce((acc, i) => ({
+        carbs:   acc.carbs   + (i.carbs   || 0),
+        protein: acc.protein + (i.protein || 0),
+        fat:     acc.fat     + (i.fat     || 0),
+      }), { carbs: 0, protein: 0, fat: 0 });
+      return {
+        carbs:   Math.round(totals.carbs   / recipe.defaultServings),
+        protein: Math.round(totals.protein / recipe.defaultServings),
+        fat:     Math.round(totals.fat     / recipe.defaultServings),
+      };
+    }
+
+    function fmtMacro(n) {
+      const r = Math.round(n * 10) / 10;
+      return r === Math.round(r) ? String(Math.round(r)) : r.toFixed(1);
+    }
+
+    function getChecked(slug) {
+      try {
+        const raw = localStorage.getItem('joelle-checked-' + slug);
+        return new Set(raw ? JSON.parse(raw) : []);
+      } catch (e) { return new Set(); }
+    }
+    function setChecked(slug, set) {
+      try { localStorage.setItem('joelle-checked-' + slug, JSON.stringify([...set])); }
+      catch (e) {}
     }
 
     function escapeHtml(s) {
@@ -808,6 +1354,28 @@
         .replace(/</g, '&lt;')
         .replace(/>/g, '&gt;')
         .replace(/"/g, '&quot;');
+    }
+
+    // ============================================================
+    // Global unit preference
+    // ============================================================
+    const UNIT_KEY = 'joelle-unit';
+    let unitMode = (function() {
+      try { return localStorage.getItem(UNIT_KEY) || 'us'; }
+      catch (e) { return 'us'; }
+    })();
+
+    // ============================================================
+    // Admin mode
+    // ============================================================
+    const ADMIN_TOKEN_KEY = 'joelle-admin-token';
+    function adminToken() {
+      try { return localStorage.getItem(ADMIN_TOKEN_KEY) || ''; }
+      catch (e) { return ''; }
+    }
+    function isAdmin() { return adminToken() !== ''; }
+    function clearAdmin() {
+      try { localStorage.removeItem(ADMIN_TOKEN_KEY); } catch (e) {}
     }
 
     // ============================================================
@@ -820,27 +1388,324 @@
       backLink.classList.add('hidden');
       const cards = HOME_RECIPE_SLUGS.map(slug => {
         const r = RECIPES[slug];
+        if (!r) return '';
         return `
           <a class="recipe-card" href="#/recipe/${slug}">
             <span class="recipe-card-emoji" aria-hidden="true">${r.emoji}</span>
             <div class="recipe-card-body">
-              <div class="recipe-card-name">${escapeHtml(r.name)}</div>
+              <div class="recipe-card-name">${escapeHtml(r.name)}${r.untested ? ' <span class="untested-badge">🧪 Untested</span>' : ''}</div>
               <div class="recipe-card-summary">${escapeHtml(r.summary)}</div>
             </div>
             <span class="recipe-card-arrow" aria-hidden="true">→</span>
           </a>`;
       }).join('');
 
+      const adminCard = isAdmin() ? `
+        <a class="recipe-card add-card" href="#/add">
+          <span class="add-card-icon" aria-hidden="true">+</span>
+          <div class="recipe-card-body">
+            <div class="recipe-card-name">Add a recipe</div>
+            <div class="recipe-card-summary">Describe it or upload a photo — Claude will draft it for you.</div>
+          </div>
+        </a>` : '';
+
       viewEl.innerHTML = `
         <section class="home-hero">
           <h1>A small shelf of<br/>baking recipes.</h1>
-          <p>Scale any recipe by servings. Every original has a healthier variant — one tap away.</p>
+          <p>Scale any recipe by servings — ingredients, method, and nutrition update instantly.</p>
         </section>
         <div class="section-title">The Collection</div>
-        <div class="recipe-grid">${cards}</div>
+        <div class="recipe-grid">${cards}${adminCard}</div>
       `;
       document.title = "Joelle's Recipes";
       window.scrollTo(0, 0);
+    }
+
+    async function fileToBase64(file) {
+      const buffer = await file.arrayBuffer();
+      const bytes = new Uint8Array(buffer);
+      let binary = '';
+      const chunk = 0x8000;
+      for (let i = 0; i < bytes.length; i += chunk) {
+        binary += String.fromCharCode.apply(null, bytes.subarray(i, i + chunk));
+      }
+      return btoa(binary);
+    }
+
+    function extractRecipeFromText(text) {
+      const match = String(text).match(/```recipe\s*\n([\s\S]*?)\n```/);
+      if (!match) return null;
+      try { return JSON.parse(match[1]); } catch (e) { return null; }
+    }
+    function stripRecipeBlock(text) {
+      return String(text).replace(/```recipe\s*\n[\s\S]*?\n```/g, '').trim();
+    }
+    function userMessageText(content) {
+      if (typeof content === 'string') return content;
+      const t = (content || []).find((c) => c.type === 'text');
+      return t ? t.text : '';
+    }
+    function userMessageHasImage(content) {
+      return Array.isArray(content) && content.some((c) => c.type === 'image');
+    }
+
+    function renderAdd(editSlug) {
+      if (!isAdmin()) { window.location.hash = '#/'; return; }
+      backLink.classList.remove('hidden');
+
+      const editingRecipe = editSlug && RECIPES[editSlug] ? RECIPES[editSlug] : null;
+      let messages = [];
+      if (editingRecipe) {
+        const intro =
+          `Here's the current "${editingRecipe.name}" recipe. Tell me what you'd like to change — or hit Publish to keep it as-is.\n\n` +
+          '```recipe\n' + JSON.stringify(editingRecipe, null, 2) + '\n```';
+        messages = [{ role: 'assistant', content: intro }];
+      }
+      let isWaiting = false;
+      let pendingImage = null;
+      let publishedSlugs = new Set();
+      let publishingIdx = null;
+
+      function paint() {
+        const empty = messages.length === 0 && !isWaiting;
+        viewEl.innerHTML = `
+          <div class="chat-page">
+            <header class="chat-head">
+              <h2>${editingRecipe ? 'Edit ' + escapeHtml(editingRecipe.name) : 'Add a recipe'}</h2>
+              <p class="add-sub">${editingRecipe ? 'Chat with Claude to refine. Publishing overwrites the existing recipe.' : 'Chat with Claude to draft a recipe. When you\'re happy with one, hit Publish on its card and it\'ll appear on the home page.'}</p>
+            </header>
+            <div class="chat-messages" id="chatMessages">
+              ${empty ? '<div class="chat-empty">Tell Claude what you want to make. Describe ingredients, or upload a photo of a recipe.</div>' : renderMessages()}
+              ${isWaiting ? '<div class="chat-typing">Claude is thinking…</div>' : ''}
+            </div>
+            <div class="chat-input-bar">
+              ${pendingImage ? `<div class="chat-attachment-pill">📷 ${escapeHtml(pendingImage.name)} <button type="button" id="clearAttach" aria-label="Remove">×</button></div>` : ''}
+              <textarea id="chatInput" placeholder="${messages.length === 0 ? 'e.g. Croissants — 330g flour, 75g butter for laminating…' : 'Refine, ask, or describe another recipe…'}"${isWaiting ? ' disabled' : ''}></textarea>
+              <div class="chat-input-actions">
+                <label class="chat-photo-btn" for="chatPhoto">📷 Photo<input id="chatPhoto" type="file" accept="image/*" hidden /></label>
+                <button class="add-generate" id="chatSend" type="button"${isWaiting ? ' disabled' : ''}>${isWaiting ? 'Sending…' : 'Send'}</button>
+              </div>
+            </div>
+          </div>
+        `;
+
+        const msgEl = document.getElementById('chatMessages');
+        if (msgEl) msgEl.scrollTop = msgEl.scrollHeight;
+
+        const sendBtn = document.getElementById('chatSend');
+        const inputEl = document.getElementById('chatInput');
+        sendBtn.addEventListener('click', send);
+        inputEl.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); send(); }
+        });
+        if (!isWaiting) inputEl.focus();
+
+        document.getElementById('chatPhoto').addEventListener('change', async (e) => {
+          const file = e.target.files[0];
+          if (!file) return;
+          pendingImage = { data: await fileToBase64(file), type: file.type || 'image/jpeg', name: file.name };
+          paint();
+        });
+        const clearBtn = document.getElementById('clearAttach');
+        if (clearBtn) clearBtn.addEventListener('click', () => { pendingImage = null; paint(); });
+
+        document.querySelectorAll('[data-publish-idx]').forEach((btn) => {
+          btn.addEventListener('click', () => publish(parseInt(btn.dataset.publishIdx, 10)));
+        });
+        document.querySelectorAll('[data-skip]').forEach((btn) => {
+          btn.addEventListener('click', () => {
+            btn.closest('.chat-recipe-card').style.opacity = '0.5';
+            btn.closest('.chat-recipe-card').querySelectorAll('button').forEach((b) => b.disabled = true);
+          });
+        });
+      }
+
+      function renderMessages() {
+        return messages.map((m, idx) => {
+          if (m.role === 'user') {
+            const text = userMessageText(m.content);
+            const hasImg = userMessageHasImage(m.content);
+            return `<div class="chat-msg chat-msg-user">
+              ${hasImg ? '<div class="chat-img-tag">📷 image attached</div>' : ''}
+              ${text ? `<div class="chat-bubble chat-bubble-user">${escapeHtml(text)}</div>` : ''}
+            </div>`;
+          }
+          const text = typeof m.content === 'string' ? m.content : '';
+          const isError = m._error === true;
+          const recipe = extractRecipeFromText(text);
+          const prose = stripRecipeBlock(text);
+          let html = `<div class="chat-msg chat-msg-assistant">`;
+          if (prose) {
+            html += `<div class="chat-bubble chat-bubble-assistant${isError ? ' is-error' : ''}">${escapeHtml(prose)}</div>`;
+          }
+          if (recipe) {
+            const isPub = publishedSlugs.has(recipe.slug);
+            const isPublishing = publishingIdx === idx;
+            html += `<div class="chat-recipe-card${isPub ? ' is-published' : ''}">
+              <div class="chat-recipe-head">
+                <span class="chat-recipe-emoji">${recipe.emoji || '🍽️'}</span>
+                <span class="chat-recipe-name">${escapeHtml(recipe.name || '(untitled)')}</span>
+              </div>
+              <p class="chat-recipe-summary">${escapeHtml(recipe.summary || '')}</p>
+              <p class="chat-recipe-meta">Makes ${recipe.defaultServings} ${escapeHtml(recipe.servingLabelPlural || '')} · ${(recipe.ingredients || []).length} ingredients · ${(recipe.method || []).length} steps</p>
+              <div class="chat-recipe-actions">
+                ${isPub
+                  ? '<span class="chat-recipe-status">✓ Published</span>'
+                  : `<button class="chat-recipe-btn" type="button" data-skip="1"${isPublishing ? ' disabled' : ''}>Skip</button>
+                     <button class="chat-recipe-btn is-primary" type="button" data-publish-idx="${idx}"${isPublishing ? ' disabled' : ''}>${isPublishing ? 'Publishing…' : 'Publish'}</button>`}
+              </div>
+            </div>`;
+          }
+          html += `</div>`;
+          return html;
+        }).join('');
+      }
+
+      async function send() {
+        const inputEl = document.getElementById('chatInput');
+        const text = inputEl.value.trim();
+        if (!text && !pendingImage) return;
+
+        const content = [];
+        if (pendingImage) {
+          content.push({ type: 'image', source: { type: 'base64', media_type: pendingImage.type, data: pendingImage.data } });
+        }
+        if (text) content.push({ type: 'text', text });
+
+        messages.push({ role: 'user', content });
+        pendingImage = null;
+        isWaiting = true;
+        paint();
+
+        try {
+          const res = await fetch('/api/chat', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'x-admin-token': adminToken() },
+            body: JSON.stringify({ messages }),
+          });
+          const data = await res.json();
+          if (!res.ok) throw new Error(data.error || ('HTTP ' + res.status));
+          messages.push({ role: 'assistant', content: data.message.content });
+        } catch (err) {
+          messages.push({ role: 'assistant', content: '⚠️ ' + err.message, _error: true });
+        } finally {
+          isWaiting = false;
+          paint();
+        }
+      }
+
+      async function publish(idx) {
+        const m = messages[idx];
+        if (!m || m.role !== 'assistant') return;
+        const recipe = extractRecipeFromText(m.content);
+        if (!recipe) return;
+
+        publishingIdx = idx;
+        paint();
+        try {
+          const res = await fetch('/api/recipes', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'x-admin-token': adminToken() },
+            body: JSON.stringify({ recipe }),
+          });
+          const data = await res.json();
+          if (!res.ok) throw new Error(data.error || ('HTTP ' + res.status));
+          publishedSlugs.add(recipe.slug);
+          RECIPES[recipe.slug] = recipe;
+          if (!HOME_RECIPE_SLUGS.includes(recipe.slug)) HOME_RECIPE_SLUGS.push(recipe.slug);
+        } catch (err) {
+          alert('Publish failed: ' + err.message);
+        } finally {
+          publishingIdx = null;
+          paint();
+        }
+      }
+
+      paint();
+      document.title = "Add a recipe · Joelle's Recipes";
+      window.scrollTo(0, 0);
+    }
+
+    function renderAdminLogin() {
+      backLink.classList.remove('hidden');
+      let isSubmitting = false;
+      let errorMsg = '';
+
+      function paint() {
+        const loggedIn = isAdmin();
+        viewEl.innerHTML = loggedIn ? `
+          <div class="add-page">
+            <h2>Admin access</h2>
+            <p class="add-sub">You're logged in as admin on this device — Add and Edit features are visible across the site. Logging out only affects this device; recipes you've published stay live.</p>
+            <div class="add-form">
+              <div class="add-form-footer" style="justify-content: flex-end;">
+                <button class="add-generate" id="logoutBtn" type="button">Log out of admin</button>
+              </div>
+            </div>
+          </div>
+        ` : `
+          <div class="add-page">
+            <h2>Unlock admin</h2>
+            <p class="add-sub">Enter your admin code to enable Add / Edit features on this device. Without it the site is view-only — friends can browse but can't edit anything.</p>
+            <form id="adminForm" class="add-form" autocomplete="off">
+              <label for="adminCode">Admin code</label>
+              <input type="password" id="adminCode" autocomplete="current-password" autofocus${isSubmitting ? ' disabled' : ''} />
+              ${errorMsg ? `<div class="add-form-error">${escapeHtml(errorMsg)}</div>` : ''}
+              <div class="add-form-footer" style="justify-content: flex-end;">
+                <button class="add-generate" type="submit"${isSubmitting ? ' disabled' : ''}>${isSubmitting ? 'Checking…' : 'Unlock'}</button>
+              </div>
+            </form>
+          </div>
+        `;
+
+        if (loggedIn) {
+          document.getElementById('logoutBtn').addEventListener('click', () => {
+            clearAdmin();
+            window.location.hash = '#/';
+          });
+        } else {
+          document.getElementById('adminForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const code = document.getElementById('adminCode').value;
+            if (!code) return;
+            isSubmitting = true;
+            errorMsg = '';
+            paint();
+            try {
+              const res = await fetch('/api/auth', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ token: code }),
+              });
+              const data = await res.json();
+              if (!res.ok) throw new Error(data.error || ('HTTP ' + res.status));
+              try { localStorage.setItem(ADMIN_TOKEN_KEY, code); } catch (e) {}
+              window.location.hash = '#/';
+            } catch (err) {
+              isSubmitting = false;
+              errorMsg = err.message;
+              paint();
+            }
+          });
+        }
+      }
+
+      paint();
+      document.title = "Admin · Joelle's Recipes";
+      window.scrollTo(0, 0);
+    }
+
+    async function loadDynamicRecipes() {
+      try {
+        const res = await fetch('/api/recipes');
+        if (!res.ok) return;
+        const data = await res.json();
+        for (const r of (data.recipes || [])) {
+          if (!r || !r.slug) continue;
+          RECIPES[r.slug] = r;
+          if (!HOME_RECIPE_SLUGS.includes(r.slug)) HOME_RECIPE_SLUGS.push(r.slug);
+        }
+      } catch (e) { /* ignore */ }
     }
 
     function renderRecipe(slug) {
@@ -848,75 +1713,176 @@
       if (!r) { window.location.hash = '#/'; return; }
 
       backLink.classList.remove('hidden');
+      const options = SCALES[r.scale] || SCALES.normal;
       const state = { servings: r.defaultServings };
+      let currentTab = 'ingredients';
+      let checked = getChecked(slug);
 
       function paint() {
         const multiplier = state.servings / r.defaultServings;
         const servingWord = state.servings === 1 ? r.servingLabel : r.servingLabelPlural;
+        const perServing = computeCaloriesPerServing(r);
+        const totalCalories = Math.round(perServing * state.servings);
+        const macros = computeMacrosPerServing(r);
 
-        const ingredientsHtml = r.ingredients.map(ing =>
-          `<li>${renderIngredient(ing, multiplier)}</li>`
-        ).join('');
+        const ingredientsHtml = r.ingredients.map(ing => {
+          const isCh = checked.has(ing.id);
+          return `<li class="${isCh ? 'is-checked' : ''}">
+            <label class="ingredient-row">
+              <input type="checkbox" class="ingredient-check" ${isCh ? 'checked' : ''} data-id="${ing.id}" />
+              <span class="ingredient-text">${renderIngredient(ing, multiplier, unitMode)}</span>
+            </label>
+          </li>`;
+        }).join('');
 
         const methodHtml = r.method.map(step =>
-          `<li>${renderMethodStep(step, r.ingredients, multiplier)}</li>`
+          `<li>${renderMethodStep(step, r.ingredients, multiplier, unitMode)}</li>`
         ).join('');
 
         const alt = r.alternate;
-        const altClass = alt.kind === 'original' ? 'alternate-link is-original' : 'alternate-link';
-        const alternateLink = `
-          <a class="${altClass}" href="#/recipe/${alt.slug}">
-            ${escapeHtml(alt.label)} →
-          </a>`;
+        const activeCls = (val) => currentTab === val ? ' is-active' : '';
+        const activeUnit = (u) => unitMode === u ? ' is-active' : '';
+        const idx = options.indexOf(state.servings);
 
         viewEl.innerHTML = `
           <article>
             <header class="recipe-head">
               <div class="recipe-emoji" aria-hidden="true">${r.emoji}</div>
-              <h1 class="recipe-name">${escapeHtml(r.name)}</h1>
+              <h1 class="recipe-name">${escapeHtml(r.name)}${r.untested ? ' <span class="untested-badge">🧪 Untested</span>' : ''}</h1>
               <p class="recipe-summary">${escapeHtml(r.summary)}</p>
+              ${(alt || isAdmin()) ? `<div class="recipe-head-actions">
+                ${alt ? `<a class="alternate-button" href="#/recipe/${alt.slug}">${escapeHtml(alt.label)} →</a>` : ''}
+                ${isAdmin() ? `<a class="alternate-subtle" href="#/add/${slug}">✏️ Edit</a>` : ''}
+                ${isAdmin() ? `<button class="alternate-subtle" id="toggleTestedBtn" type="button">${r.untested ? '✓ Mark as tested' : '🧪 Mark as untested'}</button>` : ''}
+              </div>` : ''}
             </header>
 
-            <div class="scaler" role="group" aria-label="Serving size scaler">
-              <div>
-                <div class="scaler-label">Makes</div>
-                <div class="scaler-value" id="servingsText">${state.servings} ${servingWord}</div>
+            <div class="scaler" role="group" aria-label="Serving size">
+              <div class="servings-pill">
+                <button class="pill-btn" data-step="dec" type="button" aria-label="Fewer servings"${idx <= 0 ? ' disabled' : ''}>−</button>
+                <span class="pill-count" id="servingsText">${state.servings} ${servingWord}</span>
+                <button class="pill-btn" data-step="inc" type="button" aria-label="More servings"${idx >= options.length - 1 ? ' disabled' : ''}>+</button>
               </div>
-              <div class="scaler-controls">
-                <button class="scaler-btn" id="decBtn" aria-label="Fewer servings">−</button>
-                <span class="scaler-count" aria-live="polite">${state.servings}</span>
-                <button class="scaler-btn" id="incBtn" aria-label="More servings">+</button>
+              <div class="scaler-sub">🔥 ~${perServing} kcal per ${escapeHtml(r.servingLabel)}</div>
+            </div>
+
+            <div class="tabs" role="tablist">
+              <button class="tab${activeCls('ingredients')}" data-tab="ingredients" role="tab">Ingredients</button>
+              <button class="tab${activeCls('method')}" data-tab="method" role="tab">Method</button>
+              <button class="tab${activeCls('nutrition')}" data-tab="nutrition" role="tab">Nutrition</button>
+            </div>
+
+            <div class="tab-panel${activeCls('ingredients')}" data-panel="ingredients">
+              <div class="unit-toggle" role="tablist" aria-label="Measurement units">
+                <button class="unit-btn${activeUnit('us')}" data-unit="us" type="button">US</button>
+                <button class="unit-btn${activeUnit('metric')}" data-unit="metric" type="button">Metric</button>
+              </div>
+              <ul class="ingredients">${ingredientsHtml}</ul>
+            </div>
+
+            <div class="tab-panel${activeCls('method')}" data-panel="method">
+              <ol class="method">${methodHtml}</ol>
+            </div>
+
+            <div class="tab-panel${activeCls('nutrition')}" data-panel="nutrition">
+              <div class="nutrition-card">
+                <div class="nutrition-row">
+                  <div class="nutrition-row-head">
+                    <span class="nutrition-label">Per ${escapeHtml(r.servingLabel)}</span>
+                    <span class="nutrition-value">~${perServing} kcal</span>
+                  </div>
+                  <div class="nutrition-macros">
+                    <span class="nutrition-macro"><strong>${fmtMacro(macros.carbs)}g</strong> carbs</span>
+                    <span class="nutrition-macro"><strong>${fmtMacro(macros.protein)}g</strong> protein</span>
+                    <span class="nutrition-macro"><strong>${fmtMacro(macros.fat)}g</strong> fat</span>
+                  </div>
+                </div>
+                <div class="nutrition-row">
+                  <div class="nutrition-row-head">
+                    <span class="nutrition-label">Full batch · ${state.servings} ${servingWord}</span>
+                    <span class="nutrition-value">~${totalCalories} kcal</span>
+                  </div>
+                  <div class="nutrition-macros">
+                    <span class="nutrition-macro"><strong>${fmtMacro(macros.carbs * state.servings)}g</strong> carbs</span>
+                    <span class="nutrition-macro"><strong>${fmtMacro(macros.protein * state.servings)}g</strong> protein</span>
+                    <span class="nutrition-macro"><strong>${fmtMacro(macros.fat * state.servings)}g</strong> fat</span>
+                  </div>
+                </div>
               </div>
             </div>
-
-            ${alternateLink}
-
-            <div class="section-divider">
-              <span class="section-divider-emoji" aria-hidden="true">🧂</span>
-              <span class="section-divider-text">Ingredients</span>
-            </div>
-            <ul class="ingredients">${ingredientsHtml}</ul>
-
-            <div class="section-divider">
-              <span class="section-divider-emoji" aria-hidden="true">👩‍🍳</span>
-              <span class="section-divider-text">Method</span>
-            </div>
-            <ol class="method">${methodHtml}</ol>
-
-            <div class="footer-alternate">${alternateLink}</div>
           </article>
         `;
 
-        const incBtn = document.getElementById('incBtn');
-        const decBtn = document.getElementById('decBtn');
-        incBtn.disabled = state.servings >= r.maxServings;
-        decBtn.disabled = state.servings <= r.minServings;
-        incBtn.onclick = () => {
-          if (state.servings < r.maxServings) { state.servings += 1; paint(); }
-        };
-        decBtn.onclick = () => {
-          if (state.servings > r.minServings) { state.servings -= 1; paint(); }
-        };
+        document.querySelectorAll('.pill-btn').forEach(btn => {
+          btn.addEventListener('click', () => {
+            const i = options.indexOf(state.servings);
+            const next = btn.dataset.step === 'inc' ? i + 1 : i - 1;
+            if (next >= 0 && next < options.length) {
+              state.servings = options[next];
+              paint();
+            }
+          });
+        });
+
+        document.querySelectorAll('.tab').forEach(btn => {
+          btn.addEventListener('click', () => {
+            currentTab = btn.dataset.tab;
+            document.querySelectorAll('.tab').forEach(b =>
+              b.classList.toggle('is-active', b.dataset.tab === currentTab)
+            );
+            document.querySelectorAll('.tab-panel').forEach(p =>
+              p.classList.toggle('is-active', p.dataset.panel === currentTab)
+            );
+          });
+        });
+
+        document.querySelectorAll('.unit-btn').forEach(btn => {
+          btn.addEventListener('click', () => {
+            if (btn.dataset.unit !== unitMode) {
+              unitMode = btn.dataset.unit;
+              try { localStorage.setItem(UNIT_KEY, unitMode); } catch (e) {}
+              paint();
+            }
+          });
+        });
+
+        document.querySelectorAll('.ingredient-check').forEach(cb => {
+          cb.addEventListener('change', () => {
+            const id = cb.dataset.id;
+            if (cb.checked) checked.add(id); else checked.delete(id);
+            setChecked(slug, checked);
+            cb.closest('li').classList.toggle('is-checked', cb.checked);
+          });
+        });
+
+        const toggleBtn = document.getElementById('toggleTestedBtn');
+        if (toggleBtn) {
+          toggleBtn.addEventListener('click', async () => {
+            toggleBtn.disabled = true;
+            toggleBtn.textContent = 'Saving…';
+            const newUntested = !r.untested;
+            const payload = { ...r, slug };
+            if (newUntested) payload.untested = true;
+            else delete payload.untested;
+            try {
+              const res = await fetch('/api/recipes', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', 'x-admin-token': adminToken() },
+                body: JSON.stringify({ recipe: payload }),
+              });
+              const data = await res.json();
+              if (!res.ok) throw new Error(data.error || ('HTTP ' + res.status));
+              if (newUntested) r.untested = true;
+              else delete r.untested;
+              RECIPES[slug] = r;
+              paint();
+            } catch (err) {
+              alert('Failed to save: ' + err.message);
+              toggleBtn.disabled = false;
+              toggleBtn.textContent = r.untested ? '✓ Mark as tested' : '🧪 Mark as untested';
+            }
+          });
+        }
       }
 
       paint();
@@ -929,6 +1895,20 @@
     // ============================================================
     function route() {
       const hash = window.location.hash || '#/';
+
+      if (hash === '#admin' || hash === '#admin/on') {
+        renderAdminLogin();
+        return;
+      }
+      if (hash === '#admin/off') {
+        clearAdmin();
+        window.location.hash = '#/';
+        return;
+      }
+
+      const addMatch = hash.match(/^#\/add(?:\/([a-z0-9-]+))?$/);
+      if (addMatch) { renderAdd(addMatch[1]); return; }
+
       const match = hash.match(/^#\/recipe\/([a-z0-9-]+)$/);
       if (match) {
         renderRecipe(match[1]);
@@ -939,6 +1919,10 @@
 
     window.addEventListener('hashchange', route);
     route();
+
+    loadDynamicRecipes().then(() => {
+      if ((window.location.hash || '#/') === '#/') renderHome();
+    });
   </script>
 </body>
 </html>
