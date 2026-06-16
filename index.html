@@ -4,24 +4,24 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Joelle's home baking recipes — with serving scaler and healthier versions." />
-  <meta name="theme-color" content="#faf8f4" />
+  <meta name="theme-color" content="#faf7f1" />
   <title>Joelle's Recipes</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;1,9..144,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --bg: #fafafa;
+      --bg: #faf7f1;
       --bg-card: #ffffff;
-      --ink: #0a0a0a;
-      --ink-soft: #555555;
-      --ink-mute: #999999;
-      --line: #e5e5e5;
-      --line-soft: #f0f0f0;
-      --accent: #0a0a0a;
-      --accent-soft: #f2f2f2;
-      --healthier: #0a0a0a;
-      --healthier-soft: #f5f5f5;
+      --ink: #1a1613;
+      --ink-soft: #6b5f54;
+      --ink-mute: #a89a8d;
+      --line: #e8dfd1;
+      --line-soft: #f0e8da;
+      --accent: #b8502a;
+      --accent-soft: #fbece2;
+      --healthier: #3f7a52;
+      --healthier-soft: #e8f1ea;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html { -webkit-text-size-adjust: 100%; }
@@ -197,18 +197,6 @@
       margin-bottom: 1.5rem;
       line-height: 1.5;
     }
-    .add-notice {
-      background: var(--bg-card);
-      border: 1px solid var(--line);
-      border-radius: 12px;
-      padding: 1.1rem 1.2rem;
-      font-size: 0.9rem;
-      color: var(--ink-soft);
-      line-height: 1.55;
-    }
-    .add-notice strong { color: var(--ink); font-weight: 600; }
-    .add-notice ul { margin: 0.6rem 0 0 1.15rem; }
-    .add-notice li { margin-bottom: 0.3rem; }
     .add-form {
       background: var(--bg-card);
       border: 1px solid var(--line);
@@ -240,7 +228,7 @@
       transition: border-color 0.15s;
       line-height: 1.55;
     }
-    .add-form textarea:focus { border-color: var(--ink); }
+    .add-form textarea:focus { border-color: var(--accent); }
     .add-form input[type="password"],
     .add-form input[type="text"] {
       width: 100%;
@@ -255,7 +243,7 @@
       transition: border-color 0.15s;
     }
     .add-form input[type="password"]:focus,
-    .add-form input[type="text"]:focus { border-color: var(--ink); }
+    .add-form input[type="text"]:focus { border-color: var(--accent); }
     .add-form-error {
       color: #8a1a1a;
       background: #fdf0f0;
@@ -273,20 +261,6 @@
       margin-top: 0.85rem;
       flex-wrap: wrap;
     }
-    .add-upload {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      padding: 0.55rem 0.85rem;
-      border-radius: 999px;
-      background: var(--bg);
-      border: 1px solid var(--line);
-      color: var(--ink-soft);
-      font-size: 0.85rem;
-      cursor: pointer;
-      transition: color 0.15s, border-color 0.15s;
-    }
-    .add-upload:hover { color: var(--ink); border-color: var(--ink); }
     .add-generate {
       background: var(--ink);
       color: var(--bg-card);
@@ -299,9 +273,9 @@
       cursor: pointer;
       transition: background 0.15s, opacity 0.15s;
     }
-    .add-generate:hover:not(:disabled) { background: #2a2a2a; }
+    .add-generate:hover:not(:disabled) { background: #3a2e28; }
     .add-generate:disabled { opacity: 0.5; cursor: not-allowed; }
-    /* Chat UI (admin-only Add page) */
+    /* Chat UI */
     .chat-page {
       max-width: 600px;
       margin: 0 auto;
@@ -358,7 +332,7 @@
       border-bottom-right-radius: 4px;
     }
     .chat-bubble-assistant {
-      background: #f2f2f2;
+      background: var(--line-soft);
       color: var(--ink);
       border-bottom-left-radius: 4px;
     }
@@ -375,7 +349,7 @@
       align-self: flex-start;
       padding: 0.55rem 0.95rem;
       border-radius: 16px;
-      background: #f2f2f2;
+      background: var(--line-soft);
       color: var(--ink-mute);
       font-size: 0.85rem;
       font-style: italic;
@@ -395,8 +369,8 @@
       margin-top: 0.1rem;
     }
     .chat-recipe-card.is-published {
-      border-color: #2a8f4f;
-      background: #f3f9f5;
+      border-color: var(--healthier);
+      background: var(--healthier-soft);
     }
     .chat-recipe-head {
       display: flex;
@@ -432,7 +406,7 @@
       align-items: center;
     }
     .chat-recipe-status {
-      color: #2a8f4f;
+      color: var(--healthier);
       font-size: 0.85rem;
       font-weight: 600;
     }
@@ -454,7 +428,7 @@
       color: var(--bg-card);
       border-color: var(--ink);
     }
-    .chat-recipe-btn.is-primary:hover { background: #2a2a2a; }
+    .chat-recipe-btn.is-primary:hover { background: #3a2e28; }
     .chat-recipe-btn:disabled { opacity: 0.5; cursor: not-allowed; }
     .chat-input-bar {
       position: sticky;
@@ -502,7 +476,7 @@
       line-height: 1.5;
       transition: border-color 0.15s;
     }
-    .chat-input-bar textarea:focus { border-color: var(--ink); }
+    .chat-input-bar textarea:focus { border-color: var(--accent); }
     .chat-input-bar textarea:disabled { opacity: 0.6; }
     .chat-input-actions {
       display: flex;
@@ -551,7 +525,7 @@
       max-width: 40ch;
       margin: 0 auto;
     }
-    /* Scaler — pill-style ± servings control */
+    /* Scaler */
     .scaler {
       margin: 1.5rem 0 1.25rem;
       display: flex;
@@ -562,7 +536,7 @@
     .servings-pill {
       display: inline-flex;
       align-items: center;
-      background: #f2f2f2;
+      background: var(--line-soft);
       border-radius: 999px;
       padding: 4px;
       gap: 2px;
@@ -604,7 +578,7 @@
       text-align: center;
       line-height: 1.35;
     }
-    /* Recipe-head actions row (alternate-version button + admin Edit link) */
+    /* Recipe-head actions row */
     .recipe-head-actions {
       display: flex;
       align-items: center;
@@ -613,7 +587,6 @@
       flex-wrap: wrap;
       margin-top: 1rem;
     }
-    /* Alternate-version pill button — switch between paired recipe variants */
     .alternate-button {
       display: inline-flex;
       align-items: center;
@@ -630,9 +603,8 @@
     }
     .alternate-button:hover {
       background: var(--accent-soft);
-      border-color: var(--ink);
+      border-color: var(--accent);
     }
-    /* Admin-only subtle text link (Edit, toggle untested) */
     .alternate-subtle {
       display: inline-block;
       color: var(--ink-soft);
@@ -658,7 +630,7 @@
       opacity: 0.5;
       cursor: wait;
     }
-    /* Untested chip — shown next to recipe name (everywhere) when recipe.untested === true */
+    /* Untested chip */
     .untested-badge {
       display: inline-flex;
       align-items: center;
@@ -731,10 +703,10 @@
       background: var(--bg-card);
       transition: background 0.15s, border-color 0.15s;
     }
-    .ingredient-check:hover { border-color: var(--ink); }
+    .ingredient-check:hover { border-color: var(--accent); }
     .ingredient-check:checked {
-      background: var(--ink);
-      border-color: var(--ink);
+      background: var(--accent);
+      border-color: var(--accent);
     }
     .ingredient-check:checked::after {
       content: '';
@@ -789,8 +761,8 @@
       width: 1.6rem;
       height: 1.6rem;
       border-radius: 50%;
-      background: var(--ink);
-      color: var(--bg);
+      background: var(--accent);
+      color: #fff;
       font-family: 'Inter', system-ui, sans-serif;
       font-weight: 700;
       font-size: 0.8rem;
@@ -806,18 +778,11 @@
       border-radius: 4px;
       white-space: normal;
     }
-    /* Footer alternate */
-    .footer-alternate {
-      margin-top: 2.5rem;
-      padding-top: 1.5rem;
-      border-top: 1px solid var(--line);
-      text-align: center;
-    }
-    /* Tabs — segmented control pill */
+    /* Tabs */
     .tabs {
       display: flex;
       padding: 4px;
-      background: #f2f2f2;
+      background: var(--line-soft);
       border-radius: 14px;
       margin: 1.75rem 0 1.25rem;
       gap: 4px;
@@ -869,7 +834,7 @@
       white-space: nowrap;
     }
     .unit-btn:hover { color: var(--ink); }
-    .unit-btn.is-active { background: var(--ink); color: var(--bg-card); }
+    .unit-btn.is-active { background: var(--accent); color: #fff; }
     /* Nutrition */
     .nutrition-card {
       background: var(--bg-card);
@@ -912,7 +877,6 @@
     }
     /* Hidden helper */
     .hidden { display: none !important; }
-    /* Focus-visible for keyboard users */
     a:focus-visible, button:focus-visible {
       outline: 2px solid var(--accent);
       outline-offset: 2px;
@@ -937,225 +901,334 @@
 
   <script>
     // ============================================================
-    // Scales — shared across recipes
+    // Scales
     // ============================================================
     const SCALES = {
-      normal: [1, 2, 4, 6, 8, 10, 12, 16, 20],
-      bite:   [5, 10, 15, 20, 30, 40, 50, 100],
+      normal: [1, 2, 3, 4, 6, 8, 10, 12, 16, 20],
+      bite:   [10, 15, 20, 30, 40, 50, 100],
     };
 
     // ============================================================
     // Recipe data
     // ============================================================
     const RECIPES = {
-      'normal-bread': {
-        name: 'Normal Bread (Instant)',
+      'simple-white-bread': {
+        name: 'Simple White Bread',
         emoji: '🍞',
-        summary: 'Five-ingredient yeasted bread — soft, chewy, and forgiving.',
+        summary: 'A soft, everyday loaf — the first bread to learn.',
+        defaultServings: 1,
+        servingLabel: 'loaf',
+        servingLabelPlural: 'loaves',
+        scale: 'normal',
+        alternate: { slug: 'whole-wheat-bread', label: '🌾 Healthier version (whole wheat)', kind: 'healthier' },
+        ingredients: [
+          { id: 'flour',  amount: 4,   unit: 'cups', metric: 500, metricUnit: 'g',  name: 'bread flour',        calories: 1820, carbs: 365, protein: 65, fat: 7 },
+          { id: 'water',  amount: 1.5, unit: 'cups', metric: 355, metricUnit: 'ml', name: 'warm water',         calories: 0,    carbs: 0,   protein: 0,  fat: 0 },
+          { id: 'yeast',  amount: 2,   unit: 'tsp',  metric: 6,   metricUnit: 'g',  name: 'instant yeast',      calories: 20,   carbs: 2,   protein: 2,  fat: 0 },
+          { id: 'salt',   amount: 2,   unit: 'tsp',  metric: 10,  metricUnit: 'g',  name: 'fine salt',          calories: 0,    carbs: 0,   protein: 0,  fat: 0 },
+          { id: 'sugar',  amount: 2,   unit: 'tbsp', metric: 25,  metricUnit: 'g',  name: 'granulated sugar',   calories: 97,   carbs: 25,  protein: 0,  fat: 0 },
+          { id: 'oil',    amount: 2,   unit: 'tbsp', metric: 28,  metricUnit: 'ml', name: 'olive oil',          calories: 248,  carbs: 0,   protein: 0,  fat: 28 },
+        ],
+        method: [
+          'In a large bowl, combine {yeast}, {sugar}, and {water}. Let stand 5 minutes, until foamy.',
+          'Add {flour}, {salt}, and {oil}. Stir until a shaggy dough forms.',
+          'Knead on a floured surface for 8–10 minutes, until smooth and elastic.',
+          'Place in a greased bowl, cover, and let rise 1 hour, until doubled in size.',
+          'Punch down, shape into a loaf, and place in a greased 9×5" loaf pan.',
+          'Cover and let rise 30–45 minutes, until the dough crowns about 1" above the pan.',
+          'Bake at 375°F (190°C) for 30–35 minutes, until golden and hollow-sounding. Cool on a rack before slicing.',
+        ],
+      },
+
+      'whole-wheat-bread': {
+        name: 'Whole Wheat Bread',
+        emoji: '🌾',
+        summary: 'The healthier swap for white bread — nuttier, fibre-rich, still soft.',
+        defaultServings: 1,
+        servingLabel: 'loaf',
+        servingLabelPlural: 'loaves',
+        scale: 'normal',
+        alternate: { slug: 'simple-white-bread', label: '🍞 Original version (white)', kind: 'original' },
+        ingredients: [
+          { id: 'wwflour', amount: 3,   unit: 'cups', metric: 360, metricUnit: 'g',  name: 'whole wheat flour', calories: 1224, carbs: 256, protein: 50, fat: 9 },
+          { id: 'bflour',  amount: 1,   unit: 'cup',  metric: 130, metricUnit: 'g',  name: 'bread flour',       calories: 473,  carbs: 95,  protein: 17, fat: 2 },
+          { id: 'water',   amount: 1.5, unit: 'cups', metric: 355, metricUnit: 'ml', name: 'warm water',        calories: 0,    carbs: 0,   protein: 0,  fat: 0 },
+          { id: 'yeast',   amount: 2,   unit: 'tsp',  metric: 6,   metricUnit: 'g',  name: 'instant yeast',     calories: 20,   carbs: 2,   protein: 2,  fat: 0 },
+          { id: 'salt',    amount: 2,   unit: 'tsp',  metric: 10,  metricUnit: 'g',  name: 'fine salt',         calories: 0,    carbs: 0,   protein: 0,  fat: 0 },
+          { id: 'honey',   amount: 2,   unit: 'tbsp', metric: 42,  metricUnit: 'g',  name: 'honey',             calories: 128,  carbs: 34,  protein: 0,  fat: 0 },
+          { id: 'oil',     amount: 2,   unit: 'tbsp', metric: 28,  metricUnit: 'ml', name: 'olive oil',         calories: 248,  carbs: 0,   protein: 0,  fat: 28 },
+        ],
+        method: [
+          'Combine {yeast}, {honey}, and {water}. Let stand 5 minutes, until foamy.',
+          'Add {wwflour}, {bflour}, {salt}, and {oil}. Stir into a shaggy dough.',
+          'Knead for 10–12 minutes — whole wheat needs more work. The dough should be tacky but elastic.',
+          'Place in a greased bowl, cover, and let rise 1–1.5 hours, until doubled.',
+          'Punch down, shape into a loaf, and place in a greased 9×5" loaf pan.',
+          'Cover and let rise 30–45 minutes, until crowning just above the pan.',
+          'Bake at 375°F (190°C) for 32–38 minutes. Cool fully before slicing for best texture.',
+        ],
+      },
+
+      'chocolate-chip-bread': {
+        name: 'Chocolate Chip Bread',
+        emoji: '🍫',
+        summary: 'Sweet quick bread — between a cake and a loaf. No yeast, no waiting.',
+        defaultServings: 1,
+        servingLabel: 'loaf',
+        servingLabelPlural: 'loaves',
+        scale: 'normal',
+        alternate: { slug: 'healthier-chocolate-chip-bread', label: '🍌 Healthier version (banana, whole wheat)', kind: 'healthier' },
+        ingredients: [
+          { id: 'flour',   amount: 2,     unit: 'cups', metric: 250, metricUnit: 'g',  name: 'all-purpose flour', calories: 910, carbs: 190, protein: 25, fat: 2 },
+          { id: 'sugar',   amount: 0.75,  unit: 'cup',  metric: 150, metricUnit: 'g',  name: 'granulated sugar',  calories: 581, carbs: 150, protein: 0,  fat: 0 },
+          { id: 'bp',      amount: 2,     unit: 'tsp',  metric: 8,   metricUnit: 'g',  name: 'baking powder',     calories: 0,   carbs: 0,   protein: 0,  fat: 0 },
+          { id: 'salt',    amount: 0.5,   unit: 'tsp',  metric: 3,   metricUnit: 'g',  name: 'fine salt',         calories: 0,   carbs: 0,   protein: 0,  fat: 0 },
+          { id: 'milk',    amount: 1,     unit: 'cup',  metric: 240, metricUnit: 'ml', name: 'whole milk',        calories: 154, carbs: 12,  protein: 8,  fat: 8 },
+          { id: 'oil',     amount: 0.333, unit: 'cup',  metric: 68,  metricUnit: 'ml', name: 'vegetable oil',     calories: 601, carbs: 0,   protein: 0,  fat: 68 },
+          { id: 'vanilla', amount: 1,     unit: 'tsp',  metric: 5,   metricUnit: 'ml', name: 'vanilla extract',   calories: 14,  carbs: 1,   protein: 0,  fat: 0 },
+          { id: 'chips',   amount: 1,     unit: 'cup',  metric: 175, metricUnit: 'g',  name: 'chocolate chips',   calories: 901, carbs: 107, protein: 9,  fat: 54 },
+          { id: 'egg',     amount: 1,     unit: 'large',metric: 50,  metricUnit: 'g',  name: 'egg', plural: 'eggs', calories: 72, carbs: 0,  protein: 6,  fat: 5 },
+        ],
+        method: [
+          'Preheat oven to 350°F (175°C). Grease a 9×5" loaf pan.',
+          'Whisk {flour}, {sugar}, {bp}, and {salt} together in a large bowl.',
+          'In another bowl, whisk {egg}, {milk}, {oil}, and {vanilla} until smooth.',
+          'Pour wet into dry and stir just until combined — a few lumps are fine. Do not overmix.',
+          'Fold in {chips}, reserving a small handful to scatter on top.',
+          'Pour the batter into the pan and scatter reserved chips over the surface.',
+          'Bake 50–60 minutes, until a toothpick inserted in the centre comes out clean. Cool 15 minutes in the pan, then turn out onto a rack.',
+        ],
+      },
+
+      'healthier-chocolate-chip-bread': {
+        name: 'Healthier Chocolate Chip Bread',
+        emoji: '🍌',
+        summary: 'Banana and whole wheat carry the sweetness — less sugar, more fibre, still chocolate.',
+        defaultServings: 1,
+        servingLabel: 'loaf',
+        servingLabelPlural: 'loaves',
+        scale: 'normal',
+        alternate: { slug: 'chocolate-chip-bread', label: '🍫 Original version', kind: 'original' },
+        ingredients: [
+          { id: 'flour',   amount: 2,     unit: 'cups', metric: 240, metricUnit: 'g',  name: 'whole wheat flour',            calories: 816, carbs: 170, protein: 34, fat: 6 },
+          { id: 'sugar',   amount: 0.333, unit: 'cup',  metric: 65,  metricUnit: 'g',  name: 'coconut sugar',                calories: 252, carbs: 62,  protein: 0,  fat: 0 },
+          { id: 'bp',      amount: 2,     unit: 'tsp',  metric: 8,   metricUnit: 'g',  name: 'baking powder',                calories: 0,   carbs: 0,   protein: 0,  fat: 0 },
+          { id: 'salt',    amount: 0.5,   unit: 'tsp',  metric: 3,   metricUnit: 'g',  name: 'fine salt',                    calories: 0,   carbs: 0,   protein: 0,  fat: 0 },
+          { id: 'banana',  amount: 1,     unit: 'cup',  metric: 240, metricUnit: 'g',  name: 'mashed ripe banana',           calories: 214, carbs: 55,  protein: 3,  fat: 1 },
+          { id: 'milk',    amount: 0.5,   unit: 'cup',  metric: 120, metricUnit: 'ml', name: 'milk (any kind)',              calories: 77,  carbs: 6,   protein: 4,  fat: 4 },
+          { id: 'oil',     amount: 0.25,  unit: 'cup',  metric: 54,  metricUnit: 'ml', name: 'olive oil',                    calories: 477, carbs: 0,   protein: 0,  fat: 54 },
+          { id: 'vanilla', amount: 1,     unit: 'tsp',  metric: 5,   metricUnit: 'ml', name: 'vanilla extract',              calories: 14,  carbs: 1,   protein: 0,  fat: 0 },
+          { id: 'chips',   amount: 0.667, unit: 'cup',  metric: 115, metricUnit: 'g',  name: 'dark chocolate chips (70%)',   calories: 667, carbs: 38,  protein: 9,  fat: 49 },
+          { id: 'egg',     amount: 1,     unit: 'large',metric: 50,  metricUnit: 'g',  name: 'egg', plural: 'eggs',          calories: 72,  carbs: 0,   protein: 6,  fat: 5 },
+        ],
+        method: [
+          'Preheat oven to 350°F (175°C). Grease a 9×5" loaf pan.',
+          'Whisk {flour}, {sugar}, {bp}, and {salt} together in a large bowl.',
+          'In another bowl, whisk {banana}, {egg}, {milk}, {oil}, and {vanilla} until smooth.',
+          'Pour wet into dry and stir just until combined. Do not overmix.',
+          'Fold in {chips}, reserving a small handful for the top.',
+          'Pour into the pan and scatter reserved chips over the surface.',
+          'Bake 55–65 minutes (whole wheat needs a touch longer), until a toothpick comes out clean. Cool 15 minutes in the pan, then turn out.',
+        ],
+      },
+
+      'flatbread': {
+        name: 'Flatbread',
+        emoji: '🫓',
+        summary: 'Soft, pliable rounds — cooked on the stovetop in a dry skillet.',
         defaultServings: 8,
-        servingLabel: 'piece',
-        servingLabelPlural: 'pieces',
+        servingLabel: 'flatbread',
+        servingLabelPlural: 'flatbreads',
         scale: 'normal',
+        alternate: { slug: 'whole-wheat-flatbread', label: '🌾 Healthier version (whole wheat)', kind: 'healthier' },
         ingredients: [
-          { id: 'yeast', amount: 2, unit: 'tsp',  metric: 6,   metricUnit: 'g',  name: 'instant yeast',         calories: 20,   carbs: 2,   protein: 2,  fat: 0 },
-          { id: 'psug',  amount: 1, unit: 'tsp',  metric: 4,   metricUnit: 'g',  name: 'sugar',                 calories: 15,   carbs: 4,   protein: 0,  fat: 0 },
-          { id: 'water', amount: 2, unit: 'cups', metric: 475, metricUnit: 'ml', name: 'warm water (38–40°C)',  calories: 0,    carbs: 0,   protein: 0,  fat: 0 },
-          { id: 'flour', amount: 5, unit: 'cups', metric: 625, metricUnit: 'g',  name: 'all-purpose flour',     calories: 2275, carbs: 475, protein: 64, fat: 6 },
-          { id: 'salt',  amount: 1, unit: 'tbsp', metric: 18,  metricUnit: 'g',  name: 'salt',                  calories: 0,    carbs: 0,   protein: 0,  fat: 0 },
+          { id: 'flour',  amount: 3,     unit: 'cups', metric: 375, metricUnit: 'g',  name: 'all-purpose flour', calories: 1365, carbs: 285, protein: 38, fat: 4 },
+          { id: 'yogurt', amount: 1,     unit: 'cup',  metric: 245, metricUnit: 'g',  name: 'plain yogurt',      calories: 149,  carbs: 12,  protein: 9,  fat: 8 },
+          { id: 'water',  amount: 0.333, unit: 'cup',  metric: 80,  metricUnit: 'ml', name: 'warm water',        calories: 0,    carbs: 0,   protein: 0,  fat: 0 },
+          { id: 'oil',    amount: 2,     unit: 'tbsp', metric: 28,  metricUnit: 'ml', name: 'olive oil',         calories: 248,  carbs: 0,   protein: 0,  fat: 28 },
+          { id: 'bp',     amount: 1,     unit: 'tsp',  metric: 4,   metricUnit: 'g',  name: 'baking powder',     calories: 0,    carbs: 0,   protein: 0,  fat: 0 },
+          { id: 'salt',   amount: 1,     unit: 'tsp',  metric: 5,   metricUnit: 'g',  name: 'fine salt',         calories: 0,    carbs: 0,   protein: 0,  fat: 0 },
+          { id: 'sugar',  amount: 1,     unit: 'tsp',  metric: 4,   metricUnit: 'g',  name: 'granulated sugar',  calories: 15,   carbs: 4,   protein: 0,  fat: 0 },
         ],
         method: [
-          'Mix {yeast}, {psug}, and {water} together. Leave 5 minutes until foamy.',
-          'In a large bowl combine {flour} and {salt}.',
-          'Add the yeast mixture to the flour and mix into a dough. Knead 8–10 minutes until smooth.',
-          'Cover and rest until doubled — about 1 hour.',
-          'Punch down, cut into pieces, and shape.',
-          'Rest shaped pieces 15–20 minutes, then bake at 350°F (175°C) for 30 minutes until golden.',
+          'In a large bowl, whisk {flour}, {bp}, {salt}, and {sugar}.',
+          'Add {yogurt}, {water}, and {oil}. Mix until a soft dough forms.',
+          'Knead on a floured surface for 5 minutes, until smooth. Cover and rest 20 minutes.',
+          'Divide dough into equal balls — one per flatbread.',
+          'Roll each ball into a ~6" round, about ⅛" thick.',
+          'Heat a dry cast-iron or heavy skillet over medium-high.',
+          'Cook each flatbread 1–2 minutes per side, until bubbled and charred in spots.',
+          'Stack under a clean towel to keep them warm and pliable.',
         ],
       },
 
-      'fudgy-brownies': {
-        name: 'Fudgy Dark Chocolate Brownies',
-        emoji: '🍫',
-        summary: 'Half-batch fudgy brownies with 70% dark chocolate — soft centre, cuts into 15 pieces.',
+      'whole-wheat-flatbread': {
+        name: 'Whole Wheat Flatbread',
+        emoji: '🌾',
+        summary: 'The healthier swap — whole wheat flour, Greek yogurt for protein.',
+        defaultServings: 8,
+        servingLabel: 'flatbread',
+        servingLabelPlural: 'flatbreads',
+        scale: 'normal',
+        alternate: { slug: 'flatbread', label: '🫓 Original version', kind: 'original' },
+        ingredients: [
+          { id: 'wwflour', amount: 2,   unit: 'cups', metric: 240, metricUnit: 'g',  name: 'whole wheat flour',   calories: 816, carbs: 170, protein: 34, fat: 6 },
+          { id: 'apflour', amount: 1,   unit: 'cup',  metric: 125, metricUnit: 'g',  name: 'all-purpose flour',   calories: 455, carbs: 95,  protein: 13, fat: 1 },
+          { id: 'yogurt',  amount: 1,   unit: 'cup',  metric: 245, metricUnit: 'g',  name: 'plain Greek yogurt',  calories: 145, carbs: 9,   protein: 25, fat: 1 },
+          { id: 'water',   amount: 0.5, unit: 'cup',  metric: 120, metricUnit: 'ml', name: 'warm water',          calories: 0,   carbs: 0,   protein: 0,  fat: 0 },
+          { id: 'oil',     amount: 1,   unit: 'tbsp', metric: 14,  metricUnit: 'ml', name: 'olive oil',           calories: 124, carbs: 0,   protein: 0,  fat: 14 },
+          { id: 'bp',      amount: 1,   unit: 'tsp',  metric: 4,   metricUnit: 'g',  name: 'baking powder',       calories: 0,   carbs: 0,   protein: 0,  fat: 0 },
+          { id: 'salt',    amount: 1,   unit: 'tsp',  metric: 5,   metricUnit: 'g',  name: 'fine salt',           calories: 0,   carbs: 0,   protein: 0,  fat: 0 },
+        ],
+        method: [
+          'In a large bowl, whisk {wwflour}, {apflour}, {bp}, and {salt}.',
+          'Add {yogurt}, {water}, and {oil}. Mix to a soft dough — whole wheat drinks more water, add a splash if needed.',
+          'Knead on a floured surface for 5–7 minutes, until smooth. Cover and rest 30 minutes.',
+          'Divide dough into equal balls — one per flatbread.',
+          'Roll each ball into a ~6" round, about ⅛" thick.',
+          'Heat a dry cast-iron or heavy skillet over medium-high.',
+          'Cook each flatbread 1–2 minutes per side, until bubbled and charred in spots.',
+          'Stack under a clean towel to keep them warm and pliable.',
+        ],
+      },
+
+      'third-flatbread': {
+        name: '⅓ Flatbread',
+        emoji: '🫓',
+        summary: 'The exact third-batch — for when you only need a few.',
+        defaultServings: 3,
+        servingLabel: 'flatbread',
+        servingLabelPlural: 'flatbreads',
+        scale: 'normal',
+        alternate: { slug: 'whole-wheat-third-flatbread', label: '🌾 Healthier version (whole wheat)', kind: 'healthier' },
+        ingredients: [
+          { id: 'flour',  amount: 1,     unit: 'cup',  metric: 125, metricUnit: 'g',  name: 'all-purpose flour', calories: 455, carbs: 95, protein: 13, fat: 1 },
+          { id: 'yogurt', amount: 0.333, unit: 'cup',  metric: 82,  metricUnit: 'g',  name: 'plain yogurt',      calories: 50,  carbs: 4,  protein: 3,  fat: 3 },
+          { id: 'water',  amount: 2,     unit: 'tbsp', metric: 27,  metricUnit: 'ml', name: 'warm water',        calories: 0,   carbs: 0,  protein: 0,  fat: 0 },
+          { id: 'oil',    amount: 2,     unit: 'tsp',  metric: 9,   metricUnit: 'ml', name: 'olive oil',         calories: 80,  carbs: 0,  protein: 0,  fat: 9 },
+          { id: 'bp',     amount: 0.333, unit: 'tsp',  metric: 1.5, metricUnit: 'g',  name: 'baking powder',     calories: 0,   carbs: 0,  protein: 0,  fat: 0 },
+          { id: 'salt',   amount: 0.333, unit: 'tsp',  metric: 2,   metricUnit: 'g',  name: 'fine salt',         calories: 0,   carbs: 0,  protein: 0,  fat: 0 },
+          { id: 'sugar',  amount: 0.333, unit: 'tsp',  metric: 1.5, metricUnit: 'g',  name: 'granulated sugar',  calories: 6,   carbs: 1,  protein: 0,  fat: 0 },
+        ],
+        method: [
+          'In a bowl, whisk {flour}, {bp}, {salt}, and {sugar}.',
+          'Add {yogurt}, {water}, and {oil}. Mix until a soft dough forms.',
+          'Knead for 3–4 minutes, until smooth. Cover and rest 20 minutes.',
+          'Divide into equal balls — one per flatbread.',
+          'Roll each into a ~6" round, about ⅛" thick.',
+          'Heat a dry skillet over medium-high.',
+          'Cook 1–2 minutes per side, until bubbled and charred in spots.',
+          'Stack under a clean towel.',
+        ],
+      },
+
+      'whole-wheat-third-flatbread': {
+        name: '⅓ Whole Wheat Flatbread',
+        emoji: '🌾',
+        summary: 'Third-batch, whole grain. Small and wholesome.',
+        defaultServings: 3,
+        servingLabel: 'flatbread',
+        servingLabelPlural: 'flatbreads',
+        scale: 'normal',
+        alternate: { slug: 'third-flatbread', label: '🫓 Original version', kind: 'original' },
+        ingredients: [
+          { id: 'wwflour', amount: 0.667, unit: 'cup',  metric: 80,  metricUnit: 'g',  name: 'whole wheat flour',  calories: 272, carbs: 57, protein: 11, fat: 2 },
+          { id: 'apflour', amount: 0.333, unit: 'cup',  metric: 42,  metricUnit: 'g',  name: 'all-purpose flour',  calories: 153, carbs: 32, protein: 4,  fat: 0 },
+          { id: 'yogurt',  amount: 0.333, unit: 'cup',  metric: 82,  metricUnit: 'g',  name: 'plain Greek yogurt', calories: 48,  carbs: 3,  protein: 8,  fat: 0 },
+          { id: 'water',   amount: 2.5,   unit: 'tbsp', metric: 40,  metricUnit: 'ml', name: 'warm water',         calories: 0,   carbs: 0,  protein: 0,  fat: 0 },
+          { id: 'oil',     amount: 1,     unit: 'tsp',  metric: 5,   metricUnit: 'ml', name: 'olive oil',          calories: 44,  carbs: 0,  protein: 0,  fat: 5 },
+          { id: 'bp',      amount: 0.333, unit: 'tsp',  metric: 1.5, metricUnit: 'g',  name: 'baking powder',      calories: 0,   carbs: 0,  protein: 0,  fat: 0 },
+          { id: 'salt',    amount: 0.333, unit: 'tsp',  metric: 2,   metricUnit: 'g',  name: 'fine salt',          calories: 0,   carbs: 0,  protein: 0,  fat: 0 },
+        ],
+        method: [
+          'In a bowl, whisk {wwflour}, {apflour}, {bp}, and {salt}.',
+          'Add {yogurt}, {water}, and {oil}. Mix to a soft dough.',
+          'Knead for 4–5 minutes, until smooth. Cover and rest 30 minutes.',
+          'Divide into equal balls — one per flatbread.',
+          'Roll each into a ~6" round, about ⅛" thick.',
+          'Heat a dry skillet over medium-high.',
+          'Cook 1–2 minutes per side, until bubbled and charred in spots.',
+          'Stack under a clean towel.',
+        ],
+      },
+
+      'croissants': {
+        name: 'Croissants',
+        emoji: '🥐',
+        summary: 'Laminated yeasted dough — flaky, buttery, and worth every fold.',
+        defaultServings: 6,
+        servingLabel: 'croissant',
+        servingLabelPlural: 'croissants',
+        scale: 'normal',
+        ingredients: [
+          { id: 'flour',   amount: 1.75, unit: 'cups', metric: 330, metricUnit: 'g',  name: 'all-purpose flour',          calories: 0, carbs: 0, protein: 0, fat: 0 },
+          { id: 'yeast',   amount: 1,    unit: 'tsp',  metric: 3,   metricUnit: 'g',  name: 'instant yeast',              calories: 0, carbs: 0, protein: 0, fat: 0 },
+          { id: 'sugar',   amount: 2,    unit: 'tbsp', metric: 30,  metricUnit: 'g',  name: 'sugar',                      calories: 0, carbs: 0, protein: 0, fat: 0 },
+          { id: 'salt',    amount: 1,    unit: 'tsp',  metric: 6,   metricUnit: 'g',  name: 'salt',                       calories: 0, carbs: 0, protein: 0, fat: 0 },
+          { id: 'butter1', amount: 1.5,  unit: 'tbsp', metric: 20,  metricUnit: 'g',  name: 'butter, softened',           calories: 0, carbs: 0, protein: 0, fat: 0 },
+          { id: 'water',   amount: 0.75, unit: 'cup',  metric: 170, metricUnit: 'ml', name: 'lukewarm water',             calories: 0, carbs: 0, protein: 0, fat: 0 },
+          { id: 'butter2', amount: 5,    unit: 'tbsp', metric: 75,  metricUnit: 'g',  name: 'cold butter, for laminating',calories: 0, carbs: 0, protein: 0, fat: 0 },
+          { id: 'egg',     amount: 1,    unit: '',     metric: null, metricUnit: '',   name: 'egg + 1 tbsp milk, for egg wash', calories: 0, carbs: 0, protein: 0, fat: 0 },
+        ],
+        method: [
+          'Mix {water}, {yeast} and {sugar} together. Add {flour}, {salt} and {butter1}. Mix until the dough comes together and knead until smooth — stretch test: if it doesn\'t tear, it\'s ready. Cover and rest 15 minutes at room temp.',
+          'Place {butter2} in a zip bag and roll into a flat square — pliable but still cold.',
+          'On a floured surface roll out the dough, place butter in the centre and seal it in. Do 1 double fold + 1 single fold. If the kitchen is warm, chill briefly between folds. Cover and refrigerate 30 minutes.',
+          'Roll dough out again and cut into 3 strips, then cut each strip into 2 triangles — 6 pieces total. Roll each triangle into a croissant shape, not too tight. Place on a parchment-lined tray.',
+          'Cover and proof until puffy and jiggly — about 1 hour.',
+          'Brush generously with egg wash ({egg}).',
+          'Bake at 200°C for 3 minutes, then reduce to 180°C for 20 minutes until deep golden. Do not open the oven while baking.',
+        ],
+        nutrition: { caloriesPerServing: 334, macros: { carbs: 46.8, protein: 5.8, fat: 13.4 } },
+      },
+
+      'banana-choc-chip-bread': {
+        name: 'Banana Chocolate Chip Bread',
+        emoji: '🍌',
+        summary: 'Honey-sweetened banana bread loaded with milk chocolate chips.',
         defaultServings: 15,
-        servingLabel: 'piece',
-        servingLabelPlural: 'pieces',
-        scale: 'bite',
-        ingredients: [
-          { id: 'butter',   amount: 1.75, unit: 'tbsp',  metric: 25,  metricUnit: 'g',  name: 'butter',                    calories: 180, carbs: 0,  protein: 0, fat: 20 },
-          { id: 'choc',     amount: 3.5,  unit: 'oz',    metric: 100, metricUnit: 'g',  name: 'Lindt 70% dark chocolate',  calories: 580, carbs: 33, protein: 8, fat: 43 },
-          { id: 'honey',    amount: 3,    unit: 'tbsp',  metric: 63,  metricUnit: 'g',  name: 'honey',                     calories: 192, carbs: 51, protein: 0, fat: 0  },
-          { id: 'vanilla',  amount: 1,    unit: 'tsp',   metric: 5,   metricUnit: 'ml', name: 'vanilla extract',           calories: 12,  carbs: 1,  protein: 0, fat: 0  },
-          { id: 'milk',     amount: 3,    unit: 'tbsp',  metric: 45,  metricUnit: 'ml', name: 'full fat milk',             calories: 29,  carbs: 2,  protein: 1, fat: 2  },
-          { id: 'milk2',    amount: 1,    unit: 'tbsp',  metric: 15,  metricUnit: 'ml', name: 'extra milk',                calories: 10,  carbs: 1,  protein: 0, fat: 1  },
-          { id: 'egg',      amount: 1,    unit: 'large', metric: 50,  metricUnit: 'g',  name: 'egg', plural: 'eggs',       calories: 72,  carbs: 1,  protein: 6, fat: 5  },
-          { id: 'oatflour', amount: 0.25, unit: 'cup',   metric: 30,  metricUnit: 'g',  name: 'oat flour',                 calories: 117, carbs: 21, protein: 4, fat: 2  },
-          { id: 'cocoa',    amount: 2,    unit: 'tbsp',  metric: 12,  metricUnit: 'g',  name: 'Cadbury cocoa powder',      calories: 27,  carbs: 7,  protein: 2, fat: 2  },
-          { id: 'salt',     amount: 1,    unit: 'pinch', metric: 0.5, metricUnit: 'g',  name: 'salt',                      calories: 0,   carbs: 0,  protein: 0, fat: 0  },
-          { id: 'cinn',     amount: 1,    unit: 'pinch', metric: 0.5, metricUnit: 'g',  name: 'cinnamon',                  calories: 1,   carbs: 0,  protein: 0, fat: 0  },
-        ],
-        method: [
-          'Melt {butter} and {choc} together until smooth.',
-          'Stir in {honey} while still warm.',
-          'Stir in {vanilla}.',
-          'Stir in {milk} then {milk2}.',
-          'Add {egg} and mix well.',
-          'Fold in {oatflour}, {cocoa}, {salt}, and {cinn}.',
-          'Pour into a lined tin and bake at 340°F (170°C) for 14–15 minutes — centre should still wobble.',
-          'Transfer to fridge and rest for 1 hour before cutting into 15 pieces.',
-        ],
-      },
-
-      'chocolate-chip-bites': {
-        name: 'Chocolate Chip Bites',
-        emoji: '🍫',
-        summary: 'Yeasted cocoa-chocolate bread bites — chewy, just sweet enough.',
-        defaultServings: 40,
-        servingLabel: 'bite',
-        servingLabelPlural: 'bites',
-        scale: 'bite',
-        ingredients: [
-          { id: 'yeast', amount: 2,     unit: 'tsp',  metric: 6,   metricUnit: 'g',  name: 'instant yeast',         calories: 20,   carbs: 2,   protein: 2,  fat: 0  },
-          { id: 'psug',  amount: 1,     unit: 'tsp',  metric: 4,   metricUnit: 'g',  name: 'sugar',                 calories: 15,   carbs: 4,   protein: 0,  fat: 0  },
-          { id: 'water', amount: 2,     unit: 'cups', metric: 475, metricUnit: 'ml', name: 'warm water (38–40°C)',  calories: 0,    carbs: 0,   protein: 0,  fat: 0  },
-          { id: 'flour', amount: 4.5,   unit: 'cups', metric: 575, metricUnit: 'g',  name: 'all-purpose flour',     calories: 2093, carbs: 437, protein: 59, fat: 6  },
-          { id: 'cocoa', amount: 0.5,   unit: 'cup',  metric: 50,  metricUnit: 'g',  name: 'cocoa powder',          calories: 114,  carbs: 28,  protein: 10, fat: 7  },
-          { id: 'sugar', amount: 0.333, unit: 'cup',  metric: 80,  metricUnit: 'g',  name: 'sugar',                 calories: 310,  carbs: 80,  protein: 0,  fat: 0  },
-          { id: 'salt',  amount: 1,     unit: 'tbsp', metric: 18,  metricUnit: 'g',  name: 'salt',                  calories: 0,    carbs: 0,   protein: 0,  fat: 0  },
-          { id: 'chips', amount: 1,     unit: 'cup',  metric: 170, metricUnit: 'g',  name: 'chocolate chips',       calories: 876,  carbs: 104, protein: 9,  fat: 53 },
-        ],
-        method: [
-          'Mix {yeast}, {psug}, and {water} together. Leave 5 minutes until foamy.',
-          'In a large bowl combine {flour}, {cocoa}, {sugar}, {salt}, and {chips}.',
-          'Add the yeast mixture to the flour mixture and mix into a dough. Knead 8–10 minutes until smooth.',
-          'Cover and rest until doubled — about 1 hour.',
-          'Punch down, cut into pieces, and shape.',
-          'Rest shaped pieces 15–20 minutes, then bake at 350°F (175°C) for 30 minutes until golden.',
-        ],
-      },
-
-      'potato-buns': {
-        name: 'Potato Protein Buns',
-        emoji: '🥔',
-        summary: 'Soft potato-and-yogurt buns — six ingredients, no yeast, oven in 25 min.',
-        defaultServings: 6,
-        servingLabel: 'bun',
-        servingLabelPlural: 'buns',
-        scale: 'normal',
-        untested: true,
-        alternate: { slug: 'high-protein-potato-buns', label: '💪 High protein version', kind: 'highprotein' },
-        nutrition: { caloriesPerServing: 65, macros: { carbs: 10, protein: 3.5, fat: 1.2 } },
-        ingredients: [
-          { id: 'potato',   amount: 1, unit: 'cup',   metric: 240, metricUnit: 'g', name: 'boiled mashed potatoes', calories: 209, carbs: 48, protein: 5, fat: 0 },
-          { id: 'egg',      amount: 1, unit: 'large', metric: 50,  metricUnit: 'g', name: 'egg', plural: 'eggs',     calories: 72,  carbs: 0,  protein: 6, fat: 5 },
-          { id: 'yogurt',   amount: 2, unit: 'tbsp',  metric: 30,  metricUnit: 'g', name: 'Greek yogurt',           calories: 18,  carbs: 1,  protein: 3, fat: 0 },
-          { id: 'oatflour', amount: 2, unit: 'tbsp',  metric: 16,  metricUnit: 'g', name: 'oat flour',              calories: 62,  carbs: 11, protein: 2, fat: 1 },
-          { id: 'bp',       amount: 1, unit: 'pinch', metric: 0.5, metricUnit: 'g', name: 'baking powder',          calories: 0,   carbs: 0,  protein: 0, fat: 0 },
-          { id: 'salt',     amount: 1, unit: 'pinch', metric: 0.5, metricUnit: 'g', name: 'salt',                   calories: 0,   carbs: 0,  protein: 0, fat: 0 },
-        ],
-        method: [
-          'Boil and mash {potato}; let cool slightly.',
-          'Add {egg}, {yogurt}, {oatflour}, {bp}, and {salt}.',
-          'Mix until a dough forms and shape into 6 small buns.',
-          'Place on a lined tray and bake at 350°F (180°C) for 25 minutes until golden.',
-        ],
-      },
-
-      'high-protein-potato-buns': {
-        name: 'High Protein Potato Buns',
-        emoji: '💪',
-        summary: 'The high-protein twist — cottage cheese + a whey scoop pushes protein past 10 g per bun.',
-        defaultServings: 6,
-        servingLabel: 'bun',
-        servingLabelPlural: 'buns',
-        scale: 'normal',
-        untested: true,
-        alternate: { slug: 'potato-buns', label: '🥔 Original potato buns', kind: 'original' },
-        nutrition: { caloriesPerServing: 95, macros: { carbs: 8, protein: 10.5, fat: 2 } },
-        ingredients: [
-          { id: 'potato',   amount: 1,   unit: 'cup',   metric: 240, metricUnit: 'g', name: 'boiled mashed potatoes',    calories: 209, carbs: 48, protein: 5,  fat: 0 },
-          { id: 'egg',      amount: 1,   unit: 'large', metric: 50,  metricUnit: 'g', name: 'egg', plural: 'eggs',        calories: 72,  carbs: 0,  protein: 6,  fat: 5 },
-          { id: 'cottage',  amount: 0.5, unit: 'cup',   metric: 120, metricUnit: 'g', name: 'cottage cheese',            calories: 117, carbs: 4,  protein: 14, fat: 5 },
-          { id: 'whey',     amount: 1,   unit: 'scoop', metric: 30,  metricUnit: 'g', name: 'unflavoured whey protein',  calories: 120, carbs: 2,  protein: 25, fat: 1 },
-          { id: 'oatflour', amount: 2,   unit: 'tbsp',  metric: 16,  metricUnit: 'g', name: 'oat flour',                 calories: 62,  carbs: 11, protein: 2,  fat: 1 },
-          { id: 'bp',       amount: 1,   unit: 'pinch', metric: 0.5, metricUnit: 'g', name: 'baking powder',             calories: 0,   carbs: 0,  protein: 0,  fat: 0 },
-          { id: 'salt',     amount: 1,   unit: 'pinch', metric: 0.5, metricUnit: 'g', name: 'salt',                      calories: 0,   carbs: 0,  protein: 0,  fat: 0 },
-        ],
-        method: [
-          'Boil and mash {potato}; let cool slightly.',
-          'Add {egg}, {cottage}, {whey}, {oatflour}, {bp}, and {salt}.',
-          'Mix until combined — dough will be sticky; wet hands help.',
-          'Shape into 6 buns and place on a lined tray.',
-          'Bake at 350°F (180°C) for 25 minutes until golden.',
-        ],
-      },
-
-      'keto-sandwich-loaf': {
-        name: 'Keto Sandwich Loaf',
-        emoji: '🥪',
-        summary: 'Almond flour, eggs, Greek yogurt — low-carb sandwich loaf, ~2 g carbs per slice. Slice cold; toast it.',
-        defaultServings: 12,
         servingLabel: 'slice',
         servingLabelPlural: 'slices',
-        scale: 'normal',
-        untested: true,
-        nutrition: { caloriesPerServing: 122, macros: { carbs: 2.4, protein: 5.7, fat: 10 } },
+        scale: 'bite',
         ingredients: [
-          { id: 'flour',   amount: 2,    unit: 'cups',  metric: 200, metricUnit: 'g',  name: 'almond flour',       calories: 1140, carbs: 24, protein: 40, fat: 100 },
-          { id: 'egg',     amount: 4,    unit: 'large', metric: 200, metricUnit: 'g',  name: 'egg', plural: 'eggs', calories: 286,  carbs: 1,  protein: 25, fat: 20  },
-          { id: 'yogurt',  amount: 0.25, unit: 'cup',   metric: 60,  metricUnit: 'g',  name: 'Greek yogurt',       calories: 35,   carbs: 2,  protein: 6,  fat: 0   },
-          { id: 'bp',      amount: 1,    unit: 'tsp',   metric: 4,   metricUnit: 'g',  name: 'baking powder',      calories: 0,    carbs: 2,  protein: 0,  fat: 0   },
-          { id: 'salt',    amount: 0.5,  unit: 'tsp',   metric: 3,   metricUnit: 'g',  name: 'salt',               calories: 0,    carbs: 0,  protein: 0,  fat: 0   },
-          { id: 'vinegar', amount: 1,    unit: 'tbsp',  metric: 15,  metricUnit: 'ml', name: 'white vinegar',      calories: 3,    carbs: 0,  protein: 0,  fat: 0   },
+          { id: 'banana',  amount: 2.75, unit: 'cups', metric: 325, metricUnit: 'g',  name: 'very ripe mashed banana (~3 medium or 4 small)', calories: 0, carbs: 0, protein: 0, fat: 0 },
+          { id: 'honey',   amount: 0.5,  unit: 'cup',  metric: 183, metricUnit: 'g',  name: 'honey',                          calories: 0, carbs: 0, protein: 0, fat: 0 },
+          { id: 'sugar',   amount: 0.333,unit: 'cup',  metric: 75,  metricUnit: 'g',  name: 'sugar (or 4 tbsp stevia)',        calories: 0, carbs: 0, protein: 0, fat: 0 },
+          { id: 'vanilla', amount: 1.5,  unit: 'tsp',  metric: 7,   metricUnit: 'ml', name: 'vanilla extract',                calories: 0, carbs: 0, protein: 0, fat: 0 },
+          { id: 'eggs',    amount: 2,    unit: '',     metric: null, metricUnit: '',   name: 'eggs',                           calories: 0, carbs: 0, protein: 0, fat: 0 },
+          { id: 'oil',     amount: 3,    unit: 'tbsp', metric: 45,  metricUnit: 'ml', name: 'olive oil',                      calories: 0, carbs: 0, protein: 0, fat: 0 },
+          { id: 'flour',   amount: 2,    unit: 'cups', metric: 250, metricUnit: 'g',  name: 'all-purpose flour',              calories: 0, carbs: 0, protein: 0, fat: 0 },
+          { id: 'bsoda',   amount: 1.5,  unit: 'tsp',  metric: 7,   metricUnit: 'g',  name: 'baking soda',                    calories: 0, carbs: 0, protein: 0, fat: 0 },
+          { id: 'cinn',    amount: 0.5,  unit: 'tsp',  metric: 1.5, metricUnit: 'g',  name: 'cinnamon',                       calories: 0, carbs: 0, protein: 0, fat: 0 },
+          { id: 'salt',    amount: 0.25, unit: 'tsp',  metric: 1.5, metricUnit: 'g',  name: 'salt',                           calories: 0, carbs: 0, protein: 0, fat: 0 },
+          { id: 'nutmeg',  amount: 0.25, unit: 'tsp',  metric: 0.5, metricUnit: 'g',  name: 'nutmeg (optional)',              calories: 0, carbs: 0, protein: 0, fat: 0 },
+          { id: 'choc',    amount: 7.5,  unit: 'oz',   metric: 214, metricUnit: 'g',  name: 'Hershey\'s milk chocolate chips',calories: 0, carbs: 0, protein: 0, fat: 0 },
         ],
         method: [
-          'Preheat oven to 350°F (175°C). Line a loaf tin with parchment.',
-          'In a bowl whisk {egg}, {yogurt}, and {vinegar} together.',
-          'In another bowl mix {flour}, {bp}, and {salt}.',
-          'Fold wet ingredients into dry until fully combined — batter will be thick.',
-          'Pour into the lined loaf tin and smooth the top.',
-          'Bake at 350°F (175°C) for 30–35 minutes until deep golden on top and a toothpick comes out clean.',
-          'Cool completely before slicing — at least 30 minutes. It slices much better cold.',
+          'Preheat oven to 175°C. Line a large loaf tin with parchment.',
+          'Mash {banana} very well — the blacker the better.',
+          'Add {honey}, {sugar}, {vanilla} and {eggs}. Whisk until combined.',
+          'Stir in {oil} until smooth.',
+          'Fold in {flour}, {bsoda}, {cinn}, {salt} and {nutmeg} until just combined — do not overmix.',
+          'Fold in half the {choc}.',
+          'Pour into lined loaf tin, smooth the top and scatter the remaining chocolate chips on top.',
+          'Bake at 175°C for 55–65 minutes until a toothpick comes out with moist crumbs. Check every 10 minutes if not ready.',
+          'Cool in tin 15 minutes, then transfer to a wire rack. Best sliced once fully cool.',
         ],
+        nutrition: { caloriesPerServing: 261, macros: { carbs: 37.8, protein: 4.2, fat: 11.8 } },
       },
-
-      'manousheh-flatbread': {
-        name: 'Manousheh Flatbread Dough',
-        emoji: '🫓',
-        summary: 'Soft, foldable manousheh dough — pan-cooked. Top with za\'atar, cheese, or anything.',
-        defaultServings: 16,
-        servingLabel: 'piece',
-        servingLabelPlural: 'pieces',
-        scale: 'normal',
-        ingredients: [
-          { id: 'flour', amount: 6, unit: 'cups', metric: 750, metricUnit: 'g',  name: 'all-purpose flour', calories: 2730, carbs: 570, protein: 77, fat: 8  },
-          { id: 'yeast', amount: 1, unit: 'tbsp', metric: 8,   metricUnit: 'g',  name: 'instant yeast',     calories: 26,   carbs: 3,   protein: 3,  fat: 0  },
-          { id: 'sugar', amount: 2, unit: 'tbsp', metric: 24,  metricUnit: 'g',  name: 'sugar',             calories: 93,   carbs: 24,  protein: 0,  fat: 0  },
-          { id: 'milk',  amount: 2, unit: 'cups', metric: 480, metricUnit: 'ml', name: 'warm milk',         calories: 307,  carbs: 23,  protein: 15, fat: 16 },
-          { id: 'oil',   amount: 4, unit: 'tbsp', metric: 56,  metricUnit: 'g',  name: 'olive oil',         calories: 495,  carbs: 0,   protein: 0,  fat: 56 },
-          { id: 'salt',  amount: 2, unit: 'tsp',  metric: 12,  metricUnit: 'g',  name: 'salt',              calories: 0,    carbs: 0,   protein: 0,  fat: 0  },
-        ],
-        method: [
-          'In a bowl mix {flour}, {yeast}, and {sugar} together.',
-          'Gradually add {milk} while mixing until a dough forms.',
-          'Knead the dough until smooth and elastic.',
-          'Add {oil} and {salt}, then knead again until fully incorporated.',
-          'Cover and rest for 40 minutes until doubled.',
-          'Divide the dough into 16 balls and place on a tray.',
-          'Cover and rest for 10 minutes.',
-          'Roll each ball out into a small circle.',
-          'Place on a hot pan and cook one side.',
-          'Add your topping of choice, cover the pan, and cook for 2 minutes.',
-          'Remove and wrap in a clean towel to keep warm and soft.',
-        ],
-      },
-
     };
 
-    // Order that appears on the home page.
-    // 'high-protein-potato-buns' deliberately omitted — reachable via the
-    // alternate-version button on potato-buns, not the home grid.
-    const HOME_RECIPE_SLUGS = ['normal-bread', 'chocolate-chip-bites', 'fudgy-brownies', 'manousheh-flatbread', 'potato-buns', 'keto-sandwich-loaf'];
+    // Canonical recipes shown on the home page.
+    // Healthier alternates are reachable via the button on each recipe page.
+    const HOME_RECIPE_SLUGS = [
+      'simple-white-bread',
+      'chocolate-chip-bread',
+      'flatbread',
+      'third-flatbread',
+      'croissants',
+      'banana-choc-chip-bread',
+    ];
 
     // ============================================================
     // Formatting
@@ -1165,39 +1238,30 @@
       [1/2, '½'], [5/8, '⅝'], [2/3, '⅔'], [3/4, '¾'], [7/8, '⅞'],
     ];
 
-    // Format a volume/count amount using vulgar fractions when close.
     function formatAmount(v) {
       if (v == null || isNaN(v)) return '';
       if (v === 0) return '0';
-
       const whole = Math.floor(v);
       const frac = v - whole;
       const tolerance = 0.04;
-
-      // Nearly integer
       if (frac < tolerance) return String(whole);
       if (frac > 1 - tolerance) return String(whole + 1);
-
-      // Match vulgar fraction
       let best = null, bestDiff = tolerance;
       for (const [val, sym] of VULGAR_FRACTIONS) {
         const diff = Math.abs(frac - val);
         if (diff < bestDiff) { bestDiff = diff; best = sym; }
       }
       if (best) return whole ? `${whole}${best}` : best;
-
-      // Fallback: decimal (max 2 places, trim trailing zeros)
       const rounded = Math.round(v * 100) / 100;
       return String(rounded).replace(/\.?0+$/, '');
     }
 
-    // Format a metric amount (grams / ml) with size-aware rounding.
     function formatMetric(v) {
       if (v == null || isNaN(v)) return '';
       if (v < 1) return (Math.round(v * 10) / 10).toString();
-      if (v < 20) return String(Math.round(v * 2) / 2); // nearest 0.5
+      if (v < 20) return String(Math.round(v * 2) / 2);
       if (v < 100) return String(Math.round(v));
-      return String(Math.round(v / 5) * 5); // nearest 5
+      return String(Math.round(v / 5) * 5);
     }
 
     function pluralize(ing, scaledAmount) {
@@ -1205,31 +1269,33 @@
       return ing.name;
     }
 
-    // Render an ingredient — mode is 'us' (cups/tbsp) or 'metric' (g/ml).
     function renderIngredient(ing, multiplier, mode) {
       const amount = ing.amount * multiplier;
-      const metric = ing.metric * multiplier;
+      const metric = ing.metric != null ? ing.metric * multiplier : null;
       const name = pluralize(ing, amount);
       if (mode === 'metric') {
+        if (metric == null) return `<span class="ingredient-name">${escapeHtml(name)}</span>`;
         return (
           `<span class="ingredient-amount">${formatMetric(metric)}${ing.metricUnit}</span> ` +
           `<span class="ingredient-name">${escapeHtml(name)}</span>`
         );
       }
+      if (!ing.unit) return `<span class="ingredient-name">${escapeHtml(name)}</span>`;
       return (
         `<span class="ingredient-amount">${formatAmount(amount)} ${ing.unit}</span> ` +
         `<span class="ingredient-name">${escapeHtml(name)}</span>`
       );
     }
 
-    // Render an ingredient as a compact inline string for method steps.
     function renderIngredientInline(ing, multiplier, mode) {
       const amount = ing.amount * multiplier;
-      const metric = ing.metric * multiplier;
+      const metric = ing.metric != null ? ing.metric * multiplier : null;
       const name = pluralize(ing, amount);
       if (mode === 'metric') {
+        if (metric == null) return escapeHtml(name);
         return `${formatMetric(metric)}${ing.metricUnit} ${escapeHtml(name)}`;
       }
+      if (!ing.unit) return escapeHtml(name);
       return `${formatAmount(amount)} ${ing.unit} ${escapeHtml(name)}`;
     }
 
@@ -1242,8 +1308,6 @@
       });
     }
 
-    // If a recipe has a `nutrition` override (e.g. user-stated values from a
-    // tracking app), use it directly. Otherwise compute from ingredient sums.
     function computeCaloriesPerServing(recipe) {
       if (recipe.nutrition && recipe.nutrition.caloriesPerServing != null) {
         return recipe.nutrition.caloriesPerServing;
@@ -1268,13 +1332,11 @@
       };
     }
 
-    // Format a macro value: integers as integers, fractions to 1 decimal.
     function fmtMacro(n) {
       const r = Math.round(n * 10) / 10;
       return r === Math.round(r) ? String(Math.round(r)) : r.toFixed(1);
     }
 
-    // Per-recipe checked-ingredient state, persisted to localStorage.
     function getChecked(slug) {
       try {
         const raw = localStorage.getItem('joelle-checked-' + slug);
@@ -1295,7 +1357,7 @@
     }
 
     // ============================================================
-    // Global unit preference (persists across recipes)
+    // Global unit preference
     // ============================================================
     const UNIT_KEY = 'joelle-unit';
     let unitMode = (function() {
@@ -1303,10 +1365,9 @@
       catch (e) { return 'us'; }
     })();
 
-    // Admin mode — token-gated. Visit #admin to enter the code; correct codes
-    // are stored in localStorage and sent as `x-admin-token` on every write.
-    // Server (api/auth, api/chat, api/recipes write paths) verifies against the
-    // ADMIN_TOKEN env var. Without a valid token the site is fully view-only.
+    // ============================================================
+    // Admin mode
+    // ============================================================
     const ADMIN_TOKEN_KEY = 'joelle-admin-token';
     function adminToken() {
       try { return localStorage.getItem(ADMIN_TOKEN_KEY) || ''; }
@@ -1315,7 +1376,6 @@
     function isAdmin() { return adminToken() !== ''; }
     function clearAdmin() {
       try { localStorage.removeItem(ADMIN_TOKEN_KEY); } catch (e) {}
-      try { localStorage.removeItem('joelle-admin'); } catch (e) {} // legacy cleanup
     }
 
     // ============================================================
@@ -1324,15 +1384,9 @@
     const viewEl = document.getElementById('view');
     const backLink = document.getElementById('backLink');
 
-    const RECIPE_SECTIONS = [
-      { label: 'Breads', slugs: ['normal-bread', 'manousheh-flatbread', 'potato-buns', 'keto-sandwich-loaf'] },
-      { label: 'Sweets', slugs: ['chocolate-chip-bites', 'fudgy-brownies', 'croissants', 'banana-choc-chip-bread'] },
-    ];
-
     function renderHome() {
       backLink.classList.add('hidden');
-
-      function cardHtml(slug) {
+      const cards = HOME_RECIPE_SLUGS.map(slug => {
         const r = RECIPES[slug];
         if (!r) return '';
         return `
@@ -1344,18 +1398,7 @@
             </div>
             <span class="recipe-card-arrow" aria-hidden="true">→</span>
           </a>`;
-      }
-
-      const knownSlugs = RECIPE_SECTIONS.flatMap(s => s.slugs);
-      const extraSlugs = HOME_RECIPE_SLUGS.filter(s => !knownSlugs.includes(s));
-
-      const sectionsHtml = RECIPE_SECTIONS.map(sec => {
-        const cards = sec.slugs.map(cardHtml).join('');
-        return `<div class="section-title">${sec.label}</div><div class="recipe-grid">${cards}</div>`;
       }).join('');
-
-      const extraCards = extraSlugs.map(cardHtml).join('');
-      const extraHtml = extraCards ? `<div class="section-title">More</div><div class="recipe-grid">${extraCards}</div>` : '';
 
       const adminCard = isAdmin() ? `
         <a class="recipe-card add-card" href="#/add">
@@ -1371,9 +1414,8 @@
           <h1>A small shelf of<br/>baking recipes.</h1>
           <p>Scale any recipe by servings — ingredients, method, and nutrition update instantly.</p>
         </section>
-        ${sectionsHtml}
-        ${extraHtml}
-        ${adminCard ? `<div class="recipe-grid">${adminCard}</div>` : ''}
+        <div class="section-title">The Collection</div>
+        <div class="recipe-grid">${cards}${adminCard}</div>
       `;
       document.title = "Joelle's Recipes";
       window.scrollTo(0, 0);
@@ -1389,8 +1431,6 @@
       }
       return btoa(binary);
     }
-
-    // ---- Chat-with-Claude Add Recipe page (admin only) ----
 
     function extractRecipeFromText(text) {
       const match = String(text).match(/```recipe\s*\n([\s\S]*?)\n```/);
@@ -1416,14 +1456,13 @@
       const editingRecipe = editSlug && RECIPES[editSlug] ? RECIPES[editSlug] : null;
       let messages = [];
       if (editingRecipe) {
-        // Seed the chat with the recipe so Joelle can refine + republish.
         const intro =
           `Here's the current "${editingRecipe.name}" recipe. Tell me what you'd like to change — or hit Publish to keep it as-is.\n\n` +
           '```recipe\n' + JSON.stringify(editingRecipe, null, 2) + '\n```';
         messages = [{ role: 'assistant', content: intro }];
       }
       let isWaiting = false;
-      let pendingImage = null; // { data, type, name }
+      let pendingImage = null;
       let publishedSlugs = new Set();
       let publishingIdx = null;
 
@@ -1441,7 +1480,7 @@
             </div>
             <div class="chat-input-bar">
               ${pendingImage ? `<div class="chat-attachment-pill">📷 ${escapeHtml(pendingImage.name)} <button type="button" id="clearAttach" aria-label="Remove">×</button></div>` : ''}
-              <textarea id="chatInput" placeholder="${messages.length === 0 ? 'e.g. Banana bread — 3 ripe bananas, 1 cup sugar, 2 cups flour…' : 'Refine, ask, or describe another recipe…'}"${isWaiting ? ' disabled' : ''}></textarea>
+              <textarea id="chatInput" placeholder="${messages.length === 0 ? 'e.g. Croissants — 330g flour, 75g butter for laminating…' : 'Refine, ask, or describe another recipe…'}"${isWaiting ? ' disabled' : ''}></textarea>
               <div class="chat-input-actions">
                 <label class="chat-photo-btn" for="chatPhoto">📷 Photo<input id="chatPhoto" type="file" accept="image/*" hidden /></label>
                 <button class="add-generate" id="chatSend" type="button"${isWaiting ? ' disabled' : ''}>${isWaiting ? 'Sending…' : 'Send'}</button>
@@ -1450,23 +1489,17 @@
           </div>
         `;
 
-        // Auto-scroll to latest
         const msgEl = document.getElementById('chatMessages');
         if (msgEl) msgEl.scrollTop = msgEl.scrollHeight;
 
-        // Wire input
         const sendBtn = document.getElementById('chatSend');
         const inputEl = document.getElementById('chatInput');
         sendBtn.addEventListener('click', send);
         inputEl.addEventListener('keydown', (e) => {
-          if (e.key === 'Enter' && !e.shiftKey) {
-            e.preventDefault();
-            send();
-          }
+          if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); send(); }
         });
         if (!isWaiting) inputEl.focus();
 
-        // Wire photo picker
         document.getElementById('chatPhoto').addEventListener('change', async (e) => {
           const file = e.target.files[0];
           if (!file) return;
@@ -1476,7 +1509,6 @@
         const clearBtn = document.getElementById('clearAttach');
         if (clearBtn) clearBtn.addEventListener('click', () => { pendingImage = null; paint(); });
 
-        // Wire publish/skip on each recipe card
         document.querySelectorAll('[data-publish-idx]').forEach((btn) => {
           btn.addEventListener('click', () => publish(parseInt(btn.dataset.publishIdx, 10)));
         });
@@ -1498,7 +1530,6 @@
               ${text ? `<div class="chat-bubble chat-bubble-user">${escapeHtml(text)}</div>` : ''}
             </div>`;
           }
-          // Assistant
           const text = typeof m.content === 'string' ? m.content : '';
           const isError = m._error === true;
           const recipe = extractRecipeFromText(text);
@@ -1537,10 +1568,7 @@
 
         const content = [];
         if (pendingImage) {
-          content.push({
-            type: 'image',
-            source: { type: 'base64', media_type: pendingImage.type, data: pendingImage.data },
-          });
+          content.push({ type: 'image', source: { type: 'base64', media_type: pendingImage.type, data: pendingImage.data } });
         }
         if (text) content.push({ type: 'text', text });
 
@@ -1652,7 +1680,6 @@
               const data = await res.json();
               if (!res.ok) throw new Error(data.error || ('HTTP ' + res.status));
               try { localStorage.setItem(ADMIN_TOKEN_KEY, code); } catch (e) {}
-              try { localStorage.removeItem('joelle-admin'); } catch (e) {}
               window.location.hash = '#/';
             } catch (err) {
               isSubmitting = false;
@@ -1668,8 +1695,6 @@
       window.scrollTo(0, 0);
     }
 
-    // Pull any user-added recipes from /api/recipes (served from Vercel KV).
-    // Fails silently — curated recipes always display.
     async function loadDynamicRecipes() {
       try {
         const res = await fetch('/api/recipes');
@@ -1688,6 +1713,7 @@
       if (!r) { window.location.hash = '#/'; return; }
 
       backLink.classList.remove('hidden');
+      const options = SCALES[r.scale] || SCALES.normal;
       const state = { servings: r.defaultServings };
       let currentTab = 'ingredients';
       let checked = getChecked(slug);
@@ -1696,7 +1722,7 @@
         const multiplier = state.servings / r.defaultServings;
         const servingWord = state.servings === 1 ? r.servingLabel : r.servingLabelPlural;
         const perServing = computeCaloriesPerServing(r);
-        const totalCalories = perServing * state.servings;
+        const totalCalories = Math.round(perServing * state.servings);
         const macros = computeMacrosPerServing(r);
 
         const ingredientsHtml = r.ingredients.map(ing => {
@@ -1716,7 +1742,6 @@
         const alt = r.alternate;
         const activeCls = (val) => currentTab === val ? ' is-active' : '';
         const activeUnit = (u) => unitMode === u ? ' is-active' : '';
-        const options = SCALES[r.scale];
         const idx = options.indexOf(state.servings);
 
         viewEl.innerHTML = `
@@ -1836,7 +1861,6 @@
             toggleBtn.disabled = true;
             toggleBtn.textContent = 'Saving…';
             const newUntested = !r.untested;
-            // Build full recipe payload with slug for KV upsert
             const payload = { ...r, slug };
             if (newUntested) payload.untested = true;
             else delete payload.untested;
@@ -1848,7 +1872,6 @@
               });
               const data = await res.json();
               if (!res.ok) throw new Error(data.error || ('HTTP ' + res.status));
-              // Mutate local + repaint
               if (newUntested) r.untested = true;
               else delete r.untested;
               RECIPES[slug] = r;
@@ -1873,7 +1896,6 @@
     function route() {
       const hash = window.location.hash || '#/';
 
-      // Admin login page — enter a code to unlock admin features on this device.
       if (hash === '#admin' || hash === '#admin/on') {
         renderAdminLogin();
         return;
@@ -1884,7 +1906,6 @@
         return;
       }
 
-      // #/add (new) or #/add/<slug> (edit existing)
       const addMatch = hash.match(/^#\/add(?:\/([a-z0-9-]+))?$/);
       if (addMatch) { renderAdd(addMatch[1]); return; }
 
@@ -1899,7 +1920,6 @@
     window.addEventListener('hashchange', route);
     route();
 
-    // Async-load any KV-stored recipes; re-render home if we're still on it.
     loadDynamicRecipes().then(() => {
       if ((window.location.hash || '#/') === '#/') renderHome();
     });
