@@ -1723,7 +1723,7 @@
         const alt = r.alternate;
         const activeCls = (val) => currentTab === val ? ' is-active' : '';
         const activeUnit = (u) => unitMode === u ? ' is-active' : '';
-        const options = SCALES[r.scale];
+        const options = r.customScale || SCALES[r.scale];
         const idx = options.indexOf(state.servings);
 
         viewEl.innerHTML = `
