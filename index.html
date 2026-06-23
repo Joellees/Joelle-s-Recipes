@@ -1273,7 +1273,7 @@
         return recipe.nutrition.caloriesPerServing;
       }
       const total = recipe.ingredients.reduce((s, i) => s + (i.calories || 0), 0);
-      return Math.round(total / recipe.defaultServings);
+      return Math.ceil(total / recipe.defaultServings);
     }
 
     function computeMacrosPerServing(recipe) {
@@ -1286,16 +1286,15 @@
         fat:     acc.fat     + (i.fat     || 0),
       }), { carbs: 0, protein: 0, fat: 0 });
       return {
-        carbs:   Math.round(totals.carbs   / recipe.defaultServings),
-        protein: Math.round(totals.protein / recipe.defaultServings),
-        fat:     Math.round(totals.fat     / recipe.defaultServings),
+        carbs:   Math.ceil(totals.carbs   / recipe.defaultServings),
+        protein: Math.ceil(totals.protein / recipe.defaultServings),
+        fat:     Math.ceil(totals.fat     / recipe.defaultServings),
       };
     }
 
     // Format a macro value: integers as integers, fractions to 1 decimal.
     function fmtMacro(n) {
-      const r = Math.round(n * 10) / 10;
-      return r === Math.round(r) ? String(Math.round(r)) : r.toFixed(1);
+      return String(Math.ceil(n));
     }
 
     // Per-recipe checked-ingredient state, persisted to localStorage.
