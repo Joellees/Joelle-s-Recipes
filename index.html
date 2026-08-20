@@ -1068,7 +1068,7 @@
         scale: 'normal',
         untested: true,
         alternate: { slug: 'high-protein-potato-buns', label: '💪 High protein version', kind: 'highprotein' },
-        nutrition: { caloriesPerServing: 65, macros: { carbs: 10, protein: 3.5, fat: 1.2 } },
+        nutrition: { caloriesPerServing: 65, macros: { carbs: 10, protein: 4, fat: 2 } },
         ingredients: [
           { id: 'potato',   amount: 1, unit: 'cup',   metric: 240, metricUnit: 'g', name: 'boiled mashed potatoes', calories: 209, carbs: 48, protein: 5, fat: 0 },
           { id: 'egg',      amount: 1, unit: 'large', metric: 50,  metricUnit: 'g', name: 'egg', plural: 'eggs',     calories: 72,  carbs: 0,  protein: 6, fat: 5 },
@@ -1095,7 +1095,7 @@
         scale: 'normal',
         untested: true,
         alternate: { slug: 'potato-buns', label: '🥔 Original potato buns', kind: 'original' },
-        nutrition: { caloriesPerServing: 95, macros: { carbs: 8, protein: 10.5, fat: 2 } },
+        nutrition: { caloriesPerServing: 95, macros: { carbs: 8, protein: 11, fat: 2 } },
         ingredients: [
           { id: 'potato',   amount: 1,   unit: 'cup',   metric: 240, metricUnit: 'g', name: 'boiled mashed potatoes',    calories: 209, carbs: 48, protein: 5,  fat: 0 },
           { id: 'egg',      amount: 1,   unit: 'large', metric: 50,  metricUnit: 'g', name: 'egg', plural: 'eggs',        calories: 72,  carbs: 0,  protein: 6,  fat: 5 },
@@ -1123,7 +1123,7 @@
         servingLabelPlural: 'slices',
         scale: 'normal',
         untested: true,
-        nutrition: { caloriesPerServing: 122, macros: { carbs: 2.4, protein: 5.7, fat: 10 } },
+        nutrition: { caloriesPerServing: 122, macros: { carbs: 3, protein: 6, fat: 10 } },
         ingredients: [
           { id: 'flour',   amount: 2,    unit: 'cups',  metric: 200, metricUnit: 'g',  name: 'almond flour',       calories: 1140, carbs: 24, protein: 40, fat: 100 },
           { id: 'egg',     amount: 4,    unit: 'large', metric: 200, metricUnit: 'g',  name: 'egg', plural: 'eggs', calories: 286,  carbs: 1,  protein: 25, fat: 20  },
@@ -1210,18 +1210,14 @@
       }
       if (best) return whole ? `${whole}${best}` : best;
 
-      // Fallback: decimal (max 2 places, trim trailing zeros)
-      const rounded = Math.round(v * 100) / 100;
-      return String(rounded).replace(/\.?0+$/, '');
+      // Fallback: round up to nearest whole
+      return String(Math.ceil(v));
     }
 
-    // Format a metric amount (grams / ml) with size-aware rounding.
+    // Format a metric amount (grams / ml) — always whole numbers, rounded up.
     function formatMetric(v) {
       if (v == null || isNaN(v)) return '';
-      if (v < 1) return (Math.round(v * 10) / 10).toString();
-      if (v < 20) return String(Math.round(v * 2) / 2); // nearest 0.5
-      if (v < 100) return String(Math.round(v));
-      return String(Math.round(v / 5) * 5); // nearest 5
+      return String(Math.ceil(v));
     }
 
     function pluralize(ing, scaledAmount) {
