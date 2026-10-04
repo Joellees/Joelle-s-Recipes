@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Joelle's home baking recipes — with serving scaler and healthier versions." />
+  <meta name="description" content="Joelle's home recipes — with serving scaler and healthier versions." />
   <meta name="theme-color" content="#faf8f4" />
   <title>Joelle's Recipes</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -103,6 +103,8 @@
       padding-bottom: 0.5rem;
       border-bottom: 1px solid var(--line);
     }
+    .home-section + .home-section { margin-top: 2.25rem; }
+    .home-admin-grid { margin-top: 1rem; }
     .recipe-grid {
       display: flex;
       flex-direction: column;
@@ -806,6 +808,14 @@
       border-radius: 4px;
       white-space: normal;
     }
+    .recipe-note {
+      margin-top: 1rem;
+      border-left: 3px solid var(--line);
+      padding: 0.65rem 0 0.65rem 0.85rem;
+      color: var(--ink-soft);
+      font-size: 0.9rem;
+      line-height: 1.45;
+    }
     /* Footer alternate */
     .footer-alternate {
       margin-top: 2.5rem;
@@ -966,6 +976,7 @@
     const SCALES = {
       normal: [1, 2, 4, 6, 8, 10, 12, 16, 20],
       bite:   [10, 15, 20, 30, 40, 50, 100],
+      meal:   [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
     };
 
     // ============================================================
@@ -1027,6 +1038,49 @@
           'Fold in {oatflour}, {cocoa}, {salt}, and {cinn}.',
           'Pour into a lined tin and bake at 340°F (170°C) for 14–15 minutes — centre should still wobble.',
           'Transfer to fridge and rest for 1 hour before cutting into 15 pieces.',
+        ],
+      },
+
+      'date-cake': {
+        name: 'Date Cake',
+        emoji: '🌴',
+        summary: 'Soft date cake blended with warm milk, vanilla, and optional walnuts.',
+        defaultServings: 6,
+        servingLabel: 'slice',
+        servingLabelPlural: 'slices',
+        scale: 'normal',
+        nutritionVariants: [
+          { label: 'Sugar', caloriesPerServing: 480, macros: { carbs: 71, protein: 8, fat: 22 } },
+          { label: 'Sugar + walnuts', caloriesPerServing: 523, macros: { carbs: 72, protein: 9, fat: 26 } },
+          { label: 'Steviana', caloriesPerServing: 435, macros: { carbs: 60, protein: 8, fat: 22 } },
+          { label: 'Steviana + walnuts', caloriesPerServing: 478, macros: { carbs: 61, protein: 9, fat: 26 } },
+        ],
+        ingredients: [
+          { id: 'dates',    amount: 300, unit: 'g',     metric: 300, metricUnit: 'g', name: 'Medjool or Khidri dates, pitted',             calories: 831, carbs: 225, protein: 5,  fat: 1   },
+          { id: 'milk',     amount: 370, unit: 'g',     metric: 370, metricUnit: 'g', name: '2% milk, warmed',                              calories: 185, carbs: 18,  protein: 12, fat: 7   },
+          { id: 'oil',      amount: 110, unit: 'g',     metric: 110, metricUnit: 'g', name: 'light olive oil, coconut oil, or avocado oil', calories: 972, carbs: 0,   protein: 0,  fat: 110 },
+          { id: 'egg',      amount: 1,   unit: 'large', metric: 50,  metricUnit: 'g', name: 'egg', plural: 'eggs',                          calories: 72,  carbs: 0,   protein: 6,  fat: 5   },
+          { id: 'vanilla',  amount: 1,   unit: 'tsp',   metric: 5,   metricUnit: 'g', name: 'vanilla extract',                              calories: 12,  carbs: 1,   protein: 0,  fat: 0   },
+          { id: 'sugar',    amount: 70,  unit: 'g',     metric: 70,  metricUnit: 'g', name: 'sugar',                                        calories: 271, carbs: 70,  protein: 0,  fat: 0   },
+          { id: 'steviana', amount: 7,   unit: 'g',     metric: 7,   metricUnit: 'g', name: 'Steviana sweetener alternative',                calories: 0,   carbs: 0,   protein: 0,  fat: 0   },
+          { id: 'flour',    amount: 155, unit: 'g',     metric: 155, metricUnit: 'g', name: 'whole wheat flour or all-purpose flour',        calories: 527, carbs: 110, protein: 22, fat: 4   },
+          { id: 'bp',       amount: 4,   unit: 'g',     metric: 4,   metricUnit: 'g', name: 'baking powder',                                calories: 2,   carbs: 1,   protein: 0,  fat: 0   },
+          { id: 'bs',       amount: 5,   unit: 'g',     metric: 5,   metricUnit: 'g', name: 'baking soda',                                  calories: 0,   carbs: 0,   protein: 0,  fat: 0   },
+          { id: 'salt',     amount: 1.5, unit: 'g',     metric: 1.5, metricUnit: 'g', name: 'salt',                                         calories: 0,   carbs: 0,   protein: 0,  fat: 0   },
+          { id: 'spray',    amount: null, unit: '',     metric: null, metricUnit: '',  name: 'cooking spray (for the cake pan)',             calories: 0,   carbs: 0,   protein: 0,  fat: 0   },
+          { id: 'cinnamon', amount: 1.5, unit: 'g',     metric: 1.5, metricUnit: 'g', name: 'cinnamon (optional)',                          calories: 4,   carbs: 1,   protein: 0,  fat: 0   },
+          { id: 'walnuts',  amount: 40,  unit: 'g',     metric: 40,  metricUnit: 'g', name: 'chopped walnuts (optional)',                   calories: 262, carbs: 6,   protein: 6,  fat: 26  },
+        ],
+        method: [
+          'Preheat oven to 350°F (175°C). Lightly coat a cake pan with {spray}.',
+          'Add {dates} and {milk} to a blender. Blend until smooth.',
+          'Add {oil}, {egg}, {vanilla}, and either {sugar} or {steviana}. Blend until combined.',
+          'In a separate bowl, combine {flour}, {bp}, {bs}, {salt}, and {cinnamon}.',
+          'Pour the blended date mixture into the dry ingredients and mix until just combined.',
+          'Fold in {walnuts}, if using.',
+          'Pour the batter into the prepared cake pan and spread evenly.',
+          'Bake at 350°F (175°C) for 30–35 minutes, or until a toothpick inserted into the center comes out clean.',
+          'Allow to cool slightly before removing from the pan and serving.',
         ],
       },
 
@@ -1174,12 +1228,170 @@
         ],
       },
 
+      'sesame-chicken-bowl': {
+        name: 'Sesame Chicken Bowl',
+        emoji: '🍲',
+        summary: 'Sticky sesame ground chicken for lettuce bowls or rice bowls.',
+        defaultServings: 3,
+        servingLabel: 'serving',
+        servingLabelPlural: 'servings',
+        scale: 'meal',
+        category: 'cooking',
+        notes: ['Optional pairing: Asian cucumber salad. Nutrition includes the cucumber salad if you use the listed amounts.'],
+        ingredients: [
+          { id: 'chicken',     amount: 500,   unit: 'g',      metric: 500, metricUnit: 'g', name: 'raw ground chicken',                    calories: 715, carbs: 0,  protein: 87, fat: 40 },
+          { id: 'pepper',      amount: 1,   unit: 'pinch',  metric: 0.5, metricUnit: 'g', name: 'black pepper',                          calories: 0,   carbs: 0,  protein: 0,  fat: 0  },
+          { id: 'salt',        amount: 1,   unit: 'pinch',  metric: 0.5, metricUnit: 'g', name: 'salt, if needed',                       calories: 0,   carbs: 0,  protein: 0,  fat: 0  },
+          { id: 'soy',         amount: 3.333, unit: 'tbsp',   metric: 50,  metricUnit: 'g', name: 'soy sauce or tamari',                   calories: 27,  carbs: 3,  protein: 4,  fat: 0  },
+          { id: 'honey',       amount: 1.667, unit: 'tbsp',   metric: 35,  metricUnit: 'g', name: 'honey',                                 calories: 106, carbs: 29, protein: 0,  fat: 0  },
+          { id: 'ketchup',     amount: 1.667, unit: 'tbsp',   metric: 28,  metricUnit: 'g', name: 'ketchup',                               calories: 28,  carbs: 7,  protein: 0,  fat: 0  },
+          { id: 'vinegar',     amount: 1.6,   unit: 'tsp',    metric: 8,   metricUnit: 'g', name: 'rice vinegar',                          calories: 1,   carbs: 0,  protein: 0,  fat: 0  },
+          { id: 'sesameoil',   amount: 0.875, unit: 'tsp',    metric: 3.5, metricUnit: 'g', name: 'toasted sesame oil',                    calories: 31,  carbs: 0,  protein: 0,  fat: 4  },
+          { id: 'garlic',      amount: 3.5,   unit: 'cloves', metric: 10,  metricUnit: 'g', name: 'garlic, minced',                        calories: 15,  carbs: 3,  protein: 1,  fat: 0  },
+          { id: 'chives',      amount: null, unit: '',      metric: null, metricUnit: '', name: 'chives, chopped, to serve',              calories: 0,   carbs: 0,  protein: 0,  fat: 0  },
+          { id: 'sesameseeds', amount: null, unit: '',      metric: null, metricUnit: '', name: 'sesame seeds, to serve',                 calories: 0,   carbs: 0,  protein: 0,  fat: 0  },
+          { id: 'base',        amount: null, unit: '',      metric: null, metricUnit: '', name: 'lettuce or cooked white rice, to serve', calories: 0,   carbs: 0,  protein: 0,  fat: 0  },
+          { id: 'cucumber',    amount: 2,    unit: 'medium', metric: 400, metricUnit: 'g', name: 'cucumber, cut', plural: 'cucumbers, cut', calories: 60, carbs: 14, protein: 3,  fat: 0  },
+          { id: 'cukesoy',     amount: 6,    unit: 'tbsp',   metric: 90,  metricUnit: 'g', name: 'soy sauce for cucumber salad',           calories: 48, carbs: 5,  protein: 7,  fat: 0  },
+          { id: 'cukeoil',     amount: 1,    unit: 'tsp',    metric: 4.5, metricUnit: 'g', name: 'sesame oil for cucumber salad',          calories: 40, carbs: 0,  protein: 0,  fat: 5  },
+          { id: 'whitevinegar', amount: 1,   unit: 'tsp',    metric: 5,   metricUnit: 'g', name: 'white vinegar',                          calories: 1,  carbs: 0,  protein: 0,  fat: 0  },
+          { id: 'chiliflakes', amount: null, unit: '',       metric: null, metricUnit: '', name: 'chili flakes, to taste',                 calories: 0,  carbs: 0,  protein: 0,  fat: 0  },
+        ],
+        method: [
+          'Combine {soy}, {honey}, {ketchup}, {vinegar}, {sesameoil}, and {garlic} in a small bowl.',
+          'For the cucumber salad, mix {cukesoy}, {cukeoil}, {whitevinegar}, {chiliflakes}, and {sesameseeds}, then toss with {cucumber}.',
+          'Add {chicken} to a non-stick pan over medium-high heat. Season with {pepper} and {salt}.',
+          'Break apart and cook until browned and completely cooked through.',
+          'Pour the sesame sauce over the chicken and mix well.',
+          'Cook for another 2–3 minutes, stirring frequently, until the sauce reduces slightly and becomes sticky.',
+          'Serve with lettuce or over cooked white rice.',
+          'Top with {chives} and {sesameseeds}.',
+        ],
+      },
+
+      'tomato-sauce': {
+        name: 'Tomato Sauce',
+        emoji: '🍅',
+        summary: 'Simple simmered tomato sauce with onion, garlic, and fresh basil.',
+        defaultServings: 4,
+        servingLabel: 'serving',
+        servingLabelPlural: 'servings',
+        scale: 'meal',
+        category: 'cooking',
+        ingredients: [
+          { id: 'onion',  amount: 1,   unit: 'large',  metric: 150, metricUnit: 'g',  name: 'onion, finely chopped',                      calories: 60, carbs: 14, protein: 2, fat: 0 },
+          { id: 'garlic', amount: 2,   unit: 'cloves', metric: 6,   metricUnit: 'g',  name: 'garlic, minced',                              calories: 9,  carbs: 2,  protein: 0, fat: 0 },
+          { id: 'paste',  amount: 2,   unit: 'tbsp',   metric: 32,  metricUnit: 'g',  name: 'tomato paste',                                calories: 26, carbs: 6,  protein: 1, fat: 0 },
+          { id: 'tomato', amount: 1,   unit: 'can',    metric: 400, metricUnit: 'g',  name: 'peeled tomatoes or 2 fresh tomatoes, peeled', calories: 80, carbs: 16, protein: 4, fat: 1 },
+          { id: 'salt',   amount: 0.5, unit: 'tsp',    metric: 3,   metricUnit: 'g',  name: 'salt',                                        calories: 0,  carbs: 0,  protein: 0, fat: 0 },
+          { id: 'pepper', amount: 0.25, unit: 'tsp',   metric: 0.5, metricUnit: 'g',  name: 'black pepper',                                calories: 1,  carbs: 0,  protein: 0, fat: 0 },
+          { id: 'water',  amount: 1.5, unit: 'cups',   metric: 355, metricUnit: 'ml', name: 'water',                                       calories: 0,  carbs: 0,  protein: 0, fat: 0 },
+          { id: 'basil',  amount: null, unit: '',      metric: null, metricUnit: '',  name: 'fresh basil',                                 calories: 0,  carbs: 0,  protein: 0, fat: 0 },
+        ],
+        method: [
+          'In a saucepan, sauté {onion} with {garlic} until softened.',
+          'Add {tomato} and cook briefly, breaking them down with a spoon.',
+          'Add {paste}, {salt}, and {pepper}. Mix well.',
+          'Add {water} and stir to combine.',
+          'Bring the sauce to a boil, then reduce the heat to low.',
+          'Let it simmer uncovered until it reduces to your desired thickness, stirring occasionally.',
+          'Add {basil} at the end and stir through.',
+        ],
+      },
+
+      'green-goddess-salad': {
+        name: 'Green Goddess Salad',
+        emoji: '🥗',
+        summary: 'Chopped vegetables tossed in a creamy herby green goddess dressing.',
+        defaultServings: 4,
+        servingLabel: 'serving',
+        servingLabelPlural: 'servings',
+        scale: 'meal',
+        category: 'cooking',
+        notes: ['Vegetable amounts are flexible; nutrition is an estimate for the dressing base only.'],
+        ingredients: [
+          { id: 'yogurt',    amount: 1,    unit: 'cup',     metric: 245, metricUnit: 'g',  name: 'yogurt or Greek yogurt',        calories: 145, carbs: 9,  protein: 24, fat: 1 },
+          { id: 'lemon',     amount: 0.5,  unit: 'lemon',   metric: 30,  metricUnit: 'ml', name: 'lemon, juiced, or more to taste', calories: 7,   carbs: 2,  protein: 0,  fat: 0 },
+          { id: 'garlic',    amount: 2,    unit: 'cloves',  metric: 6,   metricUnit: 'g',  name: 'garlic',                         calories: 9,   carbs: 2,  protein: 0,  fat: 0 },
+          { id: 'onion',     amount: 0.25, unit: 'onion',   metric: 40,  metricUnit: 'g',  name: 'onion',                           calories: 16,  carbs: 4,  protein: 0,  fat: 0 },
+          { id: 'spinach',   amount: 1,    unit: 'handful', metric: 30,  metricUnit: 'g',  name: 'spinach',                         calories: 7,   carbs: 1,  protein: 1,  fat: 0 },
+          { id: 'herbs',     amount: null, unit: '',        metric: null, metricUnit: '',  name: 'herbs of choice',                 calories: 0,   carbs: 0,  protein: 0,  fat: 0 },
+          { id: 'salt',      amount: null, unit: '',        metric: null, metricUnit: '',  name: 'salt, to taste',                  calories: 0,   carbs: 0,  protein: 0,  fat: 0 },
+          { id: 'pepper',    amount: null, unit: '',        metric: null, metricUnit: '',  name: 'black pepper, to taste',          calories: 0,   carbs: 0,  protein: 0,  fat: 0 },
+          { id: 'cabbage',   amount: null, unit: '',        metric: null, metricUnit: '',  name: 'cabbage, finely chopped',         calories: 0,   carbs: 0,  protein: 0,  fat: 0 },
+          { id: 'cucumber',  amount: null, unit: '',        metric: null, metricUnit: '',  name: 'cucumber, chopped',               calories: 0,   carbs: 0,  protein: 0,  fat: 0 },
+          { id: 'carrots',   amount: null, unit: '',        metric: null, metricUnit: '',  name: 'carrots, julienned',              calories: 0,   carbs: 0,  protein: 0,  fat: 0 },
+          { id: 'protein',   amount: null, unit: '',        metric: null, metricUnit: '',  name: 'chickpeas or feta',               calories: 0,   carbs: 0,  protein: 0,  fat: 0 },
+          { id: 'extraveg',  amount: null, unit: '',        metric: null, metricUnit: '',  name: 'additional vegetables of choice', calories: 0,   carbs: 0,  protein: 0,  fat: 0 },
+        ],
+        method: [
+          'Add {yogurt}, {lemon}, {garlic}, {onion}, {spinach}, and {herbs} to a blender. Season with {salt} and {pepper}, then blend until smooth and creamy.',
+          'Chop {cabbage}, {cucumber}, {carrots}, and {extraveg}. Add {protein} and coat everything with the Green Goddess dressing.',
+        ],
+      },
+
+      'lasagna': {
+        name: 'Lasagna',
+        emoji: '🍝',
+        summary: 'Layered meat sauce, white sauce, lasagna sheets, and grated cheese.',
+        defaultServings: 8,
+        servingLabel: 'serving',
+        servingLabelPlural: 'servings',
+        scale: 'meal',
+        category: 'cooking',
+        notes: ['Lasagna sheets and grated cheese are added as needed; nutrition excludes them unless exact amounts are added later.'],
+        ingredients: [
+          { id: 'meat',      amount: 500,  unit: 'g',    metric: 500, metricUnit: 'g',  name: 'minced meat',               calories: 1250, carbs: 0,  protein: 85, fat: 100 },
+          { id: 'onion',     amount: 1,    unit: 'large', metric: 150, metricUnit: 'g',  name: 'onion, finely chopped',     calories: 60,   carbs: 14, protein: 2,  fat: 0   },
+          { id: 'paste',     amount: 2,    unit: 'tbsp',  metric: 32,  metricUnit: 'g',  name: 'tomato paste',              calories: 26,   carbs: 6,  protein: 1,  fat: 0   },
+          { id: 'meatsalt',  amount: 1,    unit: 'tsp',   metric: 6,   metricUnit: 'g',  name: 'salt for meat sauce',       calories: 0,    carbs: 0,  protein: 0,  fat: 0   },
+          { id: 'pepper',    amount: 0.5,  unit: 'tsp',   metric: 1,   metricUnit: 'g',  name: 'black pepper',              calories: 3,    carbs: 1,  protein: 0,  fat: 0   },
+          { id: 'hotwater',  amount: 1.5,  unit: 'cups',  metric: 355, metricUnit: 'ml', name: 'hot water',                 calories: 0,    carbs: 0,  protein: 0,  fat: 0   },
+          { id: 'milk',      amount: 3,    unit: 'cups',  metric: 720, metricUnit: 'ml', name: 'milk',                      calories: 461,  carbs: 35, protein: 23, fat: 24  },
+          { id: 'flour',     amount: 3,    unit: 'tbsp',  metric: 24,  metricUnit: 'g',  name: 'flour',                     calories: 87,   carbs: 18, protein: 2,  fat: 0   },
+          { id: 'cornflour', amount: 1,    unit: 'tbsp',  metric: 8,   metricUnit: 'g',  name: 'corn flour',                calories: 30,   carbs: 7,  protein: 0,  fat: 0   },
+          { id: 'whitesalt', amount: 0.5,  unit: 'tsp',   metric: 3,   metricUnit: 'g',  name: 'salt for white sauce',      calories: 0,    carbs: 0,  protein: 0,  fat: 0   },
+          { id: 'butter',    amount: 1,    unit: 'tsp',   metric: 5,   metricUnit: 'g',  name: 'butter',                    calories: 36,   carbs: 0,  protein: 0,  fat: 4   },
+          { id: 'sheets',    amount: null, unit: '',      metric: null, metricUnit: '',  name: 'lasagna sheets',            calories: 0,    carbs: 0,  protein: 0,  fat: 0   },
+          { id: 'cheese',    amount: null, unit: '',      metric: null, metricUnit: '',  name: 'grated cheese',             calories: 0,    carbs: 0,  protein: 0,  fat: 0   },
+        ],
+        method: [
+          'Meat sauce: In a casserole over medium heat, fry {onion} until softened.',
+          'Add {meat} and cook until browned and fully cooked.',
+          'Add {meatsalt} and {pepper}.',
+          'Add {paste} and mix well.',
+          'Pour in {hotwater} and bring to a simmer.',
+          'Let the sauce simmer and reduce slightly, making sure to leave enough liquid for assembling the lasagna.',
+          'White sauce: In a cold casserole, add {milk}, {flour}, {cornflour}, and {whitesalt}.',
+          'Whisk thoroughly while cold until everything is fully incorporated and there are no lumps.',
+          'Place the casserole over medium heat and add {butter}.',
+          'Cook while stirring regularly so the sauce does not stick to the bottom.',
+          'Let it slowly come to a gentle boil and continue cooking until the sauce thickens.',
+          'Assemble: Spread some of the liquid sauce from the meat mixture, without the meat, over the bottom of the baking dish.',
+          'Add a layer of {sheets}.',
+          'Layer meat sauce, white sauce, and {cheese}.',
+          'Repeat the layers until all the ingredients are used.',
+          'Finish with white sauce and {cheese} on top.',
+          'Bake at 350°F (175°C) for 30 minutes, until the lasagna is cooked through and the cheese is melted.',
+        ],
+      },
+
     };
 
     // Order that appears on the home page.
     // 'high-protein-potato-buns' deliberately omitted — reachable via the
     // alternate-version button on potato-buns, not the home grid.
-    const HOME_RECIPE_SLUGS = ['normal-bread', 'chocolate-chip-bites', 'fudgy-brownies', 'manousheh-flatbread', 'potato-buns', 'keto-sandwich-loaf'];
+    const BAKING_RECIPE_SLUGS = ['normal-bread', 'chocolate-chip-bites', 'fudgy-brownies', 'date-cake', 'manousheh-flatbread', 'potato-buns', 'keto-sandwich-loaf'];
+    const COOKING_RECIPE_SLUGS = ['sesame-chicken-bowl', 'tomato-sauce', 'green-goddess-salad', 'lasagna'];
+
+    function addHomeRecipeSlug(slug, category) {
+      if (BAKING_RECIPE_SLUGS.includes(slug) || COOKING_RECIPE_SLUGS.includes(slug)) return;
+      const recipe = RECIPES[slug];
+      const target = category === 'cooking' || recipe?.category === 'cooking' || recipe?.scale === 'meal'
+        ? COOKING_RECIPE_SLUGS
+        : BAKING_RECIPE_SLUGS;
+      target.push(slug);
+    }
 
     // ============================================================
     // Formatting
@@ -1227,30 +1439,38 @@
 
     // Render an ingredient — mode is 'us' (cups/tbsp) or 'metric' (g/ml).
     function renderIngredient(ing, multiplier, mode) {
-      const amount = ing.amount * multiplier;
-      const metric = ing.metric * multiplier;
-      const name = pluralize(ing, amount);
-      if (mode === 'metric') {
+      const hasAmount = ing.amount != null && !isNaN(ing.amount);
+      const hasMetric = ing.metric != null && !isNaN(ing.metric);
+      const amount = hasAmount ? ing.amount * multiplier : null;
+      const metric = hasMetric ? ing.metric * multiplier : null;
+      const name = pluralize(ing, amount || 0);
+      if (mode === 'metric' && hasMetric) {
         return (
           `<span class="ingredient-amount">${formatMetric(metric)}${ing.metricUnit}</span> ` +
           `<span class="ingredient-name">${escapeHtml(name)}</span>`
         );
       }
-      return (
-        `<span class="ingredient-amount">${formatAmount(amount)} ${ing.unit}</span> ` +
-        `<span class="ingredient-name">${escapeHtml(name)}</span>`
-      );
+      if (hasAmount) {
+        return (
+          `<span class="ingredient-amount">${formatAmount(amount)} ${ing.unit}</span> ` +
+          `<span class="ingredient-name">${escapeHtml(name)}</span>`
+        );
+      }
+      return `<span class="ingredient-name">${escapeHtml(name)}</span>`;
     }
 
     // Render an ingredient as a compact inline string for method steps.
     function renderIngredientInline(ing, multiplier, mode) {
-      const amount = ing.amount * multiplier;
-      const metric = ing.metric * multiplier;
-      const name = pluralize(ing, amount);
-      if (mode === 'metric') {
+      const hasAmount = ing.amount != null && !isNaN(ing.amount);
+      const hasMetric = ing.metric != null && !isNaN(ing.metric);
+      const amount = hasAmount ? ing.amount * multiplier : null;
+      const metric = hasMetric ? ing.metric * multiplier : null;
+      const name = pluralize(ing, amount || 0);
+      if (mode === 'metric' && hasMetric) {
         return `${formatMetric(metric)}${ing.metricUnit} ${escapeHtml(name)}`;
       }
-      return `${formatAmount(amount)} ${ing.unit} ${escapeHtml(name)}`;
+      if (hasAmount) return `${formatAmount(amount)} ${ing.unit} ${escapeHtml(name)}`;
+      return escapeHtml(name);
     }
 
     function renderMethodStep(step, ingredients, multiplier, mode) {
@@ -1343,10 +1563,10 @@
     const viewEl = document.getElementById('view');
     const backLink = document.getElementById('backLink');
 
-    function renderHome() {
-      backLink.classList.add('hidden');
-      const cards = HOME_RECIPE_SLUGS.map(slug => {
+    function renderRecipeCards(slugs) {
+      return slugs.map(slug => {
         const r = RECIPES[slug];
+        if (!r) return '';
         return `
           <a class="recipe-card" href="#/recipe/${slug}">
             <span class="recipe-card-emoji" aria-hidden="true">${r.emoji}</span>
@@ -1357,6 +1577,12 @@
             <span class="recipe-card-arrow" aria-hidden="true">→</span>
           </a>`;
       }).join('');
+    }
+
+    function renderHome() {
+      backLink.classList.add('hidden');
+      const bakingCards = renderRecipeCards(BAKING_RECIPE_SLUGS);
+      const cookingCards = renderRecipeCards(COOKING_RECIPE_SLUGS);
 
       const adminCard = isAdmin() ? `
         <a class="recipe-card add-card" href="#/add">
@@ -1369,11 +1595,18 @@
 
       viewEl.innerHTML = `
         <section class="home-hero">
-          <h1>A small shelf of<br/>baking recipes.</h1>
+          <h1>A small shelf of<br/>recipes.</h1>
           <p>Scale any recipe by servings — ingredients, method, and nutrition update instantly.</p>
         </section>
-        <div class="section-title">The Collection</div>
-        <div class="recipe-grid">${cards}${adminCard}</div>
+        <section class="home-section">
+          <div class="section-title">Baking</div>
+          <div class="recipe-grid">${bakingCards}</div>
+        </section>
+        <section class="home-section">
+          <div class="section-title">Cooking</div>
+          <div class="recipe-grid">${cookingCards}</div>
+        </section>
+        ${adminCard ? `<div class="recipe-grid home-admin-grid">${adminCard}</div>` : ''}
       `;
       document.title = "Joelle's Recipes";
       window.scrollTo(0, 0);
@@ -1584,7 +1817,7 @@
           if (!res.ok) throw new Error(data.error || ('HTTP ' + res.status));
           publishedSlugs.add(recipe.slug);
           RECIPES[recipe.slug] = recipe;
-          if (!HOME_RECIPE_SLUGS.includes(recipe.slug)) HOME_RECIPE_SLUGS.push(recipe.slug);
+          addHomeRecipeSlug(recipe.slug, recipe.category);
         } catch (err) {
           alert('Publish failed: ' + err.message);
         } finally {
@@ -1678,7 +1911,7 @@
         for (const r of (data.recipes || [])) {
           if (!r || !r.slug) continue;
           RECIPES[r.slug] = r;
-          if (!HOME_RECIPE_SLUGS.includes(r.slug)) HOME_RECIPE_SLUGS.push(r.slug);
+          addHomeRecipeSlug(r.slug, r.category);
         }
       } catch (e) { /* ignore */ }
     }
@@ -1713,6 +1946,9 @@
 
         const methodHtml = r.method.map(step =>
           `<li>${renderMethodStep(step, r.ingredients, multiplier, unitMode)}</li>`
+        ).join('');
+        const notesHtml = (r.notes || []).map(note =>
+          `<div class="recipe-note">${escapeHtml(note)}</div>`
         ).join('');
 
         const alt = r.alternate;
@@ -1759,6 +1995,7 @@
 
             <div class="tab-panel${activeCls('method')}" data-panel="method">
               <ol class="method">${methodHtml}</ol>
+              ${notesHtml}
             </div>
 
             <div class="tab-panel${activeCls('nutrition')}" data-panel="nutrition">
